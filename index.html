@@ -374,12 +374,13 @@ footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; let
 /* ==========================================================================
    10. ROUTES (booking / admin)
    ========================================================================== */
-/* translateZ makes .route the containing block for .navbar, so the sticky
-   footer stops at the hair panel instead of running underneath it */
+/* The route is inset by the hair panel, so everything inside it — including the
+   sticky footer bar — naturally stops at the panel. No transform hacks: fixed
+   inside a transformed scroller floats mid-content in some browsers. */
 .route{display:none; position:fixed; inset:0 var(--panel-w) 0 0; z-index:40;
-  background:var(--c-canvas); overflow-y:auto; overscroll-behavior:contain;
-  transform:translateZ(0)}
-.route.on{display:block}
+  background:var(--c-canvas); overflow-y:auto; overscroll-behavior:contain}
+.route.on{display:flex; flex-direction:column}
+.route > *{flex-shrink:0}
 body.routing{overflow:hidden}
 body.routing #hairpanel{z-index:41}
 
@@ -390,7 +391,7 @@ body.routing #hairpanel{z-index:41}
 .prog-bar{height:2px; background:var(--c-line); position:relative; overflow:hidden}
 .prog-bar i{position:absolute; inset:0 auto 0 0; background:var(--c-accent); transition:width var(--d-base) var(--e-inout)}
 
-.step{max-width:660px; margin-inline:auto; padding-block:clamp(32px,7vw,80px) 176px}
+.step{max-width:660px; margin-inline:auto; padding-block:clamp(32px,7vw,80px) var(--s-8)}
 .q-label{font:400 var(--t-3)/1.18 var(--font-display); font-variation-settings:"opsz" 60; letter-spacing:var(--ls-head); margin-bottom:var(--s-4)}
 .q-sub{font-size:var(--t-0); color:var(--c-ink-muted); margin-bottom:var(--s-3); max-width:52ch}
 .q-help{font-size:var(--t--1); color:var(--c-ink-faint); font-style:italic; margin-bottom:var(--s-7); max-width:52ch; line-height:1.55}
@@ -431,8 +432,11 @@ body.routing #hairpanel{z-index:41}
 .field.bad input,.field.bad textarea{border-color:var(--c-danger)}
 .field.bad .err{display:block}
 
+/* Sticky, not fixed: pinned to the bottom edge while the step scrolls, then it
+   settles into normal flow after the last option — it can never sit mid-screen
+   or permanently cover a choice, in any browser or zoom level. */
 .navbar{
-  position:fixed; left:0; right:0; bottom:0; z-index:6;
+  position:sticky; bottom:0; z-index:6; margin-top:auto;
   background:var(--c-canvas);
   border-top:1px solid var(--c-line);
   padding:var(--s-4) var(--space-gutter) calc(var(--s-4) + env(safe-area-inset-bottom));
@@ -444,7 +448,6 @@ body.routing #hairpanel{z-index:41}
 }
 .navbar .inner{max-width:660px; margin-inline:auto; display:flex; gap:var(--s-4); align-items:center}
 .navbar .note{font-size:var(--t--2); color:var(--c-ink-faint); margin-right:auto; max-width:26ch; line-height:1.35}
-.route .navbar{right:0}
 .route.sent .navbar{display:none}
 @media (max-width:560px){
   .navbar .inner{flex-wrap:wrap; gap:var(--s-3)}
@@ -1488,8 +1491,11 @@ function updateHub(){
   const nameEl = $("#hubName");
   nameEl.textContent = P.shade.name;
   // Long names ("Strawberry Blonde") would graze the hub circle at 19px — shrink to fit.
+  // Some browsers throw on getComputedTextLength before first layout; never let
+  // that kill boot (a dead boot = no hair panel and a frozen menu).
   nameEl.style.fontSize = "";
-  const w = nameEl.getComputedTextLength ? nameEl.getComputedTextLength() : 0;
+  let w = 0;
+  try{ w = nameEl.getComputedTextLength ? nameEl.getComputedTextLength() : 0; }catch(e){}
   if(w > 138) nameEl.style.fontSize = Math.max(13, Math.floor(19 * 138 / w)) + "px";
   $("#hubMeta").textContent = "Level " + P.shade.level + " · " + P.shade.tone[0].toUpperCase()+P.shade.tone.slice(1);
   $("#hubFam").textContent  = FAMILIES[P.famIdx].family;
