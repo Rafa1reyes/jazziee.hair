@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hair By Jazzie — Color, Balayage & Extensions in Fair Oaks</title>
+<meta name="description" content="Jasmine Perez — Hair By Jazzie. Color, balayage, extensions and bridal hair at Curl Up & Dye Salon in Fair Oaks, CA. See your color before you book.">
+<meta property="og:title" content="Hair By Jazzie">
+<meta property="og:description" content="See your color before you book. Color, balayage, extensions and bridal by Jasmine Perez in Fair Oaks, CA.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jazziee.hair/">
+<meta name="theme-color" content="#F7F3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16110F" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%239C5F4A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23FFF8F3' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+:root{
+  color-scheme: light dark;
+
+  --c-canvas:#F7F3EE; --c-canvas-alt:#EFE6DC; --c-surface:#FFFCF8; --c-vellum:#E4D8CB;
+  --c-ink:#241C18; --c-ink-muted:#6B5F57; --c-ink-faint:#766A60;
+  --c-line:#E0D5C8; --c-line-strong:#C9B9A8;
+  --c-accent:#9C5F4A; --c-accent-hover:#834A38; --c-accent-tint:#F0DED6; --c-on-accent:#FFF8F3;
+  --c-plum-surface:#3A2530; --c-on-plum:#F3E6EA; --c-plum-tint:#EFE2E7;
+  --c-gilt:#B08D57; --c-success:#4F6B4A; --c-warn:#8A5D12; --c-warn-soft:#F7EBD6;
+  --c-danger:#9B2C2C; --c-focus:#241C18; --c-shadow-rgb:26 16 10;
+
+  --panel-backdrop:#2A211C;
+
+  --font-display:"Fraunces","Iowan Old Style",Georgia,serif;
+  --font-body:"Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
+
+  --t--2:clamp(.72rem,.700rem + .09vw,.78rem);
+  --t--1:clamp(.84rem,.810rem + .13vw,.92rem);
+  --t-0:clamp(1rem,.960rem + .17vw,1.125rem);
+  --t-1:clamp(1.20rem,1.120rem + .34vw,1.45rem);
+  --t-2:clamp(1.45rem,1.300rem + .64vw,2rem);
+  --t-3:clamp(1.80rem,1.520rem + 1.19vw,2.85rem);
+  --t-4:clamp(2.30rem,1.760rem + 2.30vw,4rem);
+  --t-5:clamp(2.90rem,1.850rem + 4.48vw,5.75rem);
+  --t-6:clamp(3.10rem,1.510rem + 6.60vw,7.25rem);
+
+  --lh-display:.96; --lh-head:1.08; --lh-body:1.62; --lh-ui:1.30;
+  --ls-display:-.025em; --ls-head:-.015em; --ls-eyebrow:.18em;
+
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;
+  --s-7:48px;--s-8:64px;--s-9:96px;--s-10:128px;--s-11:160px;
+  --space-section:clamp(72px,11vw,160px);
+  --space-gutter:clamp(20px,5vw,64px);
+
+  --r-sharp:2px; --r-soft:4px;
+  --sh-lift:0 1px 2px rgb(var(--c-shadow-rgb)/.04), 0 8px 24px -8px rgb(var(--c-shadow-rgb)/.08);
+  --sh-float:0 2px 4px rgb(var(--c-shadow-rgb)/.05), 0 20px 48px -12px rgb(var(--c-shadow-rgb)/.14);
+  --sh-float-up:0 -2px 4px rgb(var(--c-shadow-rgb)/.05), 0 -16px 40px -12px rgb(var(--c-shadow-rgb)/.14);
+
+  --e-out:cubic-bezier(.22,1,.36,1); --e-inout:cubic-bezier(.65,0,.35,1);
+  --d-fast:180ms; --d-base:320ms; --d-slow:700ms;
+
+  --panel-w:clamp(190px,17vw,272px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  color-scheme:dark;
+  --c-canvas:#16110F; --c-canvas-alt:#1D1714; --c-surface:#241D19; --c-vellum:#322822;
+  --c-ink:#F2EAE1; --c-ink-muted:#B5A79C; --c-ink-faint:#9A8C80;
+  --c-line:#362C26; --c-line-strong:#4A3C33;
+  --c-accent:#D08C6E; --c-accent-hover:#E3A585; --c-accent-tint:#35211A; --c-on-accent:#1A0F0A;
+  --c-plum-surface:#2A1B22; --c-on-plum:#EFDDE4; --c-plum-tint:#2A1B22;
+  --c-gilt:#C9A66B; --c-success:#8FB48A; --c-warn:#E5B463; --c-warn-soft:#3A2C13;
+  --c-danger:#E88C8C; --c-focus:#F2EAE1; --c-shadow-rgb:0 0 0;
+  --panel-backdrop:#0A0706;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --c-canvas:#16110F; --c-canvas-alt:#1D1714; --c-surface:#241D19; --c-vellum:#322822;
+  --c-ink:#F2EAE1; --c-ink-muted:#B5A79C; --c-ink-faint:#9A8C80;
+  --c-line:#362C26; --c-line-strong:#4A3C33;
+  --c-accent:#D08C6E; --c-accent-hover:#E3A585; --c-accent-tint:#35211A; --c-on-accent:#1A0F0A;
+  --c-plum-surface:#2A1B22; --c-on-plum:#EFDDE4; --c-plum-tint:#2A1B22;
+  --c-gilt:#C9A66B; --c-success:#8FB48A; --c-warn:#E5B463; --c-warn-soft:#3A2C13;
+  --c-danger:#E88C8C; --c-focus:#F2EAE1; --c-shadow-rgb:0 0 0;
+  --panel-backdrop:#0A0706;
+}
+:root[data-theme="light"]{color-scheme:light}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{
+  margin:0; background:var(--c-canvas); color:var(--c-ink);
+  font:400 var(--t-0)/var(--lh-body) var(--font-body);
+  font-optical-sizing:auto; text-wrap:pretty;
+  overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+button,input,select,textarea{font:inherit; color:inherit}
+input,select,textarea{accent-color:var(--c-accent)}
+button{cursor:pointer; background:none; border:0; padding:0}
+a{color:var(--c-accent); text-underline-offset:.22em; text-decoration-thickness:1px}
+h1,h2,h3,h4{margin:0; font-family:var(--font-display); font-weight:400; text-wrap:balance; letter-spacing:var(--ls-head); line-height:var(--lh-head)}
+p{margin:0 0 1em; max-width:62ch}
+:focus-visible{outline:2px solid var(--c-focus); outline-offset:3px; border-radius:var(--r-sharp)}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip:focus{position:fixed!important; left:var(--s-4); top:var(--s-3); width:auto; height:auto; clip:auto; margin:0;
+  padding:var(--s-3) var(--s-5); background:var(--c-ink); color:var(--c-canvas); z-index:100;
+  border-radius:var(--r-soft); text-decoration:none; font-size:var(--t--1)}
+
+.wrap{max-width:1320px; margin-inline:auto; padding-inline:var(--space-gutter)}
+.eyebrow{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow); color:var(--c-ink-faint); display:block; margin-bottom:var(--s-5)}
+.lead{font-size:var(--t-1); font-weight:300; line-height:1.5; color:var(--c-ink-muted); max-width:48ch}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* grain */
+body::after{
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.035;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55em;
+  min-height:48px; padding:0 var(--s-6); border-radius:var(--r-sharp);
+  font:500 var(--t-0)/1 var(--font-body); text-decoration:none;
+  transition:background var(--d-fast) var(--e-inout), transform var(--d-fast) var(--e-inout), border-color var(--d-fast);
+}
+.btn-primary{background:var(--c-accent); color:var(--c-on-accent)}
+.btn-primary:hover{background:var(--c-accent-hover); transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--c-line-strong); color:var(--c-ink)}
+.btn-ghost:hover{border-color:var(--c-ink); transform:translateY(-1px)}
+.btn-primary:active,.btn-ghost:active{transform:translateY(0)}
+.btn-sm{min-height:40px; padding:0 var(--s-5); font-size:var(--t--1)}
+.btn[disabled]{opacity:.42; pointer-events:none}
+
+/* reveal — only ever hidden once JS has confirmed it can reveal again (see boot) */
+html.js-rv .rv{opacity:0; transform:translateY(18px); transition:opacity var(--d-slow) var(--e-out), transform var(--d-slow) var(--e-out)}
+html.js-rv .rv.in{opacity:1; transform:none}
+
+/* ==========================================================================
+   3. HAIR PANEL
+   ========================================================================== */
+#hairpanel{
+  position:fixed; inset-block:0; right:0; width:var(--panel-w); height:100dvh;
+  pointer-events:none; z-index:3; contain:paint;
+  filter:drop-shadow(-14px 0 34px rgb(var(--c-shadow-rgb)/.16));
+}
+#panelLabel{
+  position:fixed; right:var(--s-4); bottom:var(--s-4); z-index:4;
+  width:calc(var(--panel-w) - var(--s-8));
+  font:500 var(--t--2)/1.4 var(--font-body); color:var(--c-on-plum);
+  background:rgb(0 0 0/.62); backdrop-filter:blur(8px);
+  padding:var(--s-3) var(--s-4); border-radius:var(--r-soft); pointer-events:none;
+  letter-spacing:.02em;
+}
+body.has-panel{ padding-right:var(--panel-w) }
+@media (max-width:1099px){
+  :root{ --panel-w:clamp(64px,15vw,104px) }
+  #hairpanel{ filter:drop-shadow(-8px 0 20px rgb(var(--c-shadow-rgb)/.14)) }
+  #panelLabel{
+    right:auto; left:var(--s-4); bottom:calc(var(--s-4) + 74px);
+    width:auto; max-width:min(58vw, 300px); font-size:var(--t--2);
+  }
+}
+@media (max-width:520px){
+  :root{ --panel-w:56px }
+  #panelLabel{ display:none }
+}
+
+/* ==========================================================================
+   4. HEADER
+   ========================================================================== */
+.hdr{
+  position:sticky; top:0; z-index:20; height:66px;
+  display:flex; align-items:center; gap:var(--s-5);
+  background:color-mix(in srgb, var(--c-canvas) 88%, transparent);
+  backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid transparent; transition:border-color var(--d-base)
+}
+.hdr.stuck{border-bottom-color:var(--c-line)}
+.hdr .wrap{display:flex; align-items:center; gap:var(--s-5); width:100%}
+.mark{font:400 1.3rem/1 var(--font-display); letter-spacing:-.02em; color:var(--c-ink); text-decoration:none; margin-right:auto; white-space:nowrap}
+.mark em{font-style:italic; color:var(--c-accent)}
+.hdr nav{display:flex; gap:var(--s-6)}
+.hdr nav a{color:var(--c-ink-muted); text-decoration:none; font-size:var(--t--1); letter-spacing:.01em; transition:color var(--d-fast) var(--e-inout)}
+.hdr nav a:hover{color:var(--c-ink)}
+.icon-btn{width:40px;height:40px;display:grid;place-items:center;border-radius:var(--r-sharp);color:var(--c-ink-muted); transition:color var(--d-fast) var(--e-inout), background var(--d-fast) var(--e-inout)}
+.icon-btn:hover{color:var(--c-ink); background:var(--c-canvas-alt)}
+@media (max-width:860px){ .hdr nav{display:none} }
+
+/* compact section nav for small screens — the header nav is hidden under 860px */
+.subnav{display:none}
+@media (max-width:860px){
+  .subnav{display:flex; gap:var(--s-2); overflow-x:auto; padding:var(--s-3) var(--space-gutter);
+    border-bottom:1px solid var(--c-line); scrollbar-width:none}
+  .subnav::-webkit-scrollbar{display:none}
+  .subnav a{flex:none; font-size:var(--t--2); color:var(--c-ink-muted); text-decoration:none;
+    border:1px solid var(--c-line); border-radius:99px; padding:7px var(--s-4); background:var(--c-surface);
+    transition:color var(--d-fast) var(--e-inout), border-color var(--d-fast) var(--e-inout)}
+  .subnav a:hover{color:var(--c-ink); border-color:var(--c-line-strong)}
+}
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero{padding:clamp(48px,9vw,120px) 0 var(--space-section)}
+.hero h1{
+  font-size:var(--t-6); font-weight:300; line-height:var(--lh-display);
+  letter-spacing:var(--ls-display); font-variation-settings:"opsz" 144; max-width:14ch;
+}
+.hero h1 em{font-style:italic; color:var(--c-accent)}
+.hero .lead{margin:var(--s-6) 0 var(--s-7)}
+.hero-cta{display:flex; flex-wrap:wrap; gap:var(--s-4); align-items:center}
+.hero-meta{margin-top:var(--s-7); display:flex; flex-wrap:wrap; gap:var(--s-6) var(--s-8); font-size:var(--t--1); color:var(--c-ink-faint)}
+.hero-meta b{display:block; color:var(--c-ink); font-weight:500; font-size:var(--t-0)}
+
+/* ==========================================================================
+   6. SECTIONS
+   ========================================================================== */
+section{padding-block:var(--space-section)}
+.band{background:var(--c-canvas-alt)}
+.sec-head{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--s-5); margin-bottom:var(--s-9)}
+.sec-head h2{grid-column:1/span 6; font-size:var(--t-4); font-weight:300; font-variation-settings:"opsz" 96}
+.sec-head .sec-note{grid-column:8/span 5; align-self:end; color:var(--c-ink-muted); font-size:var(--t--1); max-width:44ch}
+@media (max-width:860px){
+  .sec-head{grid-template-columns:1fr; gap:var(--s-4)}
+  .sec-head h2,.sec-head .sec-note{grid-column:1}
+}
+
+/* ==========================================================================
+   7. COLOR STUDIO
+   ========================================================================== */
+.studio-grid{display:grid; grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:clamp(32px,5vw,80px); align-items:start}
+@media (max-width:980px){ .studio-grid{grid-template-columns:1fr} }
+
+/* pan-y keeps vertical swipes on the hub/corners scrolling the page; the rings
+   themselves opt out so a drag can rotate them without fighting the scroll */
+.wheel-wrap{position:relative; width:100%; max-width:380px; margin-inline:auto; touch-action:pan-y; user-select:none}
+.wheel-wrap svg{width:100%; height:auto; display:block; overflow:visible}
+#ringOuter,#ringInner{transform-origin:180px 180px; cursor:grab; touch-action:none}
+#ringOuter.drag,#ringInner.drag{cursor:grabbing}
+.seg{stroke:var(--c-canvas); stroke-width:1; transition:opacity var(--d-fast)}
+.seg-label{font:500 8.5px var(--font-body); letter-spacing:.09em; text-transform:uppercase; pointer-events:none}
+.hub-name{font:400 19px var(--font-display); fill:var(--c-ink); text-anchor:middle}
+.hub-meta{font:500 9.5px var(--font-body); letter-spacing:.13em; text-transform:uppercase; fill:var(--c-ink-faint); text-anchor:middle}
+.marker{fill:var(--c-ink)}
+#selWin path{fill:none; stroke:var(--c-ink); stroke-width:2; stroke-linejoin:round; pointer-events:none}
+#selWin path.under{stroke:var(--c-canvas); stroke-width:5; opacity:.9}
+.seg:hover{opacity:.84}
+.wheel-hint{text-align:center; font-size:var(--t--2); color:var(--c-ink-faint); margin-top:var(--s-4); letter-spacing:.04em}
+/* the SVG scales down to ~0.75x on phones, so the in-wheel type sizes up to compensate */
+@media (max-width:520px){
+  .seg-label{font-size:11px}
+  .hub-meta{font-size:11.5px}
+  .hub-name{font-size:22px}
+}
+
+.liftstrip{
+  margin-top:var(--s-5); padding:var(--s-4) var(--s-5); border-radius:var(--r-soft);
+  font-size:var(--t--1); line-height:1.5; border:1px solid var(--c-line);
+  background:var(--c-surface); color:var(--c-ink-muted);
+  display:flex; gap:var(--s-4); align-items:flex-start;
+}
+.liftstrip[data-state^="lift"]{background:var(--c-warn-soft); border-color:color-mix(in srgb,var(--c-warn) 34%,transparent); color:var(--c-ink)}
+.liftstrip b{color:var(--c-ink)}
+.ladder{flex:0 0 26px; display:grid; gap:2px}
+.ladder i{display:block; height:5px; border-radius:1px; background:var(--c-line)}
+.ladder i.now{background:var(--c-ink)}
+.ladder i.goal{background:var(--c-accent)}
+.ladder i.gap{background:color-mix(in srgb,var(--c-warn) 55%,transparent)}
+
+.ctrl-group{margin-bottom:var(--s-6)}
+.ctrl-group h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow); color:var(--c-ink-faint); margin-bottom:var(--s-3)}
+.chips{display:flex; flex-wrap:wrap; gap:var(--s-2)}
+.chip{
+  min-height:42px; padding:0 var(--s-5); border:1px solid var(--c-line);
+  border-radius:var(--r-sharp); background:var(--c-surface); color:var(--c-ink-muted);
+  font-size:var(--t--1); transition:all var(--d-fast) var(--e-inout); white-space:nowrap;
+}
+.chip:hover{border-color:var(--c-line-strong); color:var(--c-ink)}
+.chip:active{transform:scale(.985)}
+.chip[aria-pressed="true"]{background:var(--c-ink); border-color:var(--c-ink); color:var(--c-canvas)}
+.chip small{display:block; font-size:.72em; opacity:.7; letter-spacing:.02em}
+.chip{max-width:100%}
+/* service names come from the menu and can run long — let those chips wrap */
+#cService .chip{white-space:normal; text-align:left; padding-block:var(--s-2)}
+
+/* ==========================================================================
+   8. SERVICE MENU
+   ========================================================================== */
+.filters{display:flex; flex-wrap:wrap; gap:var(--s-2); margin-bottom:var(--s-8)}
+.cat-head{
+  font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow);
+  color:var(--c-ink-faint); padding-bottom:var(--s-3); margin:var(--s-9) 0 0;
+  border-bottom:1px solid var(--c-line-strong);
+}
+.cat-head:first-of-type{margin-top:0}
+.srow{
+  border-bottom:1px solid var(--c-line); padding:var(--s-6) 0;
+  display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:var(--s-2) clamp(24px,4vw,64px); align-items:start;
+}
+.srow-name{grid-column:1; font:500 var(--t-1)/1.2 var(--font-display); font-variation-settings:"opsz" 32; color:var(--c-ink)}
+.srow-tag{grid-column:1; font-style:italic; color:var(--c-ink-faint); font-size:var(--t--1); line-height:1.4}
+.srow-price{grid-column:1; font:500 var(--t-1)/1.2 var(--font-body); color:var(--c-accent); font-variant-numeric:tabular-nums lining-nums; margin-top:var(--s-3)}
+.srow-price small{display:block; font-size:var(--t--2); font-weight:400; color:var(--c-ink-faint); letter-spacing:.04em; margin-top:3px}
+.srow-body{grid-column:2; grid-row:1/span 3; color:var(--c-ink-muted); font-size:var(--t--1); line-height:1.62; margin:0; max-width:58ch}
+.srow-meta{grid-column:2; display:flex; flex-wrap:wrap; gap:var(--s-1) var(--s-5); font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.02em; margin-top:var(--s-3)}
+.srow-meta b{color:var(--c-ink-muted); font-weight:500}
+.srow-acts{grid-column:2; display:flex; flex-wrap:wrap; gap:var(--s-3); align-items:center; margin-top:var(--s-4)}
+.srow details{grid-column:2; margin-top:var(--s-3)}
+.srow details summary{cursor:pointer; font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.04em; list-style:none; transition:color var(--d-fast) var(--e-inout)}
+.srow details summary:hover{color:var(--c-ink)}
+.srow details summary::-webkit-details-marker{display:none}
+.srow details summary::before{content:"＋ "; color:var(--c-accent)}
+.srow details[open] summary::before{content:"− "}
+.srow details p{font-size:var(--t--2); color:var(--c-ink-muted); margin:var(--s-3) 0 0; padding-left:var(--s-4); border-left:2px solid var(--c-line)}
+.badge{display:inline-flex; align-items:center; gap:.4em; padding:3px var(--s-3); border-radius:99px; font-size:var(--t--2); letter-spacing:.03em; background:var(--c-accent-tint); color:var(--c-accent)}
+.badge.warn{background:var(--c-warn-soft); color:var(--c-warn)}
+.badge.mute{background:var(--c-vellum); color:var(--c-ink-muted)}
+.srow.dim{opacity:.55}
+@media (max-width:820px){
+  .srow{grid-template-columns:1fr; gap:var(--s-2)}
+  .srow-name,.srow-tag,.srow-price,.srow-body,.srow-meta,.srow-acts,.srow details{grid-column:1}
+  .srow-body{grid-row:auto; margin-top:var(--s-3)}
+}
+
+/* ==========================================================================
+   9. INFO BLOCKS
+   ========================================================================== */
+.two-col{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--s-5)}
+.two-col .a{grid-column:1/span 5}
+.two-col .b{grid-column:7/span 6}
+@media (max-width:860px){ .two-col .a,.two-col .b{grid-column:1/-1} }
+.fact{border-top:1px solid var(--c-line); padding:var(--s-5) 0}
+.fact h3{font:500 var(--t-0)/1.3 var(--font-body); margin-bottom:var(--s-2)}
+.fact p{font-size:var(--t--1); color:var(--c-ink-muted); margin:0}
+.hours{list-style:none; padding:0; margin:0; font-size:var(--t--1)}
+.hours li{display:flex; justify-content:space-between; gap:var(--s-5); padding:var(--s-3) 0; border-bottom:1px solid var(--c-line); color:var(--c-ink-muted)}
+.hours li b{font-weight:500; color:var(--c-ink)}
+.hours li.closed{color:var(--c-ink-faint)}
+
+.quote-band{background:var(--c-plum-surface); color:var(--c-on-plum); --c-focus:var(--c-on-plum)}
+.quote-band h2,.quote-band .eyebrow{color:var(--c-on-plum)}
+.quote-band .eyebrow{opacity:.6}
+.quote-band p{color:color-mix(in srgb,var(--c-on-plum) 82%,transparent)}
+
+footer{background:var(--c-plum-surface); color:var(--c-on-plum); padding-block:var(--space-section) var(--s-8); --c-focus:var(--c-on-plum)}
+footer a{color:var(--c-on-plum); transition:opacity var(--d-fast) var(--e-inout)}
+footer a:hover{opacity:.82}
+footer .fgrid{display:grid; grid-template-columns:repeat(12,1fr); gap:var(--s-7) var(--s-5)}
+footer .fgrid > div{grid-column:span 4}
+@media (max-width:860px){ footer .fgrid > div{grid-column:1/-1} }
+footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow); opacity:.55; margin-bottom:var(--s-4)}
+.fbot{margin-top:var(--s-9); padding-top:var(--s-5); border-top:1px solid rgb(255 255 255/.12); display:flex; flex-wrap:wrap; gap:var(--s-4); justify-content:space-between; font-size:var(--t--2); opacity:.6}
+
+/* sticky mobile book bar */
+.bookbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:30; display:none;
+  padding:var(--s-3) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom));
+  background:var(--c-surface); border-top:1px solid var(--c-line); box-shadow:var(--sh-float-up);
+  align-items:center; gap:var(--s-4);
+}
+.bookbar .bb-t{flex:1; font-size:var(--t--2); color:var(--c-ink-muted); line-height:1.35}
+.bookbar .bb-t b{display:block; color:var(--c-ink); font-size:var(--t--1); font-weight:500}
+@media (max-width:1099px){ .bookbar.on{display:flex} body{padding-bottom:82px} }
+
+/* ==========================================================================
+   10. ROUTES (booking / admin)
+   ========================================================================== */
+/* translateZ makes .route the containing block for .navbar, so the sticky
+   footer stops at the hair panel instead of running underneath it */
+.route{display:none; position:fixed; inset:0 var(--panel-w) 0 0; z-index:40;
+  background:var(--c-canvas); overflow-y:auto; overscroll-behavior:contain;
+  transform:translateZ(0)}
+.route.on{display:block}
+body.routing{overflow:hidden}
+body.routing #hairpanel{z-index:41}
+
+.rhdr{position:sticky; top:0; z-index:5; background:color-mix(in srgb,var(--c-canvas) 92%,transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--c-line)}
+.rhdr .wrap{display:flex; align-items:center; gap:var(--s-5); min-height:66px}
+.prog{flex:1; max-width:340px}
+.prog-t{font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.04em; margin-bottom:6px}
+.prog-bar{height:2px; background:var(--c-line); position:relative; overflow:hidden}
+.prog-bar i{position:absolute; inset:0 auto 0 0; background:var(--c-accent); transition:width var(--d-base) var(--e-inout)}
+
+.step{max-width:660px; margin-inline:auto; padding-block:clamp(32px,7vw,80px) 176px}
+.q-label{font:400 var(--t-3)/1.18 var(--font-display); font-variation-settings:"opsz" 60; letter-spacing:var(--ls-head); margin-bottom:var(--s-4)}
+.q-sub{font-size:var(--t-0); color:var(--c-ink-muted); margin-bottom:var(--s-3); max-width:52ch}
+.q-help{font-size:var(--t--1); color:var(--c-ink-faint); font-style:italic; margin-bottom:var(--s-7); max-width:52ch; line-height:1.55}
+.q-cond{font-size:var(--t--1); color:var(--c-accent); background:var(--c-accent-tint); padding:var(--s-3) var(--s-4); border-radius:var(--r-soft); margin:0 0 var(--s-7); max-width:52ch}
+/* only pull the callout up when it directly follows the help text's big bottom margin */
+.q-help + .q-cond{margin-top:calc(var(--s-7) * -1)}
+
+.opts{display:grid; gap:var(--s-3)}
+.opt{
+  display:grid; grid-template-columns:auto 1fr; gap:var(--s-4); align-items:center;
+  min-height:64px; padding:var(--s-4) var(--s-5); text-align:left;
+  border:1px solid var(--c-line); border-radius:var(--r-soft); background:var(--c-surface);
+  transition:border-color var(--d-fast), background var(--d-fast), transform var(--d-fast);
+}
+.opt:hover{border-color:var(--c-line-strong); transform:translateY(-1px)}
+.opt[aria-pressed="true"]{border-color:var(--c-ink); background:var(--c-accent-tint)}
+.opt-fig{width:44px; height:44px; flex:none; display:grid; place-items:center}
+.opt-fig svg{width:100%; height:100%; overflow:visible}
+.opt-txt b{display:block; font-weight:500; font-size:var(--t-0); margin-bottom:2px}
+.opt-txt span{display:block; font-size:var(--t--1); color:var(--c-ink-muted); line-height:1.45}
+.opt-txt small{display:block; font-size:var(--t--2); color:var(--c-ink-faint); margin-top:3px; letter-spacing:.03em}
+.opts.sw{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
+.opts.sw .opt{grid-template-columns:auto 1fr; min-height:56px; padding:var(--s-3) var(--s-4)}
+.opts.sw .opt-fig{width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--c-ink) 22%, transparent)}
+.opts.sw .opt-txt b{font-size:var(--t--1)}
+
+.field{margin-bottom:var(--s-5)}
+.field label{display:block; font-size:var(--t--1); font-weight:500; margin-bottom:var(--s-2)}
+.field .hint{font-size:var(--t--2); color:var(--c-ink-faint); margin-bottom:var(--s-2)}
+.field input,.field textarea,.field select{
+  width:100%; min-height:50px; padding:var(--s-3) var(--s-4);
+  border:1px solid var(--c-line); border-radius:var(--r-sharp);
+  background:var(--c-surface); color:var(--c-ink);
+}
+.field textarea{min-height:110px; resize:vertical; line-height:1.55}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none; border-color:var(--c-ink); box-shadow:0 0 0 3px var(--c-accent-tint)}
+.field .err{display:none; font-size:var(--t--2); color:var(--c-danger); margin-top:var(--s-2)}
+.field.bad input,.field.bad textarea{border-color:var(--c-danger)}
+.field.bad .err{display:block}
+
+.navbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:6;
+  background:var(--c-canvas);
+  border-top:1px solid var(--c-line);
+  padding:var(--s-4) var(--space-gutter) calc(var(--s-4) + env(safe-area-inset-bottom));
+}
+/* content fades out before it reaches the bar instead of getting sliced by it */
+.navbar::before{
+  content:""; position:absolute; left:0; right:0; bottom:100%; height:36px; pointer-events:none;
+  background:linear-gradient(to top, color-mix(in srgb,var(--c-canvas) 85%,transparent), transparent);
+}
+.navbar .inner{max-width:660px; margin-inline:auto; display:flex; gap:var(--s-4); align-items:center}
+.navbar .note{font-size:var(--t--2); color:var(--c-ink-faint); margin-right:auto; max-width:26ch; line-height:1.35}
+.route .navbar{right:0}
+.route.sent .navbar{display:none}
+@media (max-width:560px){
+  .navbar .inner{flex-wrap:wrap; gap:var(--s-3)}
+  .navbar .note{flex:1 1 100%; order:-1; max-width:none; margin-right:0}
+  .navbar .note:empty{display:none}
+  #btnNext{flex:1; white-space:nowrap; padding-inline:var(--s-5)}
+  #btnBack{padding-inline:var(--s-4)}
+}
+
+.summary{border:1px solid var(--c-line); border-radius:var(--r-soft); background:var(--c-surface); padding:var(--s-5); margin-bottom:var(--s-6)}
+.summary h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow); color:var(--c-ink-faint); margin-bottom:var(--s-4)}
+.summary dl{display:grid; grid-template-columns:auto 1fr auto; gap:var(--s-3) var(--s-4); margin:0; align-items:baseline; font-size:var(--t--1)}
+.summary dt{color:var(--c-ink-faint)}
+.summary dd{margin:0; color:var(--c-ink)}
+.summary .chg-c{grid-column:3}
+.summary .chg{font-size:var(--t--2); color:var(--c-accent); text-decoration:underline; transition:color var(--d-fast) var(--e-inout)}
+.summary .chg:hover{color:var(--c-accent-hover)}
+.total{display:flex; justify-content:space-between; align-items:baseline; padding-top:var(--s-4); margin-top:var(--s-4); border-top:1px solid var(--c-line-strong); font-size:var(--t-1); font-weight:500; font-variant-numeric:tabular-nums}
+.policy{font-size:var(--t--1); color:var(--c-ink-muted); border-left:2px solid var(--c-accent); padding-left:var(--s-5); margin-bottom:var(--s-6); font-style:italic; line-height:1.6}
+
+.done{text-align:center; padding-top:clamp(40px,10vw,110px)}
+.done .tick{width:64px;height:64px;margin:0 auto var(--s-6); border-radius:50%; background:var(--c-accent-tint); color:var(--c-accent); display:grid; place-items:center; font-size:30px}
+.done h2{font-size:var(--t-3); margin-bottom:var(--s-5)}
+.done p{margin-inline:auto}
+.refbox{display:inline-block; margin:var(--s-5) 0; padding:var(--s-3) var(--s-6); border:1px dashed var(--c-line-strong); border-radius:var(--r-soft); font-variant-numeric:tabular-nums; letter-spacing:.16em; font-size:var(--t-1)}
+
+/* ---- admin ---- */
+.adm{max-width:1180px; margin-inline:auto; padding-block:var(--s-7) 120px; padding-inline:var(--space-gutter)}
+.adm-tabs{display:flex; gap:var(--s-2); border-bottom:1px solid var(--c-line); margin-bottom:var(--s-7); flex-wrap:wrap}
+.adm-tab{padding:var(--s-4) var(--s-5); font-size:var(--t--1); color:var(--c-ink-muted); border-bottom:2px solid transparent; margin-bottom:-1px; transition:color var(--d-fast) var(--e-inout)}
+.adm-tab:hover{color:var(--c-ink)}
+.adm-tab[aria-current]{color:var(--c-ink); border-bottom-color:var(--c-accent); font-weight:500}
+.req{border:1px solid var(--c-line); border-radius:var(--r-soft); background:var(--c-surface); padding:var(--s-5); margin-bottom:var(--s-4)}
+.req-top{display:flex; flex-wrap:wrap; gap:var(--s-3) var(--s-5); align-items:baseline; margin-bottom:var(--s-4)}
+.req-top h4{font:500 var(--t-1)/1.2 var(--font-body); margin-right:auto}
+.req-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:var(--s-4); font-size:var(--t--1); margin-bottom:var(--s-4)}
+.req-grid div span{display:block; font-size:var(--t--2); color:var(--c-ink-faint); text-transform:uppercase; letter-spacing:.1em; margin-bottom:3px}
+.req-grid div b{font-weight:500}
+.sw-dot{display:inline-block; width:13px;height:13px;border-radius:50%; vertical-align:-2px; margin-right:6px; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--c-ink) 28%, transparent)}
+.status-sel{min-height:40px; padding:0 var(--s-3); border:1px solid var(--c-line); border-radius:var(--r-sharp); background:var(--c-canvas); transition:border-color var(--d-fast) var(--e-inout)}
+.status-sel:hover{border-color:var(--c-line-strong)}
+.req-edit{display:grid; grid-template-columns:1fr auto auto; gap:var(--s-3); align-items:end}
+@media (max-width:640px){
+  .req-edit{grid-template-columns:1fr auto}
+  .req-edit .field:first-child{grid-column:1/-1}
+}
+@media (max-width:430px){ .adm-tag{display:none} }
+.adm-tbl{width:100%; border-collapse:collapse; font-size:var(--t--1)}
+.adm-tbl th{text-align:left; font-size:var(--t--2); text-transform:uppercase; letter-spacing:.1em; color:var(--c-ink-faint); font-weight:500; padding:var(--s-3); border-bottom:1px solid var(--c-line-strong)}
+.adm-tbl td{padding:var(--s-3); border-bottom:1px solid var(--c-line); vertical-align:top}
+.adm-tbl input,.adm-tbl textarea{width:100%; padding:var(--s-2) var(--s-3); border:1px solid transparent; border-radius:var(--r-sharp); background:transparent}
+.adm-tbl input:hover,.adm-tbl textarea:hover{border-color:var(--c-line)}
+.adm-tbl input:focus,.adm-tbl textarea:focus{outline:none; border-color:var(--c-ink); background:var(--c-surface)}
+.adm-tbl td.n{width:110px}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(120%); z-index:60;
+  background:var(--c-ink); color:var(--c-canvas); padding:var(--s-4) var(--s-6); border-radius:var(--r-soft);
+  font-size:var(--t--1); box-shadow:var(--sh-float); transition:transform var(--d-base) var(--e-out);
+  width:max-content; max-width:min(88vw, 480px); text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+/* center on the content column, not the viewport, and clear the fixed bottom bars */
+body.has-panel .toast{left:calc((100% - var(--panel-w))/2)}
+body.routing .toast{bottom:118px}
+@media (max-width:1099px){ .toast{bottom:118px} }
+.login{max-width:400px; margin:clamp(60px,14vh,140px) auto; padding-inline:var(--space-gutter)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important}
+  .rv{opacity:1; transform:none}
+}
+</style>
+</head>
+<body>
+<a class="sr skip" href="#main">Skip to content</a>
+
+<!-- ======================= HAIR PANEL ======================= -->
+<svg id="hairpanel" viewBox="0 0 240 1000" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="gBody" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0"    stop-color="#1d130f"/><stop offset=".10" stop-color="#241814"/>
+      <stop offset=".32"  stop-color="#453029"/><stop offset=".42" stop-color="#906c5b"/>
+      <stop offset=".64"  stop-color="#453029"/><stop offset=".76" stop-color="#5b4239"/>
+      <stop offset=".88"  stop-color="#453029"/><stop offset="1"   stop-color="#5b4239"/>
+    </linearGradient>
+    <linearGradient id="gBack" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#160e0b"/><stop offset=".5" stop-color="#2a1c17"/><stop offset="1" stop-color="#3a2720"/>
+    </linearGradient>
+    <linearGradient id="gFx0" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity="0"/><stop offset=".26" stop-color="#b79a75" stop-opacity="0"/>
+      <stop offset=".64" stop-color="#b79a75" stop-opacity=".55"/><stop offset="1" stop-color="#b79a75" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gFx1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity="0"/><stop offset=".31" stop-color="#b79a75" stop-opacity="0"/>
+      <stop offset=".69" stop-color="#b79a75" stop-opacity=".55"/><stop offset="1" stop-color="#b79a75" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gFx2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity="0"/><stop offset=".36" stop-color="#b79a75" stop-opacity="0"/>
+      <stop offset=".74" stop-color="#b79a75" stop-opacity=".55"/><stop offset="1" stop-color="#b79a75" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gFx3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity="0"/><stop offset=".41" stop-color="#b79a75" stop-opacity="0"/>
+      <stop offset=".79" stop-color="#b79a75" stop-opacity=".55"/><stop offset="1" stop-color="#b79a75" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gFx4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity="0"/><stop offset=".46" stop-color="#b79a75" stop-opacity="0"/>
+      <stop offset=".84" stop-color="#b79a75" stop-opacity=".55"/><stop offset="1" stop-color="#b79a75" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="gFoil" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#b79a75" stop-opacity=".70"/><stop offset=".18" stop-color="#b79a75" stop-opacity=".80"/>
+      <stop offset=".60" stop-color="#b79a75" stop-opacity=".85"/><stop offset="1" stop-color="#b79a75" stop-opacity=".90"/>
+    </linearGradient>
+    <linearGradient id="gRoot" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#241814" stop-opacity=".95"/><stop offset=".07" stop-color="#241814" stop-opacity=".9"/>
+      <stop offset=".11" stop-color="#241814" stop-opacity="0"/><stop offset="1" stop-color="#241814" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gGloss" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="910">
+      <stop offset="0" stop-color="#906c5b" stop-opacity=".22"/><stop offset=".30" stop-color="#906c5b" stop-opacity=".28"/>
+      <stop offset=".60" stop-color="#906c5b" stop-opacity=".30"/><stop offset="1" stop-color="#906c5b" stop-opacity=".26"/>
+    </linearGradient>
+    <radialGradient id="gSpec" cx=".5" cy=".5" r=".5">
+      <stop offset="0"   id="spec0" stop-color="#c9a98a" stop-opacity=".30"/>
+      <stop offset=".52" id="spec1" stop-color="#c9a98a" stop-opacity=".10"/>
+      <stop offset="1"   id="spec2" stop-color="#c9a98a" stop-opacity="0"/>
+    </radialGradient>
+    <!-- the curtain's own body: solid near the roots, dissolving before the tips
+         so the tapered ends read individually against the page -->
+    <linearGradient id="gBd" gradientUnits="userSpaceOnUse" x1="0" y1="-60" x2="0" y2="910">
+      <stop offset="0"   class="bd" stop-color="#241814" stop-opacity="1"/>
+      <stop offset=".64" class="bd" stop-color="#241814" stop-opacity="1"/>
+      <stop offset=".80" class="bd" stop-color="#241814" stop-opacity=".90"/>
+      <stop offset=".91" class="bd" stop-color="#241814" stop-opacity=".44"/>
+      <stop offset="1"   class="bd" stop-color="#241814" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000"/><stop offset=".16" stop-color="#777"/>
+      <stop offset=".38" stop-color="#fff"/><stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="mEdge"><rect x="-20" y="-80" width="280" height="1100" fill="url(#gEdge)"/></mask>
+    <mask id="mSil"><g id="maskCopy" fill="#fff"></g></mask>
+  </defs>
+  <rect id="backdrop" x="-20" y="-80" width="280" height="900" fill="url(#gBd)" opacity="0" mask="url(#mEdge)"/>
+  <g id="lBack" opacity=".82" fill="url(#gBack)" style="filter:blur(3px)"></g>
+  <g id="lMid" fill="url(#gBody)"></g>
+  <g id="lFront" fill="url(#gBody)"></g>
+  <g id="lFx"></g>
+  <g id="lRoot" fill="url(#gRoot)"></g>
+  <g id="lGloss" fill="url(#gGloss)" style="mix-blend-mode:screen" opacity="0"></g>
+  <ellipse id="spec" cx="120" cy="382" rx="150" ry="90" fill="url(#gSpec)" mask="url(#mSil)" style="mix-blend-mode:soft-light"/>
+</svg>
+<div id="panelLabel"></div>
+<p class="sr" role="status" aria-live="polite" id="live"></p>
+
+<!-- ======================= HEADER ======================= -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#/" class="mark">Hair By <em>Jazzie</em></a>
+    <nav>
+      <a href="#studio">Try a color</a>
+      <a href="#services">Services</a>
+      <a href="#visit">First visit</a>
+      <a href="#about">About</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" title="Switch theme" aria-label="Switch theme">◐</button>
+    <a class="btn btn-primary btn-sm" href="#/book/1">Book</a>
+  </div>
+</header>
+<nav class="subnav" aria-label="Sections">
+  <a href="#studio">Try a color</a>
+  <a href="#services">Services</a>
+  <a href="#visit">First visit</a>
+</nav>
+
+<main id="main">
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow rv">Fair Oaks, California · By appointment</span>
+      <h1 class="rv">Hair that looks like you, <em>only more so.</em></h1>
+      <p class="lead rv">Color, balayage, extensions and bridal by Jasmine Perez. Pick a shade on the wheel and watch it land on real hair before you ever sit in my chair.</p>
+      <div class="hero-cta rv">
+        <a class="btn btn-primary" href="#/book/1">Start my hair profile</a>
+        <a class="btn btn-ghost" href="#studio">Play with the color wheel</a>
+      </div>
+      <div class="hero-meta rv">
+        <div><b>4 questions, then your service</b>About 2 minutes</div>
+        <div><b>Real quote, not a guess</b>I read every request myself</div>
+        <div><b id="mHours">Tue–Sat</b>Curl Up &amp; Dye Salon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= COLOR STUDIO ======================= -->
+  <section id="studio" class="band">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2>The color studio</h2>
+        <p class="sec-note">Drag the wheel. The hair on the side is yours — set the texture, length and density to match what you actually have, and every shade renders against that instead of against a stock swatch.</p>
+      </div>
+      <div class="studio-grid">
+        <div class="rv">
+          <div class="wheel-wrap">
+            <svg viewBox="0 0 360 360" id="wheel" role="group" aria-roledescription="color wheel" tabindex="0"
+                 aria-label="Hair color wheel. Left and right arrows change shade, up and down change family.">
+              <g id="ringOuter"></g>
+              <g id="ringInner"></g>
+              <circle cx="180" cy="180" r="74" fill="var(--c-surface)" stroke="var(--c-line)"/>
+              <text class="hub-name" id="hubName" x="180" y="172">Truffle</text>
+              <text class="hub-meta" id="hubMeta" x="180" y="194">Level 4 · Neutral</text>
+              <text class="hub-meta" id="hubFam"  x="180" y="212" style="opacity:.6">Brunette</text>
+              <g id="selWin"></g>
+              <path class="marker" d="M11 180 L-2 172 L-2 188 Z"/>
+            </svg>
+          </div>
+          <p class="wheel-hint">Drag the outer ring for a family, the inner ring for a shade — whatever sits in the window on the left is your pick</p>
+          <div class="liftstrip" id="liftStrip" data-state="ok">
+            <div class="ladder" id="ladder"></div>
+            <div id="liftCopy">Pick your current color below and I'll tell you what it takes to get here.</div>
+          </div>
+        </div>
+
+        <div class="rv">
+          <div class="ctrl-group">
+            <h3>My hair is currently</h3>
+            <div class="chips" id="cCurrent"></div>
+          </div>
+          <div class="ctrl-group">
+            <h3>Texture</h3>
+            <div class="chips" id="cTexture"></div>
+          </div>
+          <div class="ctrl-group">
+            <h3>Length</h3>
+            <div class="chips" id="cLength"></div>
+          </div>
+          <div class="ctrl-group">
+            <h3>Density</h3>
+            <div class="chips" id="cDensity"></div>
+          </div>
+          <div class="ctrl-group">
+            <h3>Finish</h3>
+            <div class="chips" id="cStyle"></div>
+          </div>
+          <div class="ctrl-group">
+            <h3>Preview a service</h3>
+            <div class="chips" id="cService"></div>
+          </div>
+          <a class="btn btn-primary" href="#/book/1" id="takeIn">Take this into a booking request</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= SERVICES ======================= -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2>The menu</h2>
+        <p class="sec-note">Every price is a starting point with the real time attached, because a four-hour appointment should never be a surprise. Tap “See it on my hair” on anything and the panel updates.</p>
+      </div>
+      <div class="filters rv" id="filters"></div>
+      <div id="menu"></div>
+    </div>
+  </section>
+
+  <!-- ======================= FIRST VISIT ======================= -->
+  <section id="visit" class="band">
+    <div class="wrap">
+      <div class="sec-head rv"><h2>Your first visit</h2>
+        <p class="sec-note">Four hours with someone new is a lot to ask. Here is everything so none of it is a question mark.</p></div>
+      <div class="two-col">
+        <div class="a rv">
+          <div class="fact"><h3>Where</h3><p id="fAddr"></p></div>
+          <div class="fact" id="fParkWrap"><h3>Getting there</h3><p id="fPark"></p></div>
+        </div>
+        <div class="b rv">
+          <h3 style="font:500 var(--t--1)/1 var(--font-body);text-transform:uppercase;letter-spacing:var(--ls-eyebrow);color:var(--c-ink-faint);margin-bottom:var(--s-4)">Hours</h3>
+          <ul class="hours" id="hoursList"></ul>
+          <p id="hoursFallback" style="font-size:var(--t--1);color:var(--c-ink-muted)">
+            By appointment. Send a request or text me and I'll come back with the closest real opening.</p>
+          <div style="margin-top:var(--s-7);display:flex;flex-wrap:wrap;gap:var(--s-3)">
+            <a class="btn btn-primary btn-sm" id="smsBtn" href="#">Text Jazzie</a>
+            <a class="btn btn-ghost btn-sm" id="igBtn" href="#" target="_blank" rel="noopener">See the work on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== ABOUT — hidden until Jasmine writes her own bio ==== -->
+  <section id="about" class="quote-band" hidden>
+    <div class="wrap">
+      <span class="eyebrow rv">The stylist</span>
+      <div class="two-col">
+        <div class="a rv"><h2 style="font-size:var(--t-3);font-weight:300">Jasmine Perez</h2></div>
+        <div class="b rv"><p style="font-size:var(--t-1);line-height:1.55;font-weight:300" id="aboutBody"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== BEFORE YOU BOOK — hidden until Jasmine sets her real policies ==== -->
+  <section id="policies" hidden>
+    <div class="wrap">
+      <div class="sec-head rv"><h2>Before you book</h2>
+        <p class="sec-note">Said plainly and up front, so nothing about the money is awkward later.</p></div>
+      <div class="two-col">
+        <div class="a rv"><div class="fact" id="fDepWrap"><h3>Deposits</h3><p id="fDep"></p></div></div>
+        <div class="b rv"><div class="fact" id="fCanWrap"><h3>Cancellations</h3><p id="fCan"></p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3>Hair By Jazzie</h3>
+        <p style="font-size:var(--t--1);opacity:.82" id="ftAddr"></p>
+        <p style="font-size:var(--t--1)"><a id="ftTel" href="#"></a><br><a id="ftMail" href="#"></a></p>
+      </div>
+      <div>
+        <h3>Go</h3>
+        <p style="font-size:var(--t--1);line-height:2">
+          <a href="#studio">Try a color</a><br>
+          <a href="#services">Services &amp; prices</a><br>
+          <a href="#visit">First visit</a><br>
+          <a href="#/book/1">Request an appointment</a>
+        </p>
+      </div>
+      <div>
+        <h3>Elsewhere</h3>
+        <p style="font-size:var(--t--1);line-height:2">
+          <a id="ftIg" href="#" target="_blank" rel="noopener">Instagram</a><br>
+          <a href="#/admin">Stylist login</a>
+        </p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© <span id="yr"></span> Hair By Jazzie</span>
+      <span>Built for Jasmine Perez</span>
+    </div>
+  </div>
+</footer>
+
+<div class="bookbar" id="bookbar">
+  <div class="bb-t"><b>Ready when you are</b>4 hair questions, then your service · about 2 minutes</div>
+  <a class="btn btn-primary btn-sm" href="#/book/1">Book</a>
+</div>
+
+<!-- ======================= BOOKING ROUTE ======================= -->
+<div class="route" id="rBook">
+  <div class="rhdr"><div class="wrap">
+    <a href="#/" class="mark" style="font-size:1.05rem">Hair By <em>Jazzie</em></a>
+    <div class="prog"><div class="prog-t" id="progT"></div><div class="prog-bar"><i id="progI" style="width:0"></i></div></div>
+  </div></div>
+  <div class="wrap"><div class="step" id="bookStep"></div></div>
+  <div class="navbar"><div class="inner">
+    <span class="note" id="navNote"></span>
+    <button class="btn btn-ghost btn-sm" id="btnBack">Back</button>
+    <button class="btn btn-primary" id="btnNext">Next</button>
+  </div></div>
+</div>
+
+<!-- ======================= ADMIN ROUTE ======================= -->
+<div class="route" id="rAdmin">
+  <div class="rhdr"><div class="wrap">
+    <a href="#/" class="mark" style="font-size:1.05rem">Hair By <em>Jazzie</em> <span class="adm-tag" style="font-family:var(--font-body);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c-ink-faint);margin-left:8px">Admin</span></a>
+    <button class="btn btn-ghost btn-sm" id="btnOut" style="margin-left:auto;display:none">Sign out</button>
+  </div></div>
+  <div id="admBody"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+/* ==========================================================================
+   SUPABASE (hand-rolled REST client — no CDN dependency)
+   ========================================================================== */
+const SB_URL = "https://oylpbdmrtskzrlchcvso.supabase.co";
+const SB_KEY = "sb_publishable_qJMFWpxtpEoj2lm-dM879w_ZTfLvqUN";
+
+const auth = {
+  get token(){ return localStorage.getItem("jz_tok") || null; },
+  get email(){ return localStorage.getItem("jz_email") || null; },
+  set(tok, email){ if(tok){localStorage.setItem("jz_tok",tok); localStorage.setItem("jz_email",email||"");}
+                   else {localStorage.removeItem("jz_tok"); localStorage.removeItem("jz_email");} },
+};
+function hdrs(extra){
+  const h = { apikey: SB_KEY, "Content-Type":"application/json",
+              Authorization: "Bearer " + (auth.token || SB_KEY) };
+  return Object.assign(h, extra||{});
+}
+// A stored admin token expires after ~an hour. If it has gone stale it would 401
+// every request — including the public menu load and client booking submits in
+// the stylist's own browser — so on the public routes we drop it and retry as
+// anonymous. On #/admin we let the 401 through so the sign-in screen appears.
+async function sbFetch(path, init){
+  let r = await fetch(SB_URL + path, init());
+  if(r.status === 401 && auth.token){
+    auth.set(null);
+    if(location.hash.indexOf("#/admin") !== 0) r = await fetch(SB_URL + path, init());
+  }
+  return r;
+}
+async function sbGet(path){
+  const r = await sbFetch("/rest/v1/" + path, () => ({ headers: hdrs() }));
+  if(!r.ok) throw new Error((await r.text()) || r.status);
+  return r.json();
+}
+async function sbPost(table, rows){
+  const r = await sbFetch("/rest/v1/" + table, () => ({
+    method:"POST", headers: hdrs({ Prefer:"return=minimal" }), body: JSON.stringify(rows) }));
+  if(!r.ok) throw new Error((await r.text()) || r.status);
+  return true;
+}
+async function sbPatch(table, filter, patch){
+  const r = await sbFetch("/rest/v1/" + table + "?" + filter, () => ({
+    method:"PATCH", headers: hdrs({ Prefer:"return=minimal" }), body: JSON.stringify(patch) }));
+  if(!r.ok) throw new Error((await r.text()) || r.status);
+  return true;
+}
+async function signIn(email, password){
+  const r = await fetch(SB_URL + "/auth/v1/token?grant_type=password", {
+    method:"POST", headers:{ apikey:SB_KEY, "Content-Type":"application/json" },
+    body: JSON.stringify({ email, password }) });
+  const j = await r.json();
+  if(!r.ok) throw new Error(j.error_description || j.msg || j.message || "Could not sign in");
+  auth.set(j.access_token, email);
+  return j;
+}
+// First-time setup. Signing up grants nothing on its own — every admin policy
+// checks the email against jz_admin_emails, so a stranger who signs up sees nothing.
+async function signUp(email, password){
+  const r = await fetch(SB_URL + "/auth/v1/signup", {
+    method:"POST", headers:{ apikey:SB_KEY, "Content-Type":"application/json" },
+    body: JSON.stringify({ email, password }) });
+  const j = await r.json();
+  if(!r.ok) throw new Error(j.error_description || j.msg || j.message || "Could not create the account");
+  if(j.access_token){ auth.set(j.access_token, email); return { signedIn:true }; }
+  return { signedIn:false };   // confirmation email required
+}
+
+/* ==========================================================================
+   COLOR DATA
+   ========================================================================== */
+const FAMILIES = [
+ {family:"Black", isFashion:false, shades:[
+  {name:"Raven Blue-Black",level:1,tone:"blue",   baseHex:"#191b24",shadowHex:"#0b0c12",shineHex:"#616a80",requiresLift:false,min:1},
+  {name:"Onyx",            level:1,tone:"neutral",baseHex:"#1b1618",shadowHex:"#0c0a0b",shineHex:"#5d5559",requiresLift:false,min:1},
+  {name:"Espresso",        level:2,tone:"neutral",baseHex:"#251b18",shadowHex:"#130d0b",shineHex:"#6d574a",requiresLift:false,min:2},
+  {name:"Black Cherry",    level:2,tone:"violet", baseHex:"#2b171d",shadowHex:"#150a0e",shineHex:"#71495a",requiresLift:false,min:2}]},
+ {family:"Brunette", isFashion:false, shades:[
+  {name:"Dark Chocolate",  level:3,tone:"neutral",baseHex:"#3a2620",shadowHex:"#1d120e",shineHex:"#856050",requiresLift:false,min:3},
+  {name:"Truffle",         level:4,tone:"neutral",baseHex:"#453029",shadowHex:"#241814",shineHex:"#906c5b",requiresLift:false,min:4},
+  {name:"Cool Ash Brown",  level:4,tone:"ash",    baseHex:"#3f3630",shadowHex:"#201b17",shineHex:"#837366",requiresLift:false,min:5},
+  {name:"Mocha",           level:5,tone:"neutral",baseHex:"#503c33",shadowHex:"#2b201b",shineHex:"#9b7c6b",requiresLift:false,min:5},
+  {name:"Chestnut",        level:5,tone:"gold",   baseHex:"#5d3b28",shadowHex:"#331d13",shineHex:"#a97553",requiresLift:false,min:5},
+  {name:"Mushroom Brown",  level:5,tone:"ash",    baseHex:"#5b5048",shadowHex:"#322b26",shineHex:"#a29389",requiresLift:false,min:6}]},
+ {family:"Red", isFashion:false, shades:[
+  {name:"Merlot",          level:3,tone:"violet", baseHex:"#45191f",shadowHex:"#230b0f",shineHex:"#8a4b53",requiresLift:false,min:3},
+  {name:"Deep Auburn",     level:4,tone:"red",    baseHex:"#5b2419",shadowHex:"#31110a",shineHex:"#9b5943",requiresLift:false,min:4},
+  {name:"Mahogany",        level:5,tone:"red",    baseHex:"#6b2a26",shadowHex:"#3a1312",shineHex:"#a85e56",requiresLift:false,min:5},
+  {name:"Cherry Cola",     level:5,tone:"red",    baseHex:"#75221f",shadowHex:"#3e0f0e",shineHex:"#b3564f",requiresLift:false,min:5},
+  {name:"Ruby Red",        level:6,tone:"red",    baseHex:"#97262a",shadowHex:"#521116",shineHex:"#d05f60",requiresLift:true, min:7},
+  {name:"Strawberry Blonde",level:8,tone:"copper",baseHex:"#c98660",shadowHex:"#82503a",shineHex:"#ecb894",requiresLift:true, min:8}]},
+ {family:"Copper", isFashion:false, shades:[
+  {name:"Rust",            level:5,tone:"copper", baseHex:"#7a3a22",shadowHex:"#421d10",shineHex:"#b3714a",requiresLift:false,min:5},
+  {name:"Cinnamon Copper", level:6,tone:"copper", baseHex:"#8b4b2a",shadowHex:"#4c2714",shineHex:"#c48254",requiresLift:false,min:6},
+  {name:"Copper Penny",    level:7,tone:"copper", baseHex:"#a9562b",shadowHex:"#5d2c14",shineHex:"#da8c58",requiresLift:false,min:7},
+  {name:"Ginger Spice",    level:8,tone:"copper", baseHex:"#c17035",shadowHex:"#6e3b1a",shineHex:"#eaa569",requiresLift:true, min:8},
+  {name:"Apricot Blonde",  level:9,tone:"copper", baseHex:"#d99b6d",shadowHex:"#96613c",shineHex:"#f2c69d",requiresLift:true, min:9}]},
+ {family:"Bronde", isFashion:false, shades:[
+  {name:"Hazelnut",        level:6,tone:"gold",   baseHex:"#75573d",shadowHex:"#40301f",shineHex:"#bd9b76",requiresLift:false,min:6},
+  {name:"Toasted Almond",  level:6,tone:"neutral",baseHex:"#6f5544",shadowHex:"#3d2e24",shineHex:"#b4967e",requiresLift:false,min:6},
+  {name:"Caramel",         level:7,tone:"gold",   baseHex:"#8b6038",shadowHex:"#4d341c",shineHex:"#ca9a66",requiresLift:false,min:7},
+  {name:"Honey",           level:7,tone:"gold",   baseHex:"#966f3f",shadowHex:"#543d1f",shineHex:"#d3ac74",requiresLift:false,min:7},
+  {name:"Sandy Bronde",    level:7,tone:"ash",    baseHex:"#8a7357",shadowHex:"#4e402f",shineHex:"#c3ad93",requiresLift:true, min:8}]},
+ {family:"Blonde", isFashion:false, shades:[
+  {name:"Sandy Blonde",    level:7, tone:"neutral",baseHex:"#9f8660",shadowHex:"#5d4c35",shineHex:"#d7c29a",requiresLift:true,min:8},
+  {name:"Butter Blonde",   level:8, tone:"gold",   baseHex:"#c39f66",shadowHex:"#7b6039",shineHex:"#ecd8a6",requiresLift:true,min:8},
+  {name:"Beige Blonde",    level:8, tone:"neutral",baseHex:"#bda786",shadowHex:"#786751",shineHex:"#e9d8bc",requiresLift:true,min:9},
+  {name:"Ash Blonde",      level:8, tone:"ash",    baseHex:"#a89c87",shadowHex:"#6a6153",shineHex:"#dcd4c4",requiresLift:true,min:9},
+  {name:"Champagne",       level:9, tone:"neutral",baseHex:"#d3c2a2",shadowHex:"#8b7c66",shineHex:"#f1e6d2",requiresLift:true,min:9},
+  {name:"Vanilla Cream",   level:10,tone:"gold",   baseHex:"#e7dbbf",shadowHex:"#a4977c",shineHex:"#f9f2e1",requiresLift:true,min:10},
+  {name:"Icy Platinum",    level:10,tone:"ash",    baseHex:"#dfdad0",shadowHex:"#9d9891",shineHex:"#f6f4ef",requiresLift:true,min:10}]},
+ {family:"Purple", isFashion:true, shades:[
+  {name:"Plum Wine",       level:4, tone:"violet",baseHex:"#4a2740",shadowHex:"#271424",shineHex:"#8a5f7d",requiresLift:false,min:4},
+  {name:"Ultraviolet",     level:8, tone:"violet",baseHex:"#5c4087",shadowHex:"#33234e",shineHex:"#8c72ad",requiresLift:true,min:8},
+  {name:"Amethyst",        level:9, tone:"violet",baseHex:"#7a5a9d",shadowHex:"#46325e",shineHex:"#aa90c5",requiresLift:true,min:9},
+  {name:"Orchid",          level:10,tone:"violet",baseHex:"#d3b3d3",shadowHex:"#94799a",shineHex:"#eddcee",requiresLift:true,min:10},
+  {name:"Iced Lavender",   level:10,tone:"violet",baseHex:"#c4b5d2",shadowHex:"#877c96",shineHex:"#e7deee",requiresLift:true,min:10}]},
+ {family:"Blue", isFashion:true, shades:[
+  {name:"Midnight Sapphire",level:3,tone:"blue",  baseHex:"#232a44",shadowHex:"#121726",shineHex:"#5c657f",requiresLift:false,min:3},
+  {name:"Sapphire",        level:8, tone:"blue",  baseHex:"#344880",shadowHex:"#1c2850",shineHex:"#6678a9",requiresLift:true,min:8},
+  {name:"Mermaid Teal",    level:8, tone:"blue",  baseHex:"#2f7a7c",shadowHex:"#1a4749",shineHex:"#67a9a9",requiresLift:true,min:8},
+  {name:"Denim Blue",      level:9, tone:"blue",  baseHex:"#5b7497",shadowHex:"#34465d",shineHex:"#92a7c1",requiresLift:true,min:9},
+  {name:"Powder Blue",     level:10,tone:"blue",  baseHex:"#b4c8d7",shadowHex:"#7e8f9d",shineHex:"#dee9f0",requiresLift:true,min:10},
+  {name:"Seafoam",         level:10,tone:"blue",  baseHex:"#b1d1c5",shadowHex:"#7c958c",shineHex:"#dcede6",requiresLift:true,min:10}]},
+ {family:"Pink", isFashion:true, shades:[
+  {name:"Magenta Punch",   level:8, tone:"red",   baseHex:"#a93b6f",shadowHex:"#631f41",shineHex:"#d2749a",requiresLift:true,min:8},
+  {name:"Bubblegum",       level:9, tone:"red",   baseHex:"#db76a0",shadowHex:"#944767",shineHex:"#f0a9c5",requiresLift:true,min:9},
+  {name:"Rose Gold",       level:9, tone:"copper",baseHex:"#d99b8f",shadowHex:"#96635b",shineHex:"#f2c9be",requiresLift:true,min:9},
+  {name:"Peach Sorbet",    level:10,tone:"copper",baseHex:"#ebb29b",shadowHex:"#a8796a",shineHex:"#f8dccd",requiresLift:true,min:10},
+  {name:"Blush Pink",      level:10,tone:"red",   baseHex:"#e3aeb3",shadowHex:"#a3777c",shineHex:"#f6d9db",requiresLift:true,min:10}]},
+ {family:"Silver", isFashion:true, shades:[
+  {name:"Charcoal Smoke",  level:5, tone:"ash",   baseHex:"#4a4749",shadowHex:"#2a282a",shineHex:"#838083",requiresLift:true,min:8},
+  {name:"Gunmetal",        level:7, tone:"ash",   baseHex:"#6f6d70",shadowHex:"#434043",shineHex:"#a19ea1",requiresLift:true,min:9},
+  {name:"Smoky Quartz",    level:8, tone:"ash",   baseHex:"#9c9591",shadowHex:"#635d5a",shineHex:"#ccc6c2",requiresLift:true,min:9},
+  {name:"Sterling Silver", level:10,tone:"ash",   baseHex:"#cfcfd2",shadowHex:"#8e8f93",shineHex:"#eeeef0",requiresLift:true,min:10},
+  {name:"Icy Pearl",       level:10,tone:"violet",baseHex:"#d9d4db",shadowHex:"#98949d",shineHex:"#f3f0f5",requiresLift:true,min:10}]},
+];
+
+const CURRENT_COLORS = [
+  {k:"black",       label:"Black",                    level:2, hex:"#1b1618"},
+  {k:"dark-brown",  label:"Dark brown",               level:3, hex:"#3a2620"},
+  {k:"med-brown",   label:"Medium brown",             level:5, hex:"#503c33"},
+  {k:"light-brown", label:"Light brown",              level:6, hex:"#75573d"},
+  {k:"dark-blonde", label:"Dark blonde",              level:7, hex:"#9f8660"},
+  {k:"med-blonde",  label:"Medium blonde",            level:8, hex:"#bda786"},
+  {k:"light-blonde",label:"Light blonde or platinum", level:9, hex:"#dfdad0"},
+  {k:"red",         label:"Red or copper",            level:5, hex:"#8b4b2a", flag:"Artificial red is the hardest thing to lift — it usually needs its own session."},
+  {k:"gray",        label:"Gray or silver",           level:9, hex:"#cfcfd2", flag:"Gray has no pigment left, so tone grabs fast and can go too cool. I mix for that."},
+  {k:"multi",       label:"Grown-out or multi-tone",  level:4, level2:7, hex:"#6b5443", flag:"Roots and ends start from different places and lift at different rates."},
+  {k:"vivid",       label:"Vivid or fashion color",   level:9, hex:"#a93b6f", flag:"Existing fashion pigment has to come out before a new one goes in."},
+];
+
+const TEXTURES = [
+  {k:"straight", label:"Straight", sub:"Dries flat, little bend"},
+  {k:"wavy",     label:"Wavy",     sub:"Soft S-bend when it air-dries"},
+  {k:"curly",    label:"Curly",    sub:"Defined spirals or ringlets"},
+  {k:"coily",    label:"Coily",    sub:"Tight springs, lots of shrinkage"},
+  {k:"zigzag",   label:"Tightly coiled", sub:"Sharp zigzags, most shrinkage"},
+];
+const LENGTHS = [
+  {k:"short",  label:"Short",  sub:"At or above the jaw"},
+  {k:"medium", label:"Medium", sub:"Jaw to collarbone"},
+  {k:"long",   label:"Long",   sub:"Past the collarbone"},
+];
+const DENSITIES = [
+  {k:"low",    label:"Low density",    sub:"Ponytail under about 2 inches around"},
+  {k:"medium", label:"Medium density", sub:"About 2–3 inches around"},
+  {k:"high",   label:"High density",   sub:"4 inches or more"},
+];
+const STYLES = [
+  {k:"natural",      label:"Natural"},
+  {k:"blownout",     label:"Blown out"},
+  {k:"curled",       label:"Curled"},
+  {k:"straightened", label:"Straightened"},
+  {k:"pressed",      label:"Pressed"},
+  {k:"updo",         label:"Updo"},
+];
+
+/* service slug -> visual effect */
+const FX = {
+  "all-over-color":                   {ramp:"flat"},
+  "color-correction":                 {ramp:"flat"},
+  "fashion-color-touch-up":           {ramp:"gloss", gloss:true, depositOnly:true},
+  "fashion-color-two-process-service":{ramp:"natural", lift:true},
+  "over-tone-on-pre-lightened-hair":  {ramp:"gloss", gloss:true, depositOnly:true},
+  "root-touch-up":                    {ramp:"natural", root:true},
+  "full-balayage":                    {ramp:"natural", fx:"balayage", cov:.85, layers:["back","mid","front"], lift:true},
+  "partial-balayage":                 {ramp:"natural", fx:"balayageP", cov:.45, layers:["mid","front"], lift:true},
+  "full-highlight":                   {ramp:"natural", fx:"foil", cov:.38, layers:["back","mid","front"], lift:true},
+  "partial-highlight":                {ramp:"natural", fx:"foilP", cov:.22, layers:["front"], lift:true},
+  "hair-cut":                         {geom:{}},
+  "deep-condition-and-hair-cut":      {geom:{}, shine:1.35},
+  "kids-hair-cut":                    {geom:{lenMul:.55, densStep:-1}},
+  "mens-cut":                         {geom:{len:300, driftMul:.5, taper:2.9}},
+  "wash-and-press":                   {geom:{style:"pressed"}, shine:1.2},
+  "style-no-wash":                    {geom:{}, stylePicker:true},
+  "eyebrow-wax":                      {none:true},
+  "consultation":                     {none:true},
+  "extension-installation":           {geom:{lenMul:1.55, densStep:1}},
+  "extension-tighten":                {geom:{}},
+  "bridal-hair-trial":                {geom:{style:"updo"}},
+  "bridal-trial-run-hair-makeup":     {geom:{style:"updo"}},
+  "hair-and-makeup":                  {geom:{style:"curled"}},
+  "wedding-services":                 {geom:{style:"updo"}},
+};
+
+/* ==========================================================================
+   HAIR RENDERER
+   ========================================================================== */
+const TEX = {
+  straight:{lam:420,amp:2.2, amp2:3.0,sway:.42,shrink:1.00,hold:.05,tri:0,twist:.00,jit:.35,maxW:3 },
+  wavy:    {lam:132,amp:8.5, amp2:4.0,sway:.38,shrink:0.92,hold:.14,tri:0,twist:.10,jit:.55,maxW:7 },
+  curly:   {lam:56, amp:12.5,amp2:5.0,sway:.30,shrink:0.78,hold:.10,tri:0,twist:.35,jit:.70,maxW:11},
+  coily:   {lam:27, amp:10.5,amp2:5.5,sway:.24,shrink:0.62,hold:.07,tri:0,twist:.62,jit:.85,maxW:15},
+  zigzag:  {lam:15, amp:7.5, amp2:5.0,sway:.18,shrink:0.55,hold:.05,tri:1,twist:.50,jit:1.00,maxW:18},
+};
+const LEN  = { short:520, medium:762, long:985 };
+const DENS = { low:{n:58,w:.82,back:.34,bw:1.5}, medium:{n:88,w:1,back:.55,bw:1.8}, high:{n:126,w:1.18,back:.78,bw:2.2} };
+const STY = {
+  natural:     {amp:1,    shrink:null, drift:1,   flare:0, knot:0,   lenMul:1,   shineMul:1  },
+  blownout:    {amp:1.15, shrink:null, drift:1.5, flare:8, knot:0,   lenMul:1,   shineMul:1.1},
+  curled:      {amp:1,    shrink:null, drift:1,   flare:0, knot:0,   lenMul:1,   shineMul:1, curlTip:9},
+  straightened:{amp:.15,  shrink:1.00, drift:.9,  flare:0, knot:0,   lenMul:1,   shineMul:1.6},
+  pressed:     {amp:.28,  shrink:.95,  drift:.95, flare:0, knot:0,   lenMul:1,   shineMul:1.2},
+  updo:        {amp:.7,   shrink:null, drift:0,   flare:0, knot:120, lenMul:.58, shineMul:1.15},
+};
+const PANEL_W = 240, SPW = 6, HAIR_TOP = -34;
+const sstep = (a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+const triw  = p =>{const f=p-Math.floor(p);return 4*Math.abs(f-.5)-1;};
+
+function strandPath(texture,length,index,total,seed,density,style,over){
+  over = over || {};
+  const T = TEX[texture] || TEX.straight;
+  const S = STY[style]   || STY.natural;
+  const D = DENS[density]|| DENS.medium;
+
+  let s = (((seed|0)*0x9E3779B1) ^ (index*0x85EBCA77)) >>> 0;
+  const rnd = () => { s=(s+0x6D2B79F5)|0; let t=Math.imul(s^(s>>>15),1|s);
+    t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; };
+
+  const pick = rnd();                                     // layer hash, first draw
+  const u  = total>1 ? index/(total-1) : .5;
+  const x0 = -6 + u*(PANEL_W+12) + (rnd()-.5)*(PANEL_W/total)*2.4;
+  const y0 = HAIR_TOP - Math.sin(u*Math.PI)*8 + (rnd()-.5)*26;
+
+  const base   = (typeof length === "number") ? length : (LEN[length]||LEN.medium);
+  const rawShrink = (S.shrink !== null && S.shrink !== undefined) ? S.shrink : T.shrink;
+  // partial shrink: keeps the texture ordering readable without leaving the panel half empty
+  const shrink = 0.58 + 0.42 * rawShrink;
+  let L = base * shrink * S.lenMul * (1 + (rnd()-.5)*0.16*T.jit) * (over.lenMul||1);
+  L = Math.min(L, 1030 - y0);
+
+  const f1 = Math.min(L/T.lam, T.maxW);
+  const f2 = f1*T.sway;
+  const ph1=rnd(), ph2=rnd(), k=.75+rnd()*.5;
+  const A1 = T.amp*k*S.amp, A2 = T.amp2*k*S.amp;
+  const drift = ((u-.5)*46 + (rnd()-.5)*16) * S.drift * (over.driftMul||1) * (0.7 + 0.3*(L/910));
+  const wA=(rnd()-.5)*14*S.amp, wP=rnd()*6.283;
+  const wMax = 5.6*(0.7+rnd()*0.6)*D.w*(over.wMul||1);
+  const wf = T.tri ? triw : p=>Math.sin(p*6.283185);
+  const knotX = S.knot ? (PANEL_W*0.5 + (rnd()-.5)*26) : 0;
+
+  const N = Math.max(14, Math.round(f1*SPW)+10);
+  const P=[], W=[];
+  for(let i=0;i<=N;i++){
+    const t = i/N;
+    const env = Math.pow(sstep(T.hold, T.hold+0.28, t), 0.85);
+    const p1  = f1*t + ph1;
+    let ax = A1, ax2 = A2;
+    if (S.curlTip) { const c = S.curlTip*sstep(.6,.85,t); ax += c; ax2 += c*.4; }
+    let x = x0 + drift*Math.pow(t,1.35)
+              + env*ax*wf(p1) + env*ax2*wf(f2*t+ph2)
+              + wA*Math.sin(t*1.7+wP)
+              + S.flare*Math.pow(t,3);
+    if (S.knot) x = x + (knotX - x)*Math.pow(t,1.8);
+    const y = S.knot
+      ? y0 + L*(t - 0.045*env*Math.sin(t*Math.PI)) - 26*Math.pow(t,2.4)
+      : y0 + L*(t - 0.045*env*Math.sin(t*Math.PI));
+    P.push([x,y]);
+    const tip = Math.pow(1-Math.pow(t, over.taper||2.2), 0.62);
+    const sh  = 0.62 + 0.38*sstep(0,0.16,t);
+    const tw  = 1 - T.twist*Math.abs(Math.cos(p1*6.283185));
+    W.push(wMax*sh*tip*tw);
+  }
+  const A=[],B=[];
+  for(let i=0;i<=N;i++){
+    const a=P[Math.max(0,i-1)], b=P[Math.min(N,i+1)];
+    const tx=b[0]-a[0], ty=b[1]-a[1], m=Math.hypot(tx,ty)||1;
+    const nx=-ty/m*W[i]*.5, ny=tx/m*W[i]*.5;
+    A.push([P[i][0]+nx,P[i][1]+ny]); B.push([P[i][0]-nx,P[i][1]-ny]);
+  }
+  return { d: ribbon(A.concat(B.reverse()), 0.92), L:L, y0:y0, bottom:y0+L,
+           layer: pick<0.30 ? "back" : pick<0.75 ? "mid" : "front",
+           fxRoll: rnd(), variant: index % 5 };
+}
+function ribbon(p, tension){
+  const n=p.length, f=i=>p[(i+n)%n];
+  const r=v=>{const t=(Math.round(v*10)/10).toString();
+    return t[0]==="0"&&t[1]==="."?t.slice(1):t.startsWith("-0.")?"-"+t.slice(2):t;};
+  const pr=(x,y)=>{const b=r(y);return r(x)+(b[0]==="-"?"":" ")+b;};
+  let d="M"+pr(p[0][0],p[0][1])+"c", cx=p[0][0], cy=p[0][1];
+  const k=tension/6;
+  for(let i=0;i<n;i++){
+    const p0=f(i-1),p1=f(i),p2=f(i+1),p3=f(i+2);
+    d += pr(p1[0]+(p2[0]-p0[0])*k-cx, p1[1]+(p2[1]-p0[1])*k-cy)+" "
+       + pr(p2[0]-(p3[0]-p1[0])*k-cx, p2[1]-(p3[1]-p1[1])*k-cy)+" "
+       + pr(p2[0]-cx, p2[1]-cy)+" ";
+    cx=p2[0]; cy=p2[1];
+  }
+  return d.trim()+"Z";
+}
+
+/* --- color math --- */
+function hex2hsl(hex){
+  const n = parseInt(hex.slice(1),16);
+  let r=((n>>16)&255)/255, g=((n>>8)&255)/255, b=(n&255)/255;
+  const mx=Math.max(r,g,b), mn=Math.min(r,g,b), l=(mx+mn)/2;
+  let h=0,s=0;
+  if(mx!==mn){ const d=mx-mn; s = l>.5 ? d/(2-mx-mn) : d/(mx+mn);
+    h = mx===r ? (g-b)/d + (g<b?6:0) : mx===g ? (b-r)/d + 2 : (r-g)/d + 4; h*=60; }
+  return {h:h, s:s*100, l:l*100};
+}
+const hslStr = c => "hsl(" + (((c.h%360)+360)%360).toFixed(1) + " " + Math.max(0,Math.min(100,c.s)).toFixed(1) + "% " + c.l.toFixed(1) + "%)";
+function shadeHSL(sh){
+  if(!sh._h){ sh._h = {S:hex2hsl(sh.shadowHex), B:hex2hsl(sh.baseHex), H:hex2hsl(sh.shineHex)}; }
+  return sh._h;
+}
+// The three anchors for a shade, after the "you can't actually get there" penalty.
+// Every layer (strands, curtain, lift, specular) must read from this, or a muddied
+// preview ends up with bright highlights sitting on mud.
+function adjusted(shade, muddy){
+  const g = shadeHSL(shade);
+  const S = Object.assign({}, g.S), B = Object.assign({}, g.B), H = Object.assign({}, g.H);
+  if(muddy){
+    for(const c of [S,B,H]){ c.h = c.h + 10*(c.h>40&&c.h<300 ? -1 : 1); c.s *= .72; c.l = c.l*.88 + 6; }
+    H.s *= .7;
+  }
+  return {S:S, B:B, H:H};
+}
+function ramp(shade, mode, muddy){
+  const a = adjusted(shade, muddy);
+  const S = a.S, B = a.B, H = a.H;
+  const cl = l => Math.min(90, Math.max(7, l));
+  if(mode === "flat"){
+    const m = (S.l + B.l + H.l)/3;
+    S.l = cl(B.l - (B.l - S.l)*.42); H.l = cl(B.l + (H.l - B.l)*.42);
+  }
+  const end = { h:B.h+4, s:B.s*0.92, l:cl(B.l + (H.l-B.l)*0.22) };
+  const mid = { h:B.h+3, s:B.s*0.94, l:cl(B.l + (H.l-B.l)*0.26) };
+  const shn = { h:H.h+6, s:H.s*0.85, l:cl(H.l) };
+  return [
+    {h:S.h, s:S.s, l:cl(S.l*0.92)}, S, B, shn, B, mid, B, end
+  ];
+}
+
+/* --- panel state + render --- */
+const P = {
+  shade: FAMILIES[1].shades[1],           // Truffle
+  famIdx: 1, shIdx: 1,
+  texture:"wavy", length:"medium", density:"medium", style:"natural",
+  current: CURRENT_COLORS[2],
+  service: null,
+};
+const memo = new Map();
+const SEED = 20260729;
+
+// Resolve the geometry a service actually asks for. The memo key MUST be built
+// from these resolved values, not the raw controls — a service that only
+// overrides `style` would otherwise hit the cached entry for the base style.
+function resolveGeom(){
+  const fx = (P.service && FX[P.service] && FX[P.service].geom) || {};
+  const dOrder = ["low","medium","high"];
+  let dIdx = dOrder.indexOf(P.density);
+  if(fx.densStep) dIdx = Math.max(0, Math.min(2, dIdx + fx.densStep));
+  return {
+    fx: fx,
+    density: dOrder[dIdx],
+    style: fx.style || P.style,
+    length: fx.len || P.length,
+  };
+}
+function geomKey(r){
+  const o = r.fx;
+  return [P.texture, r.length, r.density, r.style,
+          o.lenMul||1, o.driftMul||1, o.taper||0].join("|");
+}
+function buildGeometry(){
+  const r = resolveGeom();
+  const key = geomKey(r);
+  if(memo.has(key)) return memo.get(key);
+  const fx = r.fx, density = r.density, style = r.style, length = r.length;
+  const D = DENS[density];
+  const total = D.n;
+  const out = { back:[], mid:[], front:[], bottom:0, all:[] };
+
+  // Depth pass: fewer, much wider, shorter strands that merge into a dark mass.
+  const nBack = Math.round(total * 1.05);
+  for(let i=0;i<nBack;i++){
+    const sp = strandPath(P.texture, length, i, nBack, SEED+7717, density, style,
+      { lenMul:(fx.lenMul||1)*0.93, driftMul:(fx.driftMul||1)*0.7, wMul:D.bw, taper:1.7 });
+    sp.layer = "back"; out.back.push(sp); out.all.push(sp);
+  }
+  // Detail pass: the strands you actually read as hair.
+  for(let i=0;i<total;i++){
+    const sp = strandPath(P.texture, length, i, total, SEED, density, style,
+      { lenMul: fx.lenMul||1, driftMul: fx.driftMul||1, taper: fx.taper });
+    sp.layer = sp.layer === "back" ? "mid" : sp.layer;   // back is its own pass now
+    out[sp.layer].push(sp);
+    out.all.push(sp);
+    if(sp.bottom > out.bottom) out.bottom = sp.bottom;
+  }
+  out.backW = D.back;
+  memo.set(key, out);
+  return out;
+}
+
+const $ = s => document.querySelector(s);
+const els = {};
+function cacheEls(){
+  els.back=$("#lBack"); els.mid=$("#lMid"); els.front=$("#lFront");
+  els.fx=$("#lFx"); els.root=$("#lRoot"); els.gloss=$("#lGloss");
+  els.mask=$("#maskCopy"); els.spec=$("#spec"); els.backdrop=$("#backdrop");
+  els.bodyStops = [...document.querySelectorAll("#gBody stop")];
+  els.backStops = [...document.querySelectorAll("#gBack stop")];
+  els.rootStops = [...document.querySelectorAll("#gRoot stop")];
+  els.glossStops= [...document.querySelectorAll("#gGloss stop")];
+  els.bdStops   = [...document.querySelectorAll("#gBd stop")];
+  els.fxGrads = ["gFx0","gFx1","gFx2","gFx3","gFx4","gFoil"].map(id=>[...document.querySelectorAll("#"+id+" stop")]);
+  els.allGrads = ["gBody","gBack","gFx0","gFx1","gFx2","gFx3","gFx4","gFoil","gRoot","gGloss"].map(id=>document.getElementById(id));
+}
+
+function renderGeometry(){
+  const g = buildGeometry();
+  const svc = P.service ? FX[P.service] : null;
+  const paint = (el, arr) => { el.innerHTML = arr.map(s=>'<path d="'+s.d+'"/>').join(""); };
+  paint(els.back, g.back); paint(els.mid, g.mid); paint(els.front, g.front);
+  els.mask.innerHTML = g.mid.concat(g.front).map(s=>'<path d="'+s.d+'"/>').join("");
+
+  // fx layer
+  let fxHTML = "";
+  if(svc && svc.fx){
+    const layers = svc.layers || ["front"];
+    const foil = svc.fx.indexOf("foil")===0;
+    for(const s of g.all){
+      if(layers.indexOf(s.layer) < 0) continue;
+      if(s.fxRoll > svc.cov) continue;
+      const grad = foil ? "gFoil" : "gFx" + s.variant;
+      fxHTML += '<path d="'+s.d+'" fill="url(#'+grad+')"/>';
+    }
+  }
+  els.fx.innerHTML = fxHTML;
+  els.root.innerHTML = (svc && svc.root) ? g.all.map(s=>'<path d="'+s.d+'"/>').join("") : "";
+  els.gloss.innerHTML = (svc && svc.gloss) ? g.mid.concat(g.front).map(s=>'<path d="'+s.d+'"/>').join("") : "";
+  els.gloss.setAttribute("opacity", (svc && svc.gloss) ? "1" : "0");
+
+  // retrack gradient extents + specular band
+  const y2 = Math.max(320, g.bottom);
+  els.allGrads.forEach(gr => gr.setAttribute("y2", String(y2)));
+  document.getElementById("gBd").setAttribute("y2", String(y2));
+  els.backdrop.setAttribute("height", String(Math.round(y2 + 90)));
+  els.backdrop.setAttribute("opacity", String(0.80 + g.backW * 0.20));
+  els.spec.setAttribute("cy", String(Math.round(y2 * 0.40)));
+  els.spec.setAttribute("ry", String(Math.round(y2 * 0.13)));
+  flushPaint();
+}
+
+function flushPaint(){
+  const svc = P.service ? FX[P.service] : null;
+  const mode = svc ? (svc.ramp || "natural") : "natural";
+  const muddy = !!(svc && svc.depositOnly && liftGap() > 0);
+  let stops = ramp(P.shade, mode, muddy);
+
+  if(mode === "gloss"){
+    // hue + saturation shift only; keep the lightness ladder of the CURRENT hair
+    const cur = ramp(currentShadeApprox(), "natural", false);
+    stops = stops.map((c,i)=>({ h:c.h, s:c.s, l:cur[i].l }));
+  }
+  const shineMul = (svc && svc.shine) || 1;
+  if(shineMul !== 1){ stops[3] = {h:stops[3].h, s:stops[3].s*1.04, l:Math.min(92, stops[3].l*shineMul)}; }
+
+  const OFF = [0,.10,.32,.42,.64,.76,.88,1];
+  for(let i=0;i<8;i++){
+    els.bodyStops[i].setAttribute("offset", String(OFF[i]));
+    els.bodyStops[i].setAttribute("stop-color", hslStr(stops[i]));
+  }
+  // Everything below derives from the stops we just wrote, so gloss mode and the
+  // muddied "you can't get there from here" render stay internally consistent.
+  const root = stops[0], base = stops[2], shine = stops[3];
+
+  // back layer: sits just above the curtain body so it reads as depth, not a void
+  els.backStops[0].setAttribute("stop-color", hslStr({h:root.h, s:root.s*.9,  l:root.l*1.10}));
+  els.backStops[1].setAttribute("stop-color", hslStr({h:root.h, s:root.s*.95, l:root.l*1.40}));
+  els.backStops[2].setAttribute("stop-color", hslStr({h:base.h, s:base.s*.85, l:base.l*.80}));
+
+  // the curtain mass — always deeper than the strands in front of it
+  const bdC = hslStr({h:root.h, s:root.s*0.9, l:Math.max(4, root.l*0.78)});
+  els.bdStops.forEach(st => st.setAttribute("stop-color", bdC));
+
+  // regrowth uses the client's CURRENT color, not the goal
+  const cg = shadeHSL(currentShadeApprox());
+  els.rootStops.forEach(st => st.setAttribute("stop-color", hslStr(cg.S)));
+
+  // gloss sheen and the single specular band, tinted by the shade — never white
+  els.glossStops.forEach(st => st.setAttribute("stop-color",
+    hslStr({h:shine.h, s:shine.s, l:Math.min(88, shine.l*1.05)})));
+  const specC = hslStr({ h:shine.h, s:shine.s*0.8, l:Math.min(90, shine.l*1.16 + 6) });
+  ["spec0","spec1","spec2"].forEach(id => document.getElementById(id).setAttribute("stop-color", specC));
+
+  // lightened pieces (balayage / foils) — lifted off the rendered base, desaturated
+  const lite = hslStr({ h:base.h+12, s:base.s*0.70, l:Math.min(90, shine.l + 14) });
+  els.fxGrads.forEach(arr => arr.forEach(st => st.setAttribute("stop-color", lite)));
+  updateLabel();
+}
+
+function currentShadeApprox(){
+  const lvl = P.current.level;
+  let best = FAMILIES[1].shades[1], bd = 99;
+  for(const f of FAMILIES){ if(f.isFashion) continue;
+    for(const s of f.shades){ const d = Math.abs(s.level - lvl); if(d < bd){ bd=d; best=s; } } }
+  return best;
+}
+function liftGap(){ return Math.max(0, P.shade.min - P.current.level); }
+
+/* ==========================================================================
+   COLOR WHEEL
+   ========================================================================== */
+const WHEEL = { cx:180, cy:180, outR:166, outr:132, inR:124, inr:78 };
+function arcPath(cx,cy,r1,r2,a0,a1){
+  const rad = a => (a-90)*Math.PI/180;
+  const p = (r,a)=>[cx+r*Math.cos(rad(a)), cy+r*Math.sin(rad(a))];
+  const [x1,y1]=p(r2,a0), [x2,y2]=p(r2,a1), [x3,y3]=p(r1,a1), [x4,y4]=p(r1,a0);
+  const big = (a1-a0) > 180 ? 1 : 0;
+  return `M${x1} ${y1}A${r2} ${r2} 0 ${big} 1 ${x2} ${y2}L${x3} ${y3}A${r1} ${r1} 0 ${big} 0 ${x4} ${y4}Z`;
+}
+const mod = (a,n)=>((a%n)+n)%n;
+
+const rings = {
+  outer:{ el:null, rot:0, n:FAMILIES.length, seg:360/FAMILIES.length },
+  inner:{ el:null, rot:0, n:1, seg:360 },
+};
+function drawOuter(){
+  const g = rings.outer.el; let h="";
+  FAMILIES.forEach((f,i)=>{
+    const a0=i*rings.outer.seg, a1=a0+rings.outer.seg;
+    const mid = f.shades[Math.floor(f.shades.length/2)];
+    h += `<path class="seg" d="${arcPath(180,180,WHEEL.outr,WHEEL.outR,a0,a1)}" fill="${mid.baseHex}" data-i="${i}"/>`;
+    const mA = (a0+a1)/2, rad = (mA-90)*Math.PI/180, r = (WHEEL.outr+WHEEL.outR)/2;
+    const tx = +(180+r*Math.cos(rad)).toFixed(2), ty = +(180+r*Math.sin(rad)).toFixed(2);
+    // labels counter-rotate against the ring so they are upright at every angle
+    h += `<text class="seg-label lbl" data-x="${tx}" data-y="${ty}" x="${tx}" y="${ty}"
+            text-anchor="middle" dominant-baseline="central"
+            fill="${hex2hsl(mid.baseHex).l > 55 ? "#241C18" : "#FFF8F3"}"
+          >${f.family}</text>`;
+  });
+  g.innerHTML = h;
+  rings.outer.labels = [...g.querySelectorAll(".lbl")];
+}
+function drawInner(){
+  const f = FAMILIES[P.famIdx], g = rings.inner.el;
+  rings.inner.n = f.shades.length; rings.inner.seg = 360/f.shades.length;
+  let h="";
+  f.shades.forEach((s,i)=>{
+    const a0=i*rings.inner.seg, a1=a0+rings.inner.seg;
+    h += `<path class="seg" d="${arcPath(180,180,WHEEL.inr,WHEEL.inR,a0,a1)}" fill="${s.baseHex}" data-i="${i}"/>`;
+    if(s.requiresLift){
+      const ang=(a0+a1)/2-90, rad=ang*Math.PI/180, r=WHEEL.inR-9;
+      h += `<circle cx="${180+r*Math.cos(rad)}" cy="${180+r*Math.sin(rad)}" r="2.6" fill="${hex2hsl(s.baseHex).l>55?"#241C18":"#FFF8F3"}" opacity=".75"/>`;
+    }
+  });
+  g.innerHTML = h;
+  drawSelWin();
+}
+// The fixed "viewfinder" at the left edge: one stroked window per ring, sized to
+// that ring's segment width. The rings rotate underneath it, so whatever color
+// fills each window is the current pick — the caret beside it points the same way.
+function drawSelWin(){
+  const g = document.getElementById("selWin"); if(!g) return;
+  const win = (which, cls) => {
+    const half = rings[which].seg/2;
+    const r1 = which==="outer" ? WHEEL.outr : WHEEL.inr;
+    const r2 = which==="outer" ? WHEEL.outR : WHEEL.inR;
+    return `<path${cls?' class="'+cls+'"':''} d="${arcPath(180,180,r1,r2,270-half,270+half)}"/>`;
+  };
+  // canvas-colored underlay first, ink on top — the window stays visible over
+  // any segment color in either theme
+  g.innerHTML = win("outer","under") + win("inner","under") + win("outer") + win("inner");
+}
+function applyRot(which){
+  const r = rings[which];
+  r.el.style.transform = `rotate(${r.rot}deg)`;
+  if(r.labels){
+    const anti = "rotate(" + (-r.rot).toFixed(2) + " ";
+    for(const t of r.labels) t.setAttribute("transform", anti + t.dataset.x + " " + t.dataset.y + ")");
+  }
+}
+function idxAtTop(which){
+  const r = rings[which];
+  return mod(Math.round((-90 - r.rot)/r.seg - 0.5), r.n);
+}
+function snapRotFor(which, i){ const r=rings[which]; return -90 - (i*r.seg + r.seg/2); }
+
+function bindRing(which, onLive, onCommit){
+  const r = rings[which], el = r.el;
+  let dragging=false, lastA=0, lastT=0, vel=0, raf=0;
+  const center = () => { const b = el.ownerSVGElement.getBoundingClientRect();
+    return { x:b.left+b.width/2, y:b.top+b.height/2 }; };
+  const angleAt = e => { const c=center(); return Math.atan2(e.clientY-c.y, e.clientX-c.x)*180/Math.PI; };
+  const schedule = () => { if(raf) return; raf=requestAnimationFrame(()=>{ raf=0; applyRot(which); onLive(idxAtTop(which)); }); };
+
+  el.addEventListener("pointerdown", e=>{
+    el.setPointerCapture(e.pointerId); dragging=true; vel=0;
+    lastA=angleAt(e); lastT=e.timeStamp; el.classList.add("drag");
+  });
+  el.addEventListener("pointermove", e=>{
+    if(!dragging) return;
+    const a=angleAt(e); let d=a-lastA;
+    if(d>180) d-=360; if(d<-180) d+=360;
+    const dt=Math.max(1, e.timeStamp-lastT);
+    vel=d/dt; r.rot+=d; lastA=a; lastT=e.timeStamp; schedule();
+  });
+  const release = () => {
+    if(!dragging) return; dragging=false; el.classList.remove("drag");
+    if(reduceMotion()){ settle(); return; } coast();
+  };
+  el.addEventListener("pointerup", release);
+  el.addEventListener("pointercancel", release);
+  el.addEventListener("click", e=>{
+    const p = e.target.closest("path.seg"); if(!p) return;
+    const i = +p.dataset.i; if(Math.abs(vel) > .01) return;
+    animateTo(i);
+  });
+  function coast(){
+    vel *= 0.94;
+    if(Math.abs(vel) < 0.02){ settle(); return; }
+    r.rot += vel*16.7; schedule(); requestAnimationFrame(coast);
+  }
+  function settle(){ animateTo(idxAtTop(which)); }
+  function animateTo(i){
+    const from=r.rot; let to=snapRotFor(which,i);
+    while(to - from > 180) to -= 360; while(from - to > 180) to += 360;
+    const t0=performance.now(), dur = reduceMotion() ? 1 : 260;
+    (function step(t){
+      const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+      r.rot = from + (to-from)*e; applyRot(which); onLive(idxAtTop(which));
+      if(p<1) requestAnimationFrame(step); else onCommit(i);
+    })(t0);
+  }
+  r.animateTo = animateTo;
+}
+const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function setFamily(i, keepShade){
+  P.famIdx = mod(i, FAMILIES.length);
+  drawInner();
+  const f = FAMILIES[P.famIdx];
+  const target = keepShade === undefined ? Math.floor(f.shades.length/2) : Math.min(keepShade, f.shades.length-1);
+  P.shIdx = target;
+  P.shade = f.shades[P.shIdx];
+  rings.inner.rot = snapRotFor("inner", P.shIdx); applyRot("inner");
+  updateHub(); flushPaint(); updateLift();
+}
+function setShade(i){
+  const f = FAMILIES[P.famIdx];
+  P.shIdx = mod(i, f.shades.length); P.shade = f.shades[P.shIdx];
+  updateHub(); flushPaint(); updateLift();
+}
+function updateHub(){
+  const nameEl = $("#hubName");
+  nameEl.textContent = P.shade.name;
+  // Long names ("Strawberry Blonde") would graze the hub circle at 19px — shrink to fit.
+  nameEl.style.fontSize = "";
+  const w = nameEl.getComputedTextLength ? nameEl.getComputedTextLength() : 0;
+  if(w > 138) nameEl.style.fontSize = Math.max(13, Math.floor(19 * 138 / w)) + "px";
+  $("#hubMeta").textContent = "Level " + P.shade.level + " · " + P.shade.tone[0].toUpperCase()+P.shade.tone.slice(1);
+  $("#hubFam").textContent  = FAMILIES[P.famIdx].family;
+}
+function updateLift(){
+  const gap = liftGap(), strip = $("#liftStrip");
+  let state, copy;
+  if(P.current.k === "multi"){
+    state = "dual";
+    copy = "Your roots and ends are starting from different places, so they'll lift at different rates. That's the main thing a consultation sorts out.";
+  } else if(gap <= 0){
+    state = "ok";
+    copy = P.shade.requiresLift
+      ? "Your hair is already light enough for this one. Deposit-only from here — no lightener needed."
+      : "Your hair is already in range for this. Deposit-only, no lightener.";
+  } else if(gap <= 3){
+    state = "lift-1";
+    copy = "This sits about <b>" + gap + " level" + (gap>1?"s":"") + "</b> lighter than where you are. That's one lightening session, then the color.";
+  } else if(gap <= 6){
+    state = "lift-2";
+    copy = "This is about <b>" + gap + " levels</b> lighter than your hair now. Realistically two sessions to get there safely — I'd rather say that now than halfway through.";
+  } else {
+    state = "lift-3";
+    copy = "This is a long way from where your hair is. Two or three sessions, spaced out. Book a consultation and I'll map it properly.";
+  }
+  if(P.current.flag) copy += ' <span style="display:block;margin-top:6px;opacity:.78">' + P.current.flag + "</span>";
+  strip.dataset.state = state;
+  $("#liftCopy").innerHTML = copy;
+
+  // ladder
+  const cur = P.current.level, goal = P.shade.min;
+  let lh = "";
+  for(let l=10; l>=1; l--){
+    let cls = "";
+    if(l === Math.round(cur)) cls = "now";
+    else if(l === Math.round(goal)) cls = "goal";
+    else if(l > cur && l < goal) cls = "gap";
+    lh += '<i class="'+cls+'"></i>';
+  }
+  $("#ladder").innerHTML = lh;
+}
+
+function updateLabel(){
+  const bits = [];
+  const t = TEXTURES.find(x=>x.k===P.texture), l = LENGTHS.find(x=>x.k===P.length), d = DENSITIES.find(x=>x.k===P.density);
+  bits.push(P.shade.name);
+  bits.push((l?l.label:"") + " · " + (t?t.label:"") + " · " + (d?d.label:""));
+  if(P.service){
+    const s = SERVICES.find(x=>x.slug===P.service);
+    if(s) bits.push(FX[P.service] && FX[P.service].none ? esc(s.display_name) + " — no change to the hair itself" : esc(s.display_name));
+  }
+  const el = document.getElementById("panelLabel"); if(el) el.innerHTML = bits.join("<br>");
+  clearTimeout(updateLabel._t);
+  updateLabel._t = setTimeout(()=>{
+    const gap = liftGap();
+    document.getElementById("live").textContent =
+      "Preview: " + (l?l.label.toLowerCase():"") + ", " + (t?t.label.toLowerCase():"") + ", " +
+      (d?d.label.toLowerCase():"") + " hair in " + P.shade.name + ", a level " + P.shade.level + " " + P.shade.tone + " shade." +
+      (gap>0 ? " Your hair is currently around level " + P.current.level + ", so this needs lifting first." : "");
+  }, 400);
+}
+
+/* ==========================================================================
+   SITE DATA + RENDER
+   ========================================================================== */
+let SERVICES = [], SETTINGS = {};
+let DATA_STATE = "loading";   // "loading" | "ready" | "failed"
+// Offline fallback — keep in sync with jz_settings.phone if Jasmine's number changes.
+const FALLBACK_PHONE = "(916) 968-3121", FALLBACK_TEL = "+19169683121";
+const money = c => c==null ? null : "$" + (c/100).toFixed(c%100===0?0:2);
+const dur = m => { const h=Math.floor(m/60), r=m%60;
+  return (h? h+" hr":"") + (h&&r?" ":"") + (r? r+" min":""); };
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+async function loadData(){
+  DATA_STATE = "loading";
+  try{
+    const [svc, set] = await Promise.all([
+      sbGet("jz_services?select=*&is_active=eq.true&order=sort_order.asc"),
+      sbGet("jz_settings?select=*&limit=1"),
+    ]);
+    SERVICES = svc; SETTINGS = set[0] || {};
+    DATA_STATE = "ready";
+    // Drafts can hold services Jasmine has since retired — drop them so the
+    // review screen never shows an empty selection that still validates.
+    B.services = B.services.filter(sl => SERVICES.some(s => s.slug === sl));
+  }catch(e){
+    console.error("Data load failed:", e);
+    DATA_STATE = "failed";
+    SETTINGS = {};
+  }
+  // A bad settings row must never take the router down with it.
+  try{ paintSettings(); paintMenu(); buildServiceChips(); }
+  catch(e){ console.error("Paint failed:", e); }
+  // If the client is already sitting on the service step, give it the real list.
+  if(document.getElementById("rBook").classList.contains("on") && step === 2) renderStep();
+}
+function menuFailHTML(){
+  return '<p style="color:var(--c-ink-muted)">The menu couldn’t load just now. Call or text me at ' +
+    '<a href="tel:' + FALLBACK_TEL + '">' + FALLBACK_PHONE + '</a> and I’ll take it from there.</p>';
+}
+
+function paintSettings(){
+  const s = SETTINGS;
+  const tel = (s.phone||"").replace(/[^\d]/g,"");
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  const set = (id, html) => { const e=document.getElementById(id); if(e) e.innerHTML = html; };
+  set("fAddr", esc(s.address_line||""));
+  set("fPark", esc(s.address_note||""));
+  set("ftAddr", esc(s.address_line||""));
+  set("aboutBody", esc(s.about_body||""));
+  set("fDep", esc(s.deposit_policy||""));
+  set("fCan", esc(s.cancellation_policy||""));
+  const tl=document.getElementById("ftTel"); if(tl){ tl.textContent=s.phone||""; tl.href="tel:+1"+tel; }
+  const ml=document.getElementById("ftMail"); if(ml){ ml.textContent=s.email||""; ml.href="mailto:"+(s.email||""); }
+  const ig=document.getElementById("ftIg"), ig2=document.getElementById("igBtn");
+  const igUrl = /^https?:\/\//i.test(s.instagram_url||"") ? s.instagram_url : "#";
+  [ig,ig2].forEach(a=>{ if(a) a.href = igUrl; });
+  const sms=document.getElementById("smsBtn");
+  if(sms) sms.href = "sms:+1"+tel+"?&body=" + encodeURIComponent("Hi Jazzie! I'd like to book an appointment.");
+  const hero = document.querySelector(".hero h1");
+  if(hero && s.hero_headline){
+    const m = s.hero_headline.match(/^(.*?)(,\s*)(.*)$/);
+    hero.innerHTML = m ? esc(m[1]) + esc(m[2]) + "<em>" + esc(m[3]) + "</em>" : esc(s.hero_headline);
+  }
+  const lead = document.querySelector(".hero .lead");
+  if(lead && s.hero_sub){
+    const sub = s.hero_sub.trim();
+    lead.textContent = sub + (/[.!?…]$/.test(sub) ? " " : ". ") + "Pick a shade on the wheel and watch it land on real hair before you ever sit in my chair.";
+  }
+  // Hours. Nothing here is invented — if Jasmine has not entered real hours the
+  // block falls back to "by appointment" rather than publishing a guess. Same
+  // rule for the bio, the policies and the arrival note below.
+  const hrs = (Array.isArray(s.hours_json) ? s.hours_json : []).filter(h => h && h.day && h.hours);
+  const ul = document.getElementById("hoursList");
+  if(ul) ul.innerHTML = hrs.map(h =>
+    '<li class="'+(/closed/i.test(h.hours)?"closed":"")+'"><b>'+esc(h.day)+"</b><span>"+esc(h.hours)+"</span></li>").join("");
+  show("hoursList", hrs.length);
+  show("hoursFallback", !hrs.length);
+  const open = hrs.filter(h=>!/closed/i.test(h.hours));
+  const mh = document.getElementById("mHours");
+  if(mh) mh.textContent = open.length
+    ? String(open[0].day).slice(0,3) + "–" + String(open[open.length-1].day).slice(0,3)
+    : "By appointment";
+
+  show("fParkWrap", s.address_note);
+  show("about",     s.about_body);
+  show("fDepWrap",  s.deposit_policy);
+  show("fCanWrap",  s.cancellation_policy);
+  show("policies",  s.deposit_policy || s.cancellation_policy);
+}
+function show(id, cond){
+  const el = document.getElementById(id);
+  if(el) el.hidden = !(cond && String(cond).trim());
+}
+
+const CAT_ORDER = ["Color","Lightening","Cuts","Treatments","Extensions","Bridal","Waxing","Consult"];
+const CAT_LABEL = { Color:"Color", Lightening:"Lightening & highlights", Cuts:"Cuts",
+  Treatments:"Styling & treatments", Extensions:"Extensions", Bridal:"Bridal & events",
+  Waxing:"Waxing", Consult:"Not sure yet?" };
+let activeFilters = new Set();
+
+function paintMenu(){
+  const fbox = document.getElementById("filters");
+  const FILTERS = [
+    {k:"nobleach", label:"No lightener needed", test:s=>!s.requires_bleach},
+    {k:"color",    label:"Changes my color",   test:s=>s.changes_color},
+    {k:"length",   label:"Adds length",        test:s=>s.adds_length},
+    {k:"quick",    label:"Under 2 hours",      test:s=>s.duration_min <= 120},
+  ];
+  fbox.innerHTML = FILTERS.map(f=>`<button class="chip" data-f="${f.k}" aria-pressed="false">${f.label}</button>`).join("");
+  fbox.onclick = e => {
+    const b = e.target.closest("[data-f]"); if(!b) return;
+    const k = b.dataset.f;
+    if(activeFilters.has(k)) activeFilters.delete(k); else activeFilters.add(k);
+    b.setAttribute("aria-pressed", activeFilters.has(k));
+    renderRows(FILTERS);
+  };
+  renderRows(FILTERS);
+}
+function renderRows(FILTERS){
+  const box = document.getElementById("menu");
+  let html = "";
+  for(const cat of CAT_ORDER){
+    const rows = SERVICES.filter(s=>s.category===cat)
+      .filter(s=>[...activeFilters].every(k=>FILTERS.find(f=>f.k===k).test(s)));
+    if(!rows.length) continue;
+    html += `<h3 class="cat-head">${CAT_LABEL[cat]||cat}</h3>`;
+    for(const s of rows){
+      const fx = FX[s.slug] || {};
+      html += `<article class="srow rv" data-slug="${s.slug}">
+        <h4 class="srow-name">${esc(s.display_name||s.name)}</h4>
+        <p class="srow-tag">${esc(s.tagline)}</p>
+        <div class="srow-price">${s.price_cents==null ? esc(s.price_label||"Quoted") : "From " + money(s.price_cents)}<small>${dur(s.duration_min)} in the chair</small></div>
+        <p class="srow-body">${esc(s.description)}</p>
+        <div class="srow-meta">
+          ${s.best_for ? "<span><b>Best for</b> "+esc(s.best_for)+"</span>" : ""}
+          ${s.maintenance ? "<span><b>Upkeep</b> "+esc(s.maintenance)+"</span>" : ""}
+        </div>
+        <div class="srow-acts">
+          ${s.requires_bleach ? '<span class="badge warn">Uses lightener</span>' : '<span class="badge mute">No lightener</span>'}
+          ${s.consult_required ? '<span class="badge">Consultation first</span>' : ""}
+          ${s.deposit_cents ? '<span class="badge mute">'+money(s.deposit_cents)+" deposit</span>" : ""}
+          ${fx.none ? "" : '<button class="btn btn-ghost btn-sm" data-see="'+s.slug+'">See it on my hair</button>'}
+          <a class="btn btn-primary btn-sm" href="#/book/1" data-pick="${s.slug}">Choose this service</a>
+        </div>
+        ${s.notes ? "<details><summary>The honest version</summary><p>"+esc(s.notes)+"</p></details>" : ""}
+      </article>`;
+    }
+  }
+  box.innerHTML = html || (SERVICES.length
+    ? '<p style="color:var(--c-ink-muted)">Nothing matches those filters together. Try clearing one.</p>'
+    : menuFailHTML());
+  observeReveals(box);
+  box.onclick = e => {
+    const see = e.target.closest("[data-see]");
+    if(see){ setService(see.dataset.see, true); return; }
+    const pick = e.target.closest("[data-pick]");
+    if(pick){ B.services = [pick.dataset.pick]; setService(pick.dataset.pick, false); }
+  };
+}
+
+function setService(slug, scroll){
+  P.service = (P.service === slug) ? null : slug;
+  document.querySelectorAll("#cService .chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v === P.service)));
+  const fx = P.service ? FX[P.service] : null;
+  if(fx && fx.geom && fx.geom.style) { /* style is forced by geometry */ }
+  renderGeometry();
+  if(scroll){
+    const st = document.getElementById("studio");
+    if(window.innerWidth < 1100 && st) st.scrollIntoView({behavior: reduceMotion()?"auto":"smooth", block:"start"});
+    toast(P.service ? "Showing " + (SERVICES.find(s=>s.slug===P.service)||{}).display_name + " on the preview" : "Preview reset");
+  }
+}
+
+/* ==========================================================================
+   CONTROL CHIPS
+   ========================================================================== */
+function chipRow(host, items, get, set, opts){
+  opts = opts || {};
+  host.innerHTML = items.map(it=>{
+    const sw = opts.swatch ? `<span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:${it.hex};box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--c-ink) 28%, transparent);margin-right:7px;vertical-align:-1px" aria-hidden="true"></span>` : "";
+    return `<button class="chip" data-v="${it.k}" aria-pressed="${get()===it.k}">${sw}${it.label}${it.sub?"<small>"+it.sub+"</small>":""}</button>`;
+  }).join("");
+  host.onclick = e => {
+    const b = e.target.closest("[data-v]"); if(!b) return;
+    set(b.dataset.v);
+    host.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v===get())));
+  };
+}
+function buildControls(){
+  chipRow($("#cCurrent"), CURRENT_COLORS.map(c=>({k:c.k,label:c.label,hex:c.hex})),
+    ()=>P.current.k, v=>{ P.current = CURRENT_COLORS.find(c=>c.k===v); B.currentColor=v; updateLift(); flushPaint(); }, {swatch:true});
+  chipRow($("#cTexture"), TEXTURES, ()=>P.texture, v=>{ P.texture=v; B.texture=v; renderGeometry(); });
+  chipRow($("#cLength"),  LENGTHS,  ()=>P.length,  v=>{ P.length=v;  B.length=v;  renderGeometry(); });
+  chipRow($("#cDensity"), DENSITIES,()=>P.density, v=>{ P.density=v; B.density=v; renderGeometry(); });
+  chipRow($("#cStyle"),   STYLES,   ()=>P.style,   v=>{ P.style=v;   renderGeometry(); });
+}
+function buildServiceChips(){
+  const host = $("#cService");
+  const list = SERVICES.filter(s=>!(FX[s.slug]||{}).none)
+    .map(s=>({k:s.slug, label:s.display_name||s.name}));
+  host.innerHTML = list.map(it=>`<button class="chip" data-v="${it.k}" aria-pressed="false">${esc(it.label)}</button>`).join("");
+  host.onclick = e => { const b=e.target.closest("[data-v]"); if(!b) return; setService(b.dataset.v, false); };
+}
+
+/* ==========================================================================
+   BOOKING FLOW
+   ========================================================================== */
+const B = {
+  texture:null, length:null, density:null, currentColor:null,
+  history:[], gray:null, goalShade:null, goalFamily:null,
+  services:[], inspiration:"", notes:"", times:"",
+  name:"", email:"", phone:"", instagram:"",
+};
+const SAVE_KEY = "jz_book_v1";
+function saveBooking(){
+  const c = Object.assign({}, B); delete c.name; delete c.email; delete c.phone; delete c.instagram;
+  try{ localStorage.setItem(SAVE_KEY, JSON.stringify(c)); }catch(e){}
+}
+function loadBooking(){
+  try{ const raw=localStorage.getItem(SAVE_KEY); if(!raw) return;
+    Object.assign(B, JSON.parse(raw));
+    if(B.texture) P.texture=B.texture;
+    if(B.length)  P.length=B.length;
+    if(B.density) P.density=B.density;
+    if(B.currentColor){ const c=CURRENT_COLORS.find(x=>x.k===B.currentColor); if(c) P.current=c; }
+  }catch(e){}
+}
+
+let step = 1, sub = 1;
+const SUBS = 4;
+const TOTAL_STEPS = 6;
+
+const figTexture = k => {
+  const paths = {
+    straight:"M22 4 C22 22, 22 40, 22 62", wavy:"M22 4 C34 16, 10 26, 22 38 C34 50, 12 54, 22 62",
+    curly:"M22 4 C38 10, 8 18, 22 26 C38 34, 8 42, 22 50 C34 56, 14 60, 22 64",
+    coily:"M22 4 C40 8, 6 14, 22 20 C40 26, 6 32, 22 38 C40 44, 6 50, 22 56 C34 60, 12 62, 22 65",
+    zigzag:"M22 4 L34 11 L10 18 L34 25 L10 32 L34 39 L10 46 L34 53 L14 60 L26 65",
+  };
+  return `<svg viewBox="0 0 44 70"><path d="${paths[k]}" fill="none" stroke="var(--c-ink-muted)" stroke-width="3.4" stroke-linecap="round"/></svg>`;
+};
+const figLength = k => {
+  const hair = { short:"M10 14 q12 -10 24 0 v14 q-12 7 -24 0 z",
+                 medium:"M10 14 q12 -10 24 0 v26 q-12 7 -24 0 z",
+                 long:"M10 14 q12 -10 24 0 v44 q-12 7 -24 0 z" }[k];
+  return `<svg viewBox="0 0 44 70">
+    <path d="${hair}" fill="var(--c-ink-muted)" opacity=".85"/>
+    <circle cx="22" cy="14" r="8" fill="var(--c-vellum)"/>
+    <line x1="4" y1="26" x2="40" y2="26" stroke="var(--c-line-strong)" stroke-dasharray="2 3" stroke-width="1"/>
+    <line x1="4" y1="40" x2="40" y2="40" stroke="var(--c-line-strong)" stroke-dasharray="2 3" stroke-width="1"/>
+  </svg>`;
+};
+const figDensity = k => {
+  const r = { low:9, medium:13.5, high:18 }[k];
+  return `<svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="${r}" fill="var(--c-ink-muted)" opacity=".8"/>
+    <circle cx="22" cy="22" r="19" fill="none" stroke="var(--c-line)" stroke-dasharray="2 3"/></svg>`;
+};
+const figUnsure = () => `<svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17" fill="none" stroke="var(--c-line-strong)" stroke-dasharray="3 4"/>
+  <text x="22" y="29" text-anchor="middle" font-size="19" fill="var(--c-ink-faint)" font-family="var(--font-display)">?</text></svg>`;
+
+const HISTORY_OPTS = [
+  {k:"natural", label:"Nothing — this is my natural color"},
+  {k:"salon",   label:"Salon color"},
+  {k:"box",     label:"Box or drugstore color"},
+  {k:"bleach",  label:"Bleach, highlights or balayage"},
+  {k:"henna",   label:"Henna or plant dye"},
+  {k:"chem",    label:"Relaxer, keratin or straightening"},
+  {k:"gloss",   label:"Toner or gloss"},
+  {k:"unsure",  label:"Not sure"},
+];
+
+function renderStep(){
+  const host = document.getElementById("bookStep");
+  const note = document.getElementById("navNote");
+  const back = document.getElementById("btnBack");
+  const next = document.getElementById("btnNext");
+  note.textContent = ""; back.style.display = ""; next.textContent = "Next"; next.disabled = false;
+  clearTimeout(renderStep._adv); renderStep._adv = 0;
+
+  let h = "";
+  if(step === 1){
+    const introduce = sub === 1 ? `<span class="eyebrow" style="margin-bottom:var(--s-4)">Your hair · ${sub} of ${SUBS}</span>
+      <p class="q-sub" style="color:var(--c-ink);font-size:var(--t-1);font-family:var(--font-display);line-height:1.3;margin-bottom:var(--s-5)">First, tell me what I'm working with.</p>
+      <p class="q-help" style="margin-bottom:var(--s-8)">4 quick questions about your hair, then you'll pick your service. About 2 minutes. This goes straight to me and nowhere else.</p>`
+      : `<span class="eyebrow" style="margin-bottom:var(--s-4)">Your hair · ${sub} of ${SUBS}</span>`;
+
+    if(sub === 1){
+      h = introduce + `<h2 class="q-label">What's your hair's natural texture?</h2>
+        <p class="q-sub">This shapes how I cut it and how the color will read once it dries.</p>
+        <p class="q-help">Go by how it dries on its own — no heat, no styling. If you've been straightening it for years, think back to the last time you let it air-dry.</p>
+        <div class="opts" data-k="texture">` +
+        TEXTURES.map(t=>optHTML("texture",t.k,figTexture(t.k),t.label,t.sub)).join("") +
+        optHTML("texture","unsure",figUnsure(),'Not sure, or it\'s a mix',"Really common. Pick this and I'll sort it out in person.") +
+        `</div>`;
+    } else if(sub === 2){
+      const curly = ["curly","coily","zigzag","wavy"].indexOf(B.texture) >= 0;
+      h = introduce + `<h2 class="q-label">About how long is your hair right now?</h2>
+        <p class="q-sub">Ballpark is fine — it just helps me estimate time and product.</p>
+        <p class="q-help">Go by where the ends actually fall, not where you want them to be.</p>
+        ${curly ? '<p class="q-cond">Curls shrink, so gently pull one strand straight and go by that length — not where it sits when it\'s dry.</p>' : ""}
+        <div class="opts" data-k="length">` +
+        LENGTHS.map(t=>optHTML("length",t.k,figLength(t.k),t.label,t.sub)).join("") + `</div>`;
+    } else if(sub === 3){
+      const curly = ["curly","coily","zigzag"].indexOf(B.texture) >= 0;
+      h = introduce + `<h2 class="q-label">How dense is your hair?</h2>
+        <p class="q-sub">Density is how <em>many</em> strands you have, not how thick each one is, and it has nothing to do with hair health. It tells me how much color to mix and how much time to book, so your appointment doesn't run over.</p>
+        <p class="q-help">Easiest way: pull your hair into a ponytail and loosely circle the base with your fingers. Under about 2 inches around is low, 2–3 is medium, 4 or more is high.</p>
+        ${curly ? '<p class="q-cond">Curls don\'t pack down the way straight hair does, so a ponytail reads bigger than it is. Measure it gently stretched, or go by your part.</p>' : ""}
+        <div class="opts" data-k="density">` +
+        DENSITIES.map(t=>optHTML("density",t.k,figDensity(t.k),t.label,t.sub)).join("") +
+        optHTML("density","unsure",figUnsure(),"Not sure","Pick the closest and I'll confirm it in the chair. If it changes the time or the price, I'll tell you before we start.") +
+        `</div>`;
+    } else {
+      h = introduce + `<h2 class="q-label">What color is your hair right now?</h2>
+        <p class="q-sub">Your current color, not your goal — the goal comes next.</p>
+        <p class="q-help">If your roots and ends are different colors, that's completely normal. Pick “grown-out or multi-tone” and tell me both below.</p>
+        <div class="opts sw" data-k="currentColor">` +
+        CURRENT_COLORS.map(c=>`<button class="opt" data-k="currentColor" data-v="${c.k}" aria-pressed="${B.currentColor===c.k}">
+          <span class="opt-fig" style="background:${c.hex}"></span>
+          <span class="opt-txt"><b>${c.label}</b></span></button>`).join("") +
+        `</div>
+        <h3 class="q-label" style="font-size:var(--t-2);margin:var(--s-9) 0 var(--s-4)">Has anything been on your hair in the last year?</h3>
+        <p class="q-sub">This is the most useful thing you can tell me, and there's no wrong answer. Box color, henna and old bleach all change what's safely possible in one visit — knowing now means I can quote you honestly instead of surprising you in the chair.</p>
+        <div class="opts" data-k="history" data-multi="1" style="margin-top:var(--s-6)">` +
+        HISTORY_OPTS.map(o=>`<button class="opt" data-k="history" data-v="${o.k}" aria-pressed="${B.history.indexOf(o.k)>=0}">
+          <span class="opt-fig" style="font-size:20px;color:var(--c-accent)" aria-hidden="true">${B.history.indexOf(o.k)>=0?"●":"○"}</span>
+          <span class="opt-txt"><b>${o.label}</b></span></button>`).join("") + `</div>`;
+    }
+  }
+
+  else if(step === 2){
+    const warn = B.history.some(k=>["box","henna","bleach"].indexOf(k)>=0);
+    h = `<span class="eyebrow">Step 2 of ${TOTAL_STEPS}</span>
+      <h2 class="q-label">What are we doing?</h2>
+      <p class="q-sub">Pick everything you want in one visit. I'll confirm the total time and price when I reply.</p>
+      ${warn ? '<p class="q-cond">Heads up: with box color, henna or old bleach already on your ends, a big lightening change may take two visits to do safely. I\'d rather tell you now than halfway through.</p>' : ""}`;
+    // The menu comes from Supabase — never leave this step as a silent dead end
+    // if the client got here before the fetch finished, or it failed outright.
+    if(!SERVICES.length){
+      h += DATA_STATE === "failed"
+        ? menuFailHTML() + '<button class="btn btn-ghost btn-sm" id="menuRetry" type="button">Try loading it again</button>'
+        : '<p class="q-help">One sec — the menu is still loading…</p>';
+    } else {
+    h += `<div class="opts" data-k="services" data-multi="1">`;
+    for(const cat of CAT_ORDER){
+      const rows = SERVICES.filter(s=>s.category===cat);
+      if(!rows.length) continue;
+      h += `<h3 class="cat-head" style="margin-top:var(--s-7)">${CAT_LABEL[cat]||cat}</h3>`;
+      for(const s of rows){
+        const on = B.services.indexOf(s.slug)>=0;
+        const offer = offerable(s);
+        h += `<button class="opt" data-k="services" data-v="${s.slug}" aria-pressed="${on}" ${offer?"":'aria-disabled="true"'} style="${offer?"":"opacity:.62"}">
+          <span class="opt-fig" style="font-size:20px;color:var(--c-accent)" aria-hidden="true">${on?"●":"○"}</span>
+          <span class="opt-txt"><b>${esc(s.display_name||s.name)} · ${s.price_cents==null?"Quoted":money(s.price_cents)}</b>
+          <span>${esc(s.tagline)} · ${dur(s.duration_min)}</span>
+          ${offer?"":'<small style="color:var(--c-warn)">'+esc(whyNot(s))+"</small>"}</span></button>`;
+      }
+    }
+    h += `</div>`;
+    }
+    h += `
+      <h3 class="q-label" style="font-size:var(--t-2);margin:var(--s-9) 0 var(--s-4)">And the color you're after?</h3>
+      <p class="q-sub">Whatever you landed on in the color studio is carried over. You can change it there any time.</p>
+      <div class="summary"><dl>
+        <dt>Goal shade</dt><dd><span class="sw-dot" style="background:${P.shade.baseHex}"></span>${P.shade.name} · Level ${P.shade.level} ${P.shade.tone}</dd><dd class="chg-c"></dd>
+        <dt>Starting from</dt><dd><span class="sw-dot" style="background:${P.current.hex}"></span>${P.current.label}</dd><dd class="chg-c"></dd>
+      </dl></div>`;
+  }
+
+  else if(step === 3){
+    h = `<span class="eyebrow">Step 3 of ${TOTAL_STEPS}</span>
+      <h2 class="q-label">Anything you want me to see?</h2>
+      <p class="q-sub">Inspiration links or a note about what you're going for. Totally optional.</p>
+      <div class="field"><label for="fInsp">Inspiration link</label>
+        <div class="hint">A Pinterest board, an Instagram post, or a photo link. Paste as many as you like.</div>
+        <input id="fInsp" type="text" placeholder="https://" value="${esc(B.inspiration)}"></div>
+      <div class="field"><label for="fNotes">Anything else</label>
+        <div class="hint">Things you've hated in the past, how much time you spend styling, an event you're heading to — all useful.</div>
+        <textarea id="fNotes" placeholder="Optional">${esc(B.notes)}</textarea></div>`;
+    note.textContent = "";
+    next.textContent = "Next";
+  }
+
+  else if(step === 4){
+    h = `<span class="eyebrow">Step 4 of ${TOTAL_STEPS}</span>
+      <h2 class="q-label">When suits you?</h2>
+      <p class="q-sub">Two or three windows that work, and I'll come back with the closest real opening. Nothing is locked in yet.</p>
+      <div class="field"><label for="fTimes">Preferred days and times</label>
+        <div class="hint">For example: “Saturday mornings, or any weekday after 3.”</div>
+        <textarea id="fTimes" placeholder="Saturday mornings, or Thursday afternoons">${esc(B.times)}</textarea></div>`;
+  }
+
+  else if(step === 5){
+    h = `<span class="eyebrow">Step 5 of ${TOTAL_STEPS}</span>
+      <h2 class="q-label">How do I reach you?</h2>
+      <p class="q-sub">No account, no password. I'll reply to whichever you prefer.</p>
+      <div class="field" id="wName"><label for="fName">Your name</label>
+        <input id="fName" type="text" autocomplete="name" value="${esc(B.name)}"><div class="err" id="errName">I just need something to call you.</div></div>
+      <div class="field" id="wEmail"><label for="fEmail">Email</label>
+        <input id="fEmail" type="email" inputmode="email" autocomplete="email" value="${esc(B.email)}"><div class="err" id="errEmail">That email doesn't look complete — mind checking it?</div></div>
+      <div class="field"><label for="fPhone">Phone <span style="color:var(--c-ink-faint);font-weight:400">(optional, but faster)</span></label>
+        <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" value="${esc(B.phone)}"></div>
+      <div class="field"><label for="fIg">Instagram <span style="color:var(--c-ink-faint);font-weight:400">(optional)</span></label>
+        <input id="fIg" type="text" placeholder="@yourhandle" value="${esc(B.instagram)}"></div>`;
+    next.textContent = "Review";
+  }
+
+  else if(step === 6){
+    const picked = B.services.map(sl=>SERVICES.find(s=>s.slug===sl)).filter(Boolean);
+    const total = picked.reduce((a,s)=>a + (s.price_cents||0), 0);
+    const anyVar = picked.some(s=>s.price_cents==null);
+    const mins = picked.reduce((a,s)=>a + s.duration_min, 0);
+    const dep = picked.reduce((a,s)=>a + (s.deposit_cents||0), 0);
+    const t = TEXTURES.find(x=>x.k===B.texture), l = LENGTHS.find(x=>x.k===B.length), d = DENSITIES.find(x=>x.k===B.density);
+    const c = CURRENT_COLORS.find(x=>x.k===B.currentColor);
+    const chg = (go, what) => `<dd class="chg-c"><button class="chg" data-go="${go}" aria-label="Change ${what}">Change</button></dd>`;
+    h = `<span class="eyebrow">Step 6 of ${TOTAL_STEPS}</span>
+      <h2 class="q-label">Here's what I'll get</h2>
+      <div class="summary"><h3>Your hair</h3><dl>
+        <dt>Texture</dt><dd>${t?t.label:"Not sure"}</dd>${chg("1.1","texture")}
+        <dt>Length</dt><dd>${l?l.label:"Not answered"}</dd>${chg("1.2","length")}
+        <dt>Density</dt><dd>${d?d.label:"Not sure"}</dd>${chg("1.3","density")}
+        <dt>Color now</dt><dd>${c?'<span class="sw-dot" style="background:'+c.hex+'"></span>'+c.label:"Not answered"}</dd>${chg("1.4","current color")}
+        <dt>History</dt><dd>${B.history.length ? B.history.map(k=>(HISTORY_OPTS.find(o=>o.k===k)||{}).label).join(", ") : "Not answered"}</dd>${chg("1.4","color history")}
+      </dl></div>
+      <div class="summary"><h3>What you want</h3><dl>
+        <dt>Goal shade</dt><dd><span class="sw-dot" style="background:${P.shade.baseHex}"></span>${P.shade.name} · Level ${P.shade.level}</dd><dd class="chg-c"></dd>
+        <dt>Finish</dt><dd>${(STYLES.find(s=>s.k===P.style)||{}).label}</dd><dd class="chg-c"></dd>
+        ${picked.map(s=>`<dt>Service</dt><dd>${esc(s.display_name||s.name)} · ${s.price_cents==null?"Quoted":money(s.price_cents)} · ${dur(s.duration_min)}</dd>${chg("2","services")}`).join("")}
+        ${B.inspiration?`<dt>Inspiration</dt><dd style="word-break:break-all">${esc(B.inspiration)}</dd>${chg("3","inspiration")}`:""}
+        ${B.times?`<dt>When</dt><dd>${esc(B.times)}</dd>${chg("4","preferred times")}`:""}
+      </dl>
+      <div class="total"><span>${total===0&&anyVar?"Price":"Estimated"}</span><span>${total===0&&anyVar?"Quoted when I reply":money(total)+(anyVar?" + quoted items":"")}</span></div>
+      <div style="text-align:right;font-size:var(--t--2);color:var(--c-ink-faint);margin-top:6px">About ${dur(mins)} in the chair</div>
+      </div>
+      <div class="summary"><h3>You</h3><dl>
+        <dt>Name</dt><dd>${esc(B.name)}</dd>${chg("5","name")}
+        <dt>Email</dt><dd>${esc(B.email)}</dd>${chg("5","email")}
+        ${B.phone?`<dt>Phone</dt><dd>${esc(B.phone)}</dd><dd class="chg-c"></dd>`:""}
+      </dl></div>
+      ${(dep || SETTINGS.cancellation_policy)
+        ? '<p class="policy">' + (dep ? money(dep)+" holds your slot and comes off your final total. " : "")
+          + esc(SETTINGS.cancellation_policy||"") + "</p>"
+        : ""}`;
+    next.textContent = "Send my request";
+    note.textContent = "This is a request, not a booking. Nothing is charged today.";
+  }
+
+  else if(step === 7){
+    back.style.display = "none"; next.style.display = "none";
+    h = `<div class="done">
+      <div class="tick">✓</div>
+      <h2>Got it, ${esc((B.name||"").split(" ")[0])}. Your hair profile is with me.</h2>
+      <p style="color:var(--c-ink-muted)">I read every request myself — you'll hear back within 24 hours, usually the same day. If anything about your color history changes what's possible, I'll tell you before you pay a cent.</p>
+      <div class="refbox">${esc(B.ref||"")}</div>
+      <p style="color:var(--c-ink-faint);font-size:var(--t--1)">Quote that reference if you text me about it.</p>
+      <div style="display:flex;gap:var(--s-4);justify-content:center;flex-wrap:wrap;margin-top:var(--s-7)">
+        <a class="btn btn-primary" id="doneSms" href="#">Text Jazzie</a>
+        <a class="btn btn-ghost" href="#/">Back to the site</a>
+      </div></div>`;
+  }
+
+  host.innerHTML = h;
+  if(step === 7){
+    const tel=(SETTINGS.phone||"").replace(/[^\d]/g,"");
+    const a=document.getElementById("doneSms");
+    if(a) a.href = "sms:+1"+tel+"?&body="+encodeURIComponent("Hi Jazzie! I just sent a request, ref "+(B.ref||""));
+  }
+  document.getElementById("btnNext").style.display = step===7 ? "none" : "";
+  document.getElementById("rBook").classList.toggle("sent", step === 7);
+  host.scrollTop = 0; document.getElementById("rBook").scrollTop = 0;
+
+  // Each step replaces the DOM, which would silently drop keyboard focus on
+  // <body> — land it on the new heading and announce the step instead.
+  const ql = host.querySelector(".q-label") || host.querySelector("h2");
+  if(ql){ ql.setAttribute("tabindex","-1"); ql.focus({preventScroll:true}); }
+  document.getElementById("live").textContent =
+    (step >= 7 ? "Request sent. " : "Step " + Math.min(step,TOTAL_STEPS) + " of " + TOTAL_STEPS + ". ") + (ql ? ql.textContent : "");
+
+  host.onclick = e => {
+    if(e.target.id === "menuRetry"){ e.target.disabled = true; e.target.textContent = "Loading…"; loadData(); return; }
+    const chg = e.target.closest("[data-go]");
+    if(chg){ const [s,u] = chg.dataset.go.split("."); step=+s; sub=+(u||1);
+      history.replaceState(null,"","#/book/"+Math.min(step,TOTAL_STEPS));
+      renderStep(); updateProgress(); return; }
+    const o = e.target.closest("[data-k]"); if(!o || !o.dataset.v) return;
+    const k = o.dataset.k, v = o.dataset.v;
+    if(k === "history" || k === "services"){
+      if(k === "services"){
+        const svc = SERVICES.find(s=>s.slug===v);
+        if(svc && !offerable(svc) && B.services.indexOf(v)<0){ toast(whyNot(svc)); return; }
+      }
+      const arr = B[k], i = arr.indexOf(v);
+      if(k==="history" && v==="natural" && i<0){ B.history=["natural"]; }
+      else if(i>=0){ arr.splice(i,1); }
+      else { if(k==="history") { const n=arr.indexOf("natural"); if(n>=0) arr.splice(n,1); } arr.push(v); }
+      if(k==="services" && B.services.length) setService(B.services[B.services.length-1], false);
+      // repaint just this group in place — a full re-render would yank the scroll to the top
+      const grp = o.closest(".opts") || host;
+      grp.querySelectorAll('.opt[data-k="'+k+'"]').forEach(b=>{
+        const on = B[k].indexOf(b.dataset.v) >= 0;
+        b.setAttribute("aria-pressed", String(on));
+        const fig = b.querySelector(".opt-fig");
+        if(fig && (fig.textContent==="●" || fig.textContent==="○")) fig.textContent = on ? "●" : "○";
+      });
+      saveBooking(); return;
+    }
+    B[k] = v;
+    if(k==="texture"  && v!=="unsure"){ P.texture=v; renderGeometry(); }
+    if(k==="texture"  && v==="unsure"){ P.texture="wavy"; renderGeometry(); }
+    if(k==="length"){ P.length=v; renderGeometry(); }
+    if(k==="density" && v!=="unsure"){ P.density=v; renderGeometry(); }
+    if(k==="density" && v==="unsure"){ P.density="medium"; renderGeometry(); }
+    if(k==="currentColor"){ P.current=CURRENT_COLORS.find(c=>c.k===v); updateLift(); flushPaint(); }
+    saveBooking();
+    o.parentElement.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===v)));
+    if(step===1 && sub<SUBS && !renderStep._adv){
+      renderStep._adv = setTimeout(()=>{ renderStep._adv = 0; sub++; renderStep(); updateProgress(); }, 180);
+    }
+  };
+  syncControls();
+}
+function optHTML(k, v, fig, label, sub){
+  return `<button class="opt" data-k="${k}" data-v="${v}" aria-pressed="${B[k]===v}">
+    <span class="opt-fig">${fig}</span>
+    <span class="opt-txt"><b>${label}</b>${sub?"<span>"+sub+"</span>":""}</span></button>`;
+}
+function offerable(s){
+  if(s.slug === "over-tone-on-pre-lightened-hair"){
+    return B.history.some(k=>["bleach","gloss"].indexOf(k)>=0) || (P.current.level >= 8);
+  }
+  return true;
+}
+function whyNot(s){
+  if(s.slug === "over-tone-on-pre-lightened-hair")
+    return "This one needs hair that's already been lightened. From where you are, a lightening service comes first.";
+  return "";
+}
+function updateProgress(){
+  const shown = Math.min(step, TOTAL_STEPS);
+  document.getElementById("progT").textContent =
+    step >= 7 ? "Sent" : "Step " + shown + " of " + TOTAL_STEPS + (step===1 ? " · your hair " + sub + " of " + SUBS : "");
+  const frac = step >= 7 ? 1 : ((step-1) + (step===1 ? (sub-1)/SUBS : 0.5)) / TOTAL_STEPS;
+  document.getElementById("progI").style.width = (frac*100).toFixed(1) + "%";
+}
+function syncControls(){
+  document.querySelectorAll("#cTexture .chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v===P.texture)));
+  document.querySelectorAll("#cLength .chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v===P.length)));
+  document.querySelectorAll("#cDensity .chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v===P.density)));
+  document.querySelectorAll("#cCurrent .chip").forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.v===P.current.k)));
+}
+
+function grabStep(){
+  if(step===3){ B.inspiration = (document.getElementById("fInsp")||{}).value || ""; B.notes = (document.getElementById("fNotes")||{}).value || ""; }
+  if(step===4){ B.times = (document.getElementById("fTimes")||{}).value || ""; }
+  if(step===5){
+    B.name=(document.getElementById("fName")||{}).value||""; B.email=(document.getElementById("fEmail")||{}).value||"";
+    B.phone=(document.getElementById("fPhone")||{}).value||""; B.instagram=(document.getElementById("fIg")||{}).value||"";
+  }
+  saveBooking();
+}
+function validateStep(){
+  if(step===1){
+    const k = ["texture","length","density","currentColor"][sub-1];
+    if(!B[k]){ toast("Pick one to keep going — there's no wrong answer."); return false; }
+    return true;
+  }
+  if(step===2){ if(!B.services.length){ toast("Pick at least one service, or choose Consultation if you're not sure yet."); return false; } return true; }
+  if(step===5){
+    const nw=document.getElementById("wName"), ew=document.getElementById("wEmail");
+    const ni=document.getElementById("fName"), ei=document.getElementById("fEmail");
+    const nameBad = !B.name.trim();
+    const emOk = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(B.email.trim());
+    nw.classList.toggle("bad", nameBad);
+    ew.classList.toggle("bad", !emOk);
+    ni.setAttribute("aria-invalid", String(nameBad));
+    ei.setAttribute("aria-invalid", String(!emOk));
+    if(nameBad) ni.setAttribute("aria-describedby","errName"); else ni.removeAttribute("aria-describedby");
+    if(!emOk)   ei.setAttribute("aria-describedby","errEmail"); else ei.removeAttribute("aria-describedby");
+    if(nameBad || !emOk){
+      toast("Almost — just need a name and a working email.");
+      (nameBad ? ni : ei).focus();
+      return false;
+    }
+    return true;
+  }
+  return true;
+}
+
+async function submitRequest(){
+  const next = document.getElementById("btnNext");
+  const picked = B.services.map(sl=>SERVICES.find(s=>s.slug===sl)).filter(Boolean);
+  // The review screen is reachable by URL, and a refresh clears the contact
+  // fields — re-check everything a usable request needs before posting.
+  if(!picked.length){
+    step = 2; sub = 1; history.replaceState(null,"","#/book/2");
+    renderStep(); updateProgress();
+    toast("Pick at least one service, or choose Consultation if you're not sure yet.");
+    return;
+  }
+  const emOk = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(B.email.trim());
+  if(!B.name.trim() || !emOk){
+    step = 5; sub = 1; history.replaceState(null,"","#/book/5");
+    renderStep(); updateProgress();
+    toast("Almost — just need a name and a working email.");
+    return;
+  }
+  next.disabled = true; next.textContent = "Sending…";
+  // id/ref survive a failed attempt, so a retry updates the same request
+  // instead of filing a duplicate with a different reference code
+  const id  = submitRequest._id  || (submitRequest._id  = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random().toString(16).slice(2)));
+  const ref = submitRequest._ref || (submitRequest._ref = (Math.random().toString(36) + Math.random().toString(36)).replace(/[^a-z0-9]/g,"").slice(0,6).toUpperCase());
+  B.ref = ref;
+  const t = TEXTURES.find(x=>x.k===B.texture), d = DENSITIES.find(x=>x.k===B.density), l = LENGTHS.find(x=>x.k===B.length);
+  const c = CURRENT_COLORS.find(x=>x.k===B.currentColor);
+  const histLabels = B.history.map(k=>(HISTORY_OPTS.find(o=>o.k===k)||{}).label).filter(Boolean).join("; ");
+
+  const row = {
+    id: id, ref: ref, status: "new",
+    client_name: B.name.trim().slice(0,120),
+    client_email: B.email.trim().slice(0,200),
+    client_phone: B.phone.trim().slice(0,40),
+    client_instagram: B.instagram.trim().slice(0,80),
+    hair_color_name: c ? c.label : "",
+    hair_color_hex: c ? c.hex : "",
+    hair_color_level: c ? c.level : null,
+    hair_texture: t ? t.label : "Not sure",
+    hair_density: d ? d.label : "Not sure",
+    hair_length: l ? l.label : "",
+    hair_history: (histLabels + (B.notes ? " — " + B.notes : "")).slice(0,2000),
+    desired_color_name: P.shade.name,
+    desired_color_hex: P.shade.baseHex,
+    desired_color_level: P.shade.level,
+    desired_style: (STYLES.find(s=>s.k===P.style)||{}).label || "",
+    desired_texture: "",
+    inspiration_url: B.inspiration.trim().slice(0,500),
+    preferred_times: B.times.trim().slice(0,500),
+    client_notes: B.notes.trim().slice(0,2000),
+    estimate_cents: picked.reduce((a,s)=>a+(s.price_cents||0),0),
+    duration_min: picked.reduce((a,s)=>a+s.duration_min,0),
+    has_variable_pricing: picked.some(s=>s.price_cents==null),
+    quoted_cents: null, deposit_paid: false, is_archived: false, stylist_notes: "",
+  };
+  try{
+    if(!submitRequest._reqDone){
+      await sbPost("jz_requests", [row]);
+      submitRequest._reqDone = true;   // don't re-insert the parent row on a retry
+    }
+    if(picked.length){
+      await sbPost("jz_request_services", picked.map((s,i)=>({
+        request_id: id, service_id: s.id, name_at_time: s.display_name||s.name,
+        price_cents: s.price_cents, duration_min: s.duration_min, sort_order: i })));
+    }
+    try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+    submitRequest._id = submitRequest._ref = null; submitRequest._reqDone = false;
+    // "sent" is deliberately not a numbered step: reloading or sharing this URL
+    // starts a fresh flow instead of showing a fake confirmation
+    history.replaceState(null, "", "#/book/sent");
+    step = 7; renderStep(); updateProgress();
+  }catch(err){
+    console.error(err);
+    next.disabled = false; next.textContent = "Send my request";
+    toast(SETTINGS.phone
+      ? "That didn't send. Check your connection, or text me at " + SETTINGS.phone + "."
+      : "That didn't send — check your connection and try again.");
+  }
+}
+
+document.getElementById("btnNext").onclick = () => {
+  grabStep();
+  if(!validateStep()) return;
+  if(step === 6){ submitRequest(); return; }
+  if(step === 1 && sub < SUBS){ sub++; }
+  else { step++; sub = 1; }
+  location.hash = "#/book/" + Math.min(step, TOTAL_STEPS);
+  renderStep(); updateProgress();
+};
+document.getElementById("btnBack").onclick = () => {
+  grabStep();
+  if(step === 1 && sub > 1){ sub--; }
+  else if(step > 1){ step--; sub = step===1 ? SUBS : 1; }
+  else { location.hash = "#/"; return; }
+  // keep the URL honest without polluting history or re-triggering route()
+  history.replaceState(null, "", "#/book/" + step);
+  renderStep(); updateProgress();
+};
+
+/* ==========================================================================
+   ADMIN
+   ========================================================================== */
+let ADM = { tab:"requests", requests:[], allServices:[] };
+
+// Every admin write goes through this so a failed PATCH/POST never pretends it
+// saved — the callers revert their control when it returns false.
+async function trySave(fn, okMsg){
+  try{ await fn(); toast(okMsg); return true; }
+  catch(e){ console.error(e); toast("That didn't save — check your connection and try again."); return false; }
+}
+
+let admMode = "in";   // "in" = sign in, "up" = first-time setup
+function admLogin(msg, ok){
+  const up = admMode === "up";
+  document.getElementById("btnOut").style.display = "none";
+  document.getElementById("admBody").innerHTML = `<div class="login">
+    <h2 style="font-size:var(--t-3);font-weight:300;margin-bottom:var(--s-3)">${up?"Set up your login":"Welcome back, Jazzie"}</h2>
+    <p style="color:var(--c-ink-muted);font-size:var(--t--1);margin-bottom:var(--s-7)">${
+      up ? "Pick a password. Only the salon's registered email can see requests or edit the menu — anyone else who signs up gets nothing."
+         : "Sign in to see your requests and edit your menu."}</p>
+    ${msg?'<p style="color:var(--c-danger);font-size:var(--t--1);margin-bottom:var(--s-4)">'+esc(msg)+"</p>":""}
+    ${ok?'<p style="color:var(--c-success);font-size:var(--t--1);margin-bottom:var(--s-4)">'+esc(ok)+"</p>":""}
+    <div class="field"><label for="aEmail">Email</label><input id="aEmail" type="email" autocomplete="username" value="${esc(SETTINGS.email||"")}"></div>
+    <div class="field"><label for="aPass">Password</label>
+      ${up?'<div class="hint">At least 8 characters.</div>':""}
+      <input id="aPass" type="password" autocomplete="${up?"new-password":"current-password"}"></div>
+    <button class="btn btn-primary" id="aGo" style="width:100%">${up?"Create my login":"Sign in"}</button>
+    <p style="font-size:var(--t--2);color:var(--c-ink-faint);margin-top:var(--s-5)">
+      ${up ? 'Already set up? <a href="#" id="aSwap">Sign in instead</a>.'
+           : 'First time here? <a href="#" id="aSwap">Set up your login</a>.'}</p>
+  </div>`;
+  const go = async () => {
+    const em = document.getElementById("aEmail").value.trim();
+    const pw = document.getElementById("aPass").value;
+    const btn = document.getElementById("aGo");
+    if(up && pw.length < 8){ admLogin("Passwords need to be at least 8 characters."); return; }
+    btn.disabled = true; btn.textContent = up ? "Creating…" : "Signing in…";
+    try{
+      if(up){
+        const res = await signUp(em, pw);
+        if(!res.signedIn){ admMode = "in"; admLogin(null, "Account created. Check " + em + " for a confirmation link, then sign in."); return; }
+      } else {
+        await signIn(em, pw);
+      }
+      admRender();
+    }
+    catch(e){ admLogin(e.message || "Something went wrong"); }
+  };
+  document.getElementById("aGo").onclick = go;
+  document.getElementById("aPass").onkeydown = e => { if(e.key==="Enter") go(); };
+  const swap = document.getElementById("aSwap");
+  if(swap) swap.onclick = e => { e.preventDefault(); admMode = up ? "in" : "up"; admLogin(); };
+}
+
+async function admRender(){
+  if(!auth.token){ admLogin(); return; }
+  document.getElementById("btnOut").style.display = "";
+  const body = document.getElementById("admBody");
+  body.innerHTML = `<div class="adm"><div class="adm-tabs">
+      <button class="adm-tab" data-t="requests" ${ADM.tab==="requests"?'aria-current="true"':""}>Requests</button>
+      <button class="adm-tab" data-t="menu"     ${ADM.tab==="menu"?'aria-current="true"':""}>My menu</button>
+      <button class="adm-tab" data-t="settings" ${ADM.tab==="settings"?'aria-current="true"':""}>Site details</button>
+    </div><div id="admPane"><p style="color:var(--c-ink-muted)">Loading…</p></div></div>`;
+  body.querySelector(".adm-tabs").onclick = e => {
+    const b = e.target.closest("[data-t]"); if(!b) return;
+    ADM.tab = b.dataset.t; admRender();
+  };
+  try{
+    if(ADM.tab === "requests") await admRequests();
+    else if(ADM.tab === "menu") await admMenu();
+    else await admSettings();
+  }catch(e){
+    if(String(e).indexOf("JWT") >= 0 || String(e).indexOf("401") >= 0){ auth.set(null); admLogin("Your session expired — sign in again."); return; }
+    document.getElementById("admPane").innerHTML = '<p style="color:var(--c-danger)">'+esc(String(e))+"</p>";
+  }
+}
+
+const STATUSES = ["new","reviewed","quoted","booked","completed","declined"];
+async function admRequests(){
+  const rows = await sbGet("jz_requests?select=*,jz_request_services(*)&is_archived=eq.false&order=created_at.desc");
+  ADM.requests = rows;
+  const pane = document.getElementById("admPane");
+  if(!rows.length){ pane.innerHTML = '<p style="color:var(--c-ink-muted)">No requests yet. They will show up here the moment someone sends one.</p>'; return; }
+  pane.innerHTML = rows.map(r=>{
+    const svcs = (r.jz_request_services||[]).sort((a,b)=>a.sort_order-b.sort_order);
+    const when = new Date(r.created_at).toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+    return `<div class="req" data-id="${r.id}">
+      <div class="req-top">
+        <h4>${esc(r.client_name)} <span style="color:var(--c-ink-faint);font-weight:400;font-size:var(--t--1)">· ${esc(r.ref)}</span></h4>
+        <span style="font-size:var(--t--2);color:var(--c-ink-faint)">${when}</span>
+        <select class="status-sel" data-st="${r.id}" aria-label="Status for ${esc(r.client_name)}">${STATUSES.map(s=>`<option value="${s}" ${r.status===s?"selected":""}>${s}</option>`).join("")}</select>
+      </div>
+      <div class="req-grid">
+        <div><span>Contact</span><b><a href="mailto:${esc(r.client_email)}">${esc(r.client_email)}</a></b>
+          ${r.client_phone?'<b><a href="tel:'+esc(r.client_phone)+'">'+esc(r.client_phone)+"</a></b>":""}
+          ${r.client_instagram?"<b>"+esc(r.client_instagram)+"</b>":""}</div>
+        <div><span>Starting hair</span><b><span class="sw-dot" style="background:${esc(r.hair_color_hex||"#888")}"></span>${esc(r.hair_color_name)} (lvl ${r.hair_color_level??"?"})</b>
+          <b>${esc(r.hair_texture)} · ${esc(r.hair_density)} · ${esc(r.hair_length)}</b></div>
+        <div><span>Wants</span><b><span class="sw-dot" style="background:${esc(r.desired_color_hex||"#888")}"></span>${esc(r.desired_color_name)} (lvl ${r.desired_color_level??"?"})</b>
+          <b>${esc(r.desired_style||"")}</b></div>
+        <div><span>Estimate</span><b>${money(r.estimate_cents||0)}${r.has_variable_pricing?" + quoted":""} · ${dur(r.duration_min||0)}</b></div>
+      </div>
+      <div class="req-grid">
+        <div style="grid-column:1/-1"><span>Services</span><b>${svcs.map(s=>esc(s.name_at_time)).join(" + ")||"—"}</b></div>
+        ${r.hair_history?'<div style="grid-column:1/-1"><span>Color history &amp; notes</span><b style="font-weight:400">'+esc(r.hair_history)+"</b></div>":""}
+        ${r.inspiration_url?'<div style="grid-column:1/-1"><span>Inspiration</span><b style="font-weight:400;word-break:break-all">'
+          +(/^https?:\/\//i.test(r.inspiration_url)
+            ? '<a href="'+esc(r.inspiration_url)+'" target="_blank" rel="noopener">'+esc(r.inspiration_url)+"</a>"
+            : esc(r.inspiration_url))
+          +"</b></div>":""}
+        ${r.preferred_times?'<div style="grid-column:1/-1"><span>Preferred times</span><b style="font-weight:400">'+esc(r.preferred_times)+"</b></div>":""}
+      </div>
+      <div class="req-edit">
+        <div class="field" style="margin:0"><label for="note_${r.id}">Your notes</label><textarea id="note_${r.id}" data-note="${r.id}" style="min-height:60px">${esc(r.stylist_notes||"")}</textarea></div>
+        <div class="field" style="margin:0;width:130px"><label for="quote_${r.id}">Quoted $</label><input id="quote_${r.id}" type="number" step="1" data-quote="${r.id}" value="${r.quoted_cents!=null?(r.quoted_cents/100):""}"></div>
+        <button class="btn btn-ghost btn-sm" data-save="${r.id}">Save</button>
+      </div>
+      <div style="margin-top:var(--s-3);display:flex;gap:var(--s-4);align-items:center">
+        <label style="font-size:var(--t--1);color:var(--c-ink-muted)"><input type="checkbox" data-dep="${r.id}" ${r.deposit_paid?"checked":""}> Deposit paid</label>
+        <button class="btn btn-ghost btn-sm" data-arch="${r.id}" style="margin-left:auto">Archive</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  pane.onchange = async e => {
+    const st = e.target.closest("[data-st]");
+    if(st){
+      const r = ADM.requests.find(x=>x.id===st.dataset.st);
+      const ok = await trySave(()=>sbPatch("jz_requests","id=eq."+st.dataset.st,{status:st.value}), "Status updated");
+      if(ok){ if(r) r.status = st.value; } else if(r){ st.value = r.status; }
+      return;
+    }
+    const dp = e.target.closest("[data-dep]");
+    if(dp){
+      const r = ADM.requests.find(x=>x.id===dp.dataset.dep);
+      const ok = await trySave(()=>sbPatch("jz_requests","id=eq."+dp.dataset.dep,{deposit_paid:dp.checked}), "Saved");
+      if(ok){ if(r) r.deposit_paid = dp.checked; } else { dp.checked = !dp.checked; }
+      return;
+    }
+  };
+  pane.onclick = async e => {
+    const sv = e.target.closest("[data-save]");
+    if(sv){
+      const id = sv.dataset.save;
+      const note = pane.querySelector('[data-note="'+id+'"]').value;
+      const qv = pane.querySelector('[data-quote="'+id+'"]').value;
+      sv.disabled = true;
+      await trySave(()=>sbPatch("jz_requests","id=eq."+id,{ stylist_notes:note, quoted_cents: qv===""?null:Math.round(parseFloat(qv)*100) }), "Saved");
+      sv.disabled = false;
+      return;
+    }
+    const ar = e.target.closest("[data-arch]");
+    if(ar){
+      ar.disabled = true;
+      const ok = await trySave(()=>sbPatch("jz_requests","id=eq."+ar.dataset.arch,{is_archived:true}), "Archived");
+      if(ok) admRequests(); else ar.disabled = false;
+    }
+  };
+}
+
+async function admMenu(){
+  const rows = await sbGet("jz_services?select=*&order=sort_order.asc");
+  ADM.allServices = rows;
+  const pane = document.getElementById("admPane");
+  pane.innerHTML = `<p style="color:var(--c-ink-muted);font-size:var(--t--1);margin-bottom:var(--s-5)">
+      Edit anything here and it changes on the site straight away. Leave the price blank for “quoted”.</p>
+    <div style="overflow-x:auto"><table class="adm-tbl"><thead><tr>
+      <th>Service</th><th class="n">Price $</th><th class="n">Minutes</th><th class="n">Deposit $</th><th>Tagline</th><th class="n">Live</th><th></th>
+    </tr></thead><tbody>` +
+    rows.map(s=>`<tr data-id="${s.id}">
+      <td><input data-f="display_name" value="${esc(s.display_name||s.name)}"><br>
+          <textarea data-f="description" style="min-height:56px;font-size:var(--t--2);color:var(--c-ink-muted)">${esc(s.description)}</textarea></td>
+      <td class="n"><input data-f="price" type="number" step="1" value="${s.price_cents!=null?(s.price_cents/100):""}"></td>
+      <td class="n"><input data-f="duration_min" type="number" step="5" value="${s.duration_min}"></td>
+      <td class="n"><input data-f="deposit" type="number" step="1" value="${s.deposit_cents!=null?(s.deposit_cents/100):""}"></td>
+      <td><input data-f="tagline" value="${esc(s.tagline)}"></td>
+      <td class="n"><input data-f="is_active" type="checkbox" ${s.is_active?"checked":""} style="width:auto"></td>
+      <td><button class="btn btn-ghost btn-sm" data-srow="${s.id}">Save</button></td>
+    </tr>`).join("") +
+    `</tbody></table></div>
+    <div style="margin-top:var(--s-8);border-top:1px solid var(--c-line);padding-top:var(--s-6)">
+      <h3 style="font-size:var(--t-2);font-weight:400;margin-bottom:var(--s-4)">Add a service</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s-3);align-items:end">
+        <div class="field" style="margin:0"><label for="nName">Name</label><input id="nName"></div>
+        <div class="field" style="margin:0"><label for="nCat">Category</label><select id="nCat">${CAT_ORDER.map(c=>`<option>${c}</option>`).join("")}</select></div>
+        <div class="field" style="margin:0"><label for="nPrice">Price $</label><input id="nPrice" type="number" step="1"></div>
+        <div class="field" style="margin:0"><label for="nDur">Minutes</label><input id="nDur" type="number" step="5" value="60"></div>
+        <button class="btn btn-primary btn-sm" id="nAdd">Add</button>
+      </div>
+      <div class="field" style="margin-top:var(--s-4)"><label for="nTag">Tagline</label><input id="nTag"></div>
+      <div class="field"><label for="nDesc">Description</label><textarea id="nDesc"></textarea></div>
+    </div>`;
+
+  pane.onclick = async e => {
+    const b = e.target.closest("[data-srow]");
+    if(b){
+      const tr = b.closest("tr"), id = b.dataset.srow;
+      const g = f => tr.querySelector('[data-f="'+f+'"]');
+      const price = g("price").value, dep = g("deposit").value;
+      b.disabled = true;
+      const ok = await trySave(()=>sbPatch("jz_services","id=eq."+id,{
+        display_name: g("display_name").value, name: g("display_name").value,
+        description: g("description").value, tagline: g("tagline").value,
+        price_cents: price==="" ? null : Math.round(parseFloat(price)*100),
+        price_label: price==="" ? "Quoted at consultation" : null,
+        deposit_cents: dep==="" ? null : Math.round(parseFloat(dep)*100),
+        duration_min: parseInt(g("duration_min").value,10)||60,
+        is_active: g("is_active").checked,
+      }), "Saved");
+      b.disabled = false;
+      if(ok) loadData();
+      return;
+    }
+    if(e.target.id === "nAdd"){
+      const name = document.getElementById("nName").value.trim();
+      if(!name){ toast("Give it a name first"); return; }
+      const btn = e.target;
+      if(btn.disabled) return;
+      const price = document.getElementById("nPrice").value;
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") + "-" + Math.random().toString(36).slice(2,6);
+      btn.disabled = true;
+      const ok = await trySave(()=>sbPost("jz_services", [{
+        slug: slug, name: name, display_name: name,
+        category: document.getElementById("nCat").value,
+        price_cents: price==="" ? null : Math.round(parseFloat(price)*100),
+        price_label: price==="" ? "Quoted at consultation" : null,
+        duration_min: parseInt(document.getElementById("nDur").value,10)||60,
+        tagline: document.getElementById("nTag").value,
+        description: document.getElementById("nDesc").value,
+        sort_order: 900, is_active: true,
+      }]), "Added");
+      btn.disabled = false;
+      if(ok){ admMenu(); loadData(); }
+    }
+  };
+}
+
+async function admSettings(){
+  const rows = await sbGet("jz_settings?select=*&limit=1");
+  const s = rows[0] || {};
+  const pane = document.getElementById("admPane");
+  const F = [
+    ["hero_headline","Hero headline","text"], ["hero_sub","Hero subheading","text"],
+    ["about_body","About you","area"],
+    ["phone","Phone","text"], ["email","Email","text"],
+    ["address_line","Address line","text"], ["address_note","Parking / arrival note","text"],
+    ["instagram_url","Instagram URL","text"],
+    ["square_booking_url","Square booking link","text"], ["square_deposit_url","Square deposit link","text"],
+    ["deposit_policy","Deposit policy","area"], ["cancellation_policy","Cancellation policy","area"],
+  ];
+  // Seed a full week when no hours exist yet — otherwise there would be no
+  // inputs at all and no way to ever enter hours from this screen.
+  const hoursRows = (Array.isArray(s.hours_json) && s.hours_json.length)
+    ? s.hours_json
+    : ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map(d=>({day:d, hours:""}));
+  const hourRow = (h,i) =>
+    `<div style="display:grid;grid-template-columns:130px 1fr;gap:var(--s-3);margin-bottom:var(--s-2)">
+       <input value="${esc(h.day)}" data-hd="${i}" aria-label="Day">
+       <input value="${esc(h.hours)}" data-hh="${i}" aria-label="Hours" placeholder="10 – 6, or Closed"></div>`;
+  pane.innerHTML = `<div style="max-width:680px">` + F.map(([k,label,t])=>
+    `<div class="field"><label for="s_${k}">${label}</label>${
+      k==="hero_sub" ? '<div class="hint">The line about the color wheel is added automatically after this.</div>' : ""}${
+      t==="area" ? `<textarea id="s_${k}">${esc(s[k]||"")}</textarea>`
+                 : `<input id="s_${k}" type="text" value="${esc(s[k]||"")}">`}</div>`).join("") +
+    `<h3 style="font-size:var(--t-2);font-weight:400;margin:var(--s-7) 0 var(--s-4)">Hours</h3>
+     <p style="font-size:var(--t--2);color:var(--c-ink-faint);margin-bottom:var(--s-3)">Days with empty hours stay off the site. Write &ldquo;Closed&rdquo; to show a day as closed.</p>
+     <div id="hoursEdit">` + hoursRows.map(hourRow).join("") + `</div>
+     <button class="btn btn-ghost btn-sm" id="hAdd" type="button">Add a row</button>
+     <div><button class="btn btn-primary" id="sSave" style="margin-top:var(--s-6)">Save changes</button></div></div>`;
+  document.getElementById("hAdd").onclick = () => {
+    const box = document.getElementById("hoursEdit");
+    const i = box.querySelectorAll("[data-hd]").length;
+    box.insertAdjacentHTML("beforeend", hourRow({day:"", hours:""}, i));
+  };
+  document.getElementById("sSave").onclick = async () => {
+    const btn = document.getElementById("sSave");
+    const patch = {};
+    F.forEach(([k])=>{ patch[k] = document.getElementById("s_"+k).value; });
+    const days = [...pane.querySelectorAll("[data-hd]")], hrs = [...pane.querySelectorAll("[data-hh]")];
+    patch.hours_json = days.map((d,i)=>({ day:d.value.trim(), hours:hrs[i]?hrs[i].value.trim():"" }))
+                           .filter(h=>h.day || h.hours);
+    btn.disabled = true;
+    const ok = await trySave(()=>sbPatch("jz_settings","id=eq.true",patch), "Saved");
+    btn.disabled = false;
+    if(ok) loadData();
+  };
+}
+
+document.getElementById("btnOut").onclick = () => { auth.set(null); admLogin(); };
+
+/* ==========================================================================
+   ROUTER + BOOT
+   ========================================================================== */
+// The furthest step the saved answers actually justify — deep links and stale
+// history entries get clamped to this so nobody lands on a half-empty screen.
+function maxReachable(){
+  if(!B.texture || !B.length || !B.density || !B.currentColor) return 1;
+  if(!B.services.length) return 2;
+  return TOTAL_STEPS;
+}
+function resetAfterSend(){
+  step = 1; sub = 1;
+  B.services = []; B.inspiration = ""; B.notes = ""; B.times = ""; B.ref = "";
+  submitRequest._id = submitRequest._ref = null; submitRequest._reqDone = false;
+  saveBooking();
+}
+function route(){
+  const h = location.hash || "#/";
+  const book = h.indexOf("#/book") === 0, admin = h.indexOf("#/admin") === 0;
+  document.getElementById("rBook").classList.toggle("on", book);
+  document.getElementById("rAdmin").classList.toggle("on", admin);
+  document.body.classList.toggle("routing", book || admin);
+  document.getElementById("bookbar").classList.toggle("on", !book && !admin && window.scrollY > 300);
+  if(book){
+    let n = parseInt(h.split("/")[2],10);
+    if(n){
+      // the sent screen (7) can only be reached by an actual submission
+      n = Math.max(1, Math.min(n, TOTAL_STEPS, maxReachable()));
+      if(step === 7){ if(n === 1) resetAfterSend(); }   // Book again → fresh request
+      else if(n !== step){ step = n; sub = 1; }
+    }
+    renderStep(); updateProgress();
+  }
+  if(admin) admRender();
+}
+window.addEventListener("hashchange", route);
+
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+}, {threshold:.14, rootMargin:"0px 0px -6% 0px"});
+
+// Failsafe: scroll-reveal is decoration. If anything stops the observer from
+// firing, the content must still be readable — never leave the page blank.
+let rvTimer = 0;
+function revealAll(){
+  document.querySelectorAll(".rv").forEach(el=>el.classList.add("in"));
+  document.documentElement.classList.remove("js-rv");
+}
+function armRevealFailsafe(){
+  clearTimeout(rvTimer);
+  rvTimer = setTimeout(revealAll, 2500);
+}
+function observeReveals(root){
+  (root||document).querySelectorAll(".rv:not(.in)").forEach(el=>{
+    if(document.documentElement.classList.contains("js-rv")) io.observe(el);
+    else el.classList.add("in");
+  });
+  armRevealFailsafe();
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove("on"), 3200);
+}
+
+(function boot(){
+  cacheEls();
+  document.body.classList.add("has-panel");
+  rings.outer.el = document.getElementById("ringOuter");
+  rings.inner.el = document.getElementById("ringInner");
+  drawOuter();
+
+  loadBooking();
+  setFamily(P.famIdx, P.shIdx);
+  rings.outer.rot = snapRotFor("outer", P.famIdx); applyRot("outer");
+
+  bindRing("outer",
+    i => { document.getElementById("hubFam").textContent = FAMILIES[i].family; },
+    i => { if(i !== P.famIdx) setFamily(i); else updateHub(); });
+  bindRing("inner",
+    i => { if(i !== P.shIdx) setShade(i); },
+    i => setShade(i));
+
+  document.getElementById("wheel").addEventListener("keydown", e => {
+    const f = FAMILIES[P.famIdx];
+    if(e.key === "ArrowRight"){ rings.inner.animateTo(mod(P.shIdx+1, f.shades.length)); e.preventDefault(); }
+    else if(e.key === "ArrowLeft"){ rings.inner.animateTo(mod(P.shIdx-1, f.shades.length)); e.preventDefault(); }
+    else if(e.key === "ArrowDown"){ rings.outer.animateTo(mod(P.famIdx+1, FAMILIES.length)); e.preventDefault(); }
+    else if(e.key === "ArrowUp"){ rings.outer.animateTo(mod(P.famIdx-1, FAMILIES.length)); e.preventDefault(); }
+    else if(e.key === "Home"){ rings.inner.animateTo(0); e.preventDefault(); }
+    else if(e.key === "End"){ rings.inner.animateTo(f.shades.length-1); e.preventDefault(); }
+  });
+
+  buildControls();
+  renderGeometry();
+  updateLift();
+
+  // theme — the metas only track the OS scheme on their own, so a forced theme
+  // must rewrite them or the phone's browser chrome stays the wrong color
+  const syncThemeMeta = () => {
+    const dark = (document.documentElement.dataset.theme
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
+    document.querySelectorAll('meta[name="theme-color"]').forEach(m =>
+      m.setAttribute("content", dark ? "#16110F" : "#F7F3EE"));
+  };
+  const saved = localStorage.getItem("jz_theme");
+  if(saved) document.documentElement.dataset.theme = saved;
+  syncThemeMeta();
+  document.getElementById("themeBtn").onclick = () => {
+    const cur = document.documentElement.dataset.theme
+      || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const nxt = cur === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = nxt;
+    localStorage.setItem("jz_theme", nxt);
+    syncThemeMeta();
+    renderGeometry();
+  };
+
+  if(!reduceMotion()) document.documentElement.classList.add("js-rv");
+  observeReveals(document);
+  addEventListener("scroll", () => {
+    document.getElementById("hdr").classList.toggle("stuck", window.scrollY > 8);
+    const h = location.hash || "#/";
+    if(h.indexOf("#/book")!==0 && h.indexOf("#/admin")!==0)
+      document.getElementById("bookbar").classList.toggle("on", window.scrollY > 300);
+  }, {passive:true});
+
+  loadData().then(route);
+})();
+</script>
+</body>
+</html>
