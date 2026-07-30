@@ -502,7 +502,9 @@ body.routing #hairpanel{z-index:41}
 .adm-tbl input:hover,.adm-tbl textarea:hover{border-color:var(--c-line)}
 .adm-tbl input:focus,.adm-tbl textarea:focus{outline:none; border-color:var(--c-ink); background:var(--c-surface)}
 .adm-tbl td.n{width:110px}
-.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(120%); z-index:60;
+/* hidden state must clear the raised bottom offset used on mobile/booking (118px),
+   not just the toast's own height — otherwise it peeks up as a dark strip */
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(calc(100% + 140px)); z-index:60;
   background:var(--c-ink); color:var(--c-canvas); padding:var(--s-4) var(--s-6); border-radius:var(--r-soft);
   font-size:var(--t--1); box-shadow:var(--sh-float); transition:transform var(--d-base) var(--e-out);
   width:max-content; max-width:min(88vw, 480px); text-align:center}
