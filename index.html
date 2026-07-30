@@ -1955,13 +1955,13 @@ function renderStep(){
   else if(step === 5){
     h = `<span class="eyebrow">Step 5 of ${TOTAL_STEPS}</span>
       <h2 class="q-label">How do I reach you?</h2>
-      <p class="q-sub">No account, no password. I'll reply to whichever you prefer.</p>
+      <p class="q-sub">No account, no password. I'll text you back, usually the same day.</p>
       <div class="field" id="wName"><label for="fName">Your name</label>
         <input id="fName" type="text" autocomplete="name" value="${esc(B.name)}"><div class="err" id="errName">I just need something to call you.</div></div>
-      <div class="field" id="wEmail"><label for="fEmail">Email</label>
+      <div class="field" id="wPhone"><label for="fPhone">Phone</label>
+        <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" value="${esc(B.phone)}"><div class="err" id="errPhone">A number I can text — that's how I'll confirm your appointment.</div></div>
+      <div class="field" id="wEmail"><label for="fEmail">Email <span style="color:var(--c-ink-faint);font-weight:400">(optional)</span></label>
         <input id="fEmail" type="email" inputmode="email" autocomplete="email" value="${esc(B.email)}"><div class="err" id="errEmail">That email doesn't look complete — mind checking it?</div></div>
-      <div class="field"><label for="fPhone">Phone <span style="color:var(--c-ink-faint);font-weight:400">(optional, but faster)</span></label>
-        <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" value="${esc(B.phone)}"></div>
       <div class="field"><label for="fIg">Instagram <span style="color:var(--c-ink-faint);font-weight:400">(optional)</span></label>
         <input id="fIg" type="text" placeholder="@yourhandle" value="${esc(B.instagram)}"></div>`;
     next.textContent = "Review";
@@ -1997,8 +1997,9 @@ function renderStep(){
       </div>
       <div class="summary"><h3>You</h3><dl>
         <dt>Name</dt><dd>${esc(B.name)}</dd>${chg("5","name")}
-        <dt>Email</dt><dd>${esc(B.email)}</dd>${chg("5","email")}
-        ${B.phone?`<dt>Phone</dt><dd>${esc(B.phone)}</dd><dd class="chg-c"></dd>`:""}
+        <dt>Phone</dt><dd>${esc(B.phone)}</dd>${chg("5","phone")}
+        ${B.email?`<dt>Email</dt><dd>${esc(B.email)}</dd>${chg("5","email")}`:""}
+        ${B.instagram?`<dt>Instagram</dt><dd>${esc(B.instagram)}</dd>${chg("5","Instagram")}`:""}
       </dl></div>
       ${(dep || SETTINGS.cancellation_policy)
         ? '<p class="policy">' + (dep ? money(dep)+" holds your slot and comes off your final total. " : "")
@@ -2013,7 +2014,7 @@ function renderStep(){
     h = `<div class="done">
       <div class="tick">✓</div>
       <h2>Got it, ${esc((B.name||"").split(" ")[0])}. Your hair profile is with me.</h2>
-      <p style="color:var(--c-ink-muted)">I read every request myself — you'll hear back within 24 hours, usually the same day. If anything about your color history changes what's possible, I'll tell you before you pay a cent.</p>
+      <p style="color:var(--c-ink-muted)">I read every request myself — I'll text you back within 24 hours, usually the same day. If anything about your color history changes what's possible, I'll tell you before you pay a cent.</p>
       <div class="refbox">${esc(B.ref||"")}</div>
       <p style="color:var(--c-ink-faint);font-size:var(--t--1)">Quote that reference if you text me about it.</p>
       <div style="display:flex;gap:var(--s-4);justify-content:center;flex-wrap:wrap;margin-top:var(--s-7)">
@@ -2129,19 +2130,27 @@ function validateStep(){
   }
   if(step===2){ if(!B.services.length){ toast("Pick at least one service, or choose Consultation if you're not sure yet."); return false; } return true; }
   if(step===5){
-    const nw=document.getElementById("wName"), ew=document.getElementById("wEmail");
-    const ni=document.getElementById("fName"), ei=document.getElementById("fEmail");
+    const nw=document.getElementById("wName"), pw=document.getElementById("wPhone"), ew=document.getElementById("wEmail");
+    const ni=document.getElementById("fName"), pi=document.getElementById("fPhone"), ei=document.getElementById("fEmail");
     const nameBad = !B.name.trim();
-    const emOk = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(B.email.trim());
+    const phDigits = B.phone.replace(/\D/g,"");
+    const phoneBad = phDigits.length < 10 || phDigits.length > 15;
+    const em = B.email.trim();
+    const emailBad = !!em && !/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(em);   // optional — only checked when filled in
     nw.classList.toggle("bad", nameBad);
-    ew.classList.toggle("bad", !emOk);
+    pw.classList.toggle("bad", phoneBad);
+    ew.classList.toggle("bad", emailBad);
     ni.setAttribute("aria-invalid", String(nameBad));
-    ei.setAttribute("aria-invalid", String(!emOk));
-    if(nameBad) ni.setAttribute("aria-describedby","errName"); else ni.removeAttribute("aria-describedby");
-    if(!emOk)   ei.setAttribute("aria-describedby","errEmail"); else ei.removeAttribute("aria-describedby");
-    if(nameBad || !emOk){
-      toast("Almost — just need a name and a working email.");
-      (nameBad ? ni : ei).focus();
+    pi.setAttribute("aria-invalid", String(phoneBad));
+    ei.setAttribute("aria-invalid", String(emailBad));
+    if(nameBad)  ni.setAttribute("aria-describedby","errName");  else ni.removeAttribute("aria-describedby");
+    if(phoneBad) pi.setAttribute("aria-describedby","errPhone"); else pi.removeAttribute("aria-describedby");
+    if(emailBad) ei.setAttribute("aria-describedby","errEmail"); else ei.removeAttribute("aria-describedby");
+    if(nameBad || phoneBad || emailBad){
+      toast(emailBad && !nameBad && !phoneBad
+        ? "That email doesn't look right — fix it or leave it blank."
+        : "Almost — just need your name and a number I can text.");
+      (nameBad ? ni : phoneBad ? pi : ei).focus();
       return false;
     }
     return true;
@@ -2160,11 +2169,11 @@ async function submitRequest(){
     toast("Pick at least one service, or choose Consultation if you're not sure yet.");
     return;
   }
-  const emOk = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(B.email.trim());
-  if(!B.name.trim() || !emOk){
+  const phDigits = B.phone.replace(/\D/g,"");
+  if(!B.name.trim() || phDigits.length < 10 || phDigits.length > 15){
     step = 5; sub = 1; history.replaceState(null,"","#/book/5");
     renderStep(); updateProgress();
-    toast("Almost — just need a name and a working email.");
+    toast("Almost — just need your name and a number I can text.");
     return;
   }
   next.disabled = true; next.textContent = "Sending…";
@@ -2180,9 +2189,11 @@ async function submitRequest(){
   const row = {
     id: id, ref: ref, status: "new",
     client_name: B.name.trim().slice(0,120),
-    client_email: B.email.trim().slice(0,200),
     client_phone: B.phone.trim().slice(0,40),
-    client_instagram: B.instagram.trim().slice(0,80),
+    // optional channels go in as null, not "" — the insert policy shape-checks
+    // an email only when one is actually supplied
+    client_email: B.email.trim() ? B.email.trim().slice(0,200) : null,
+    client_instagram: B.instagram.trim() ? B.instagram.trim().slice(0,80) : null,
     hair_color_name: c ? c.label : "",
     hair_color_hex: c ? c.hex : "",
     hair_color_level: c ? c.level : null,
@@ -2341,8 +2352,12 @@ async function admRequests(){
         <select class="status-sel" data-st="${r.id}" aria-label="Status for ${esc(r.client_name)}">${STATUSES.map(s=>`<option value="${s}" ${r.status===s?"selected":""}>${s}</option>`).join("")}</select>
       </div>
       <div class="req-grid">
-        <div><span>Contact</span><b><a href="mailto:${esc(r.client_email)}">${esc(r.client_email)}</a></b>
-          ${r.client_phone?'<b><a href="tel:'+esc(r.client_phone)+'">'+esc(r.client_phone)+"</a></b>":""}
+        <div><span>Contact</span>
+          ${r.client_phone
+            ? '<b><a href="sms:'+esc(r.client_phone.replace(/\D/g,""))+'">'+esc(r.client_phone)+"</a> · "
+              + '<a href="tel:'+esc(r.client_phone.replace(/\D/g,""))+'">call</a></b>'
+            : ""}
+          ${r.client_email?'<b><a href="mailto:'+esc(r.client_email)+'">'+esc(r.client_email)+"</a></b>":""}
           ${r.client_instagram?"<b>"+esc(r.client_instagram)+"</b>":""}</div>
         <div><span>Starting hair</span><b><span class="sw-dot" style="background:${esc(r.hair_color_hex||"#888")}"></span>${esc(r.hair_color_name)} (lvl ${r.hair_color_level??"?"})</b>
           <b>${esc(r.hair_texture)} · ${esc(r.hair_density)} · ${esc(r.hair_length)}</b></div>
