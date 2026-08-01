@@ -191,9 +191,17 @@ body.has-panel{ padding-right:var(--panel-w) }
 .hdr nav{display:flex; gap:var(--s-6)}
 .hdr nav a{color:var(--c-ink-muted); text-decoration:none; font-size:var(--t--1); letter-spacing:.01em; transition:color var(--d-fast) var(--e-inout)}
 .hdr nav a:hover{color:var(--c-ink)}
-.icon-btn{width:40px;height:40px;display:grid;place-items:center;border-radius:var(--r-sharp);color:var(--c-ink-muted); transition:color var(--d-fast) var(--e-inout), background var(--d-fast) var(--e-inout)}
+.icon-btn{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:var(--r-sharp);color:var(--c-ink-muted); transition:color var(--d-fast) var(--e-inout), background var(--d-fast) var(--e-inout)}
 .icon-btn:hover{color:var(--c-ink); background:var(--c-canvas-alt)}
 @media (max-width:860px){ .hdr nav{display:none} }
+/* the sound toggle is a third control in a 375px bar, and the body is already
+   inset by the hair panel - trim the trimmings so nothing gets pushed under it
+   and both icon buttons keep a full 40px tap target */
+@media (max-width:560px){
+  .hdr .wrap{gap:var(--s-2)}
+  .mark{font-size:1.02rem}
+  .hdr .btn-sm{padding-inline:var(--s-4)}
+}
 
 /* compact section nav for small screens — the header nav is hidden under 860px */
 .subnav{display:none}
@@ -410,6 +418,10 @@ body.routing #hairpanel{z-index:41}
 }
 .rhdr-sms:hover{color:var(--c-ink); border-color:var(--c-line-strong)}
 .route.sent .rhdr-sms{display:none}
+.snd-btn{flex:none}
+.snd-btn[aria-pressed="true"]{color:var(--c-accent)}
+#soundBtn2{margin-left:auto}
+#soundBtn2 + .rhdr-sms{margin-left:0}
 @media (max-width:560px){
   .rhdr-sms{padding:8px var(--s-3)}
   .rhdr .wrap{gap:var(--s-3)}
@@ -418,6 +430,7 @@ body.routing #hairpanel{z-index:41}
   #rBook .rhdr .mark{display:none}
   .prog{min-width:0; max-width:none}
   .prog-t{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .sms-long{display:none}   /* "Text me instead" -> "Text me", to fit the mute control */
 }
 .prog-t{font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.04em; margin-bottom:6px}
 .prog-bar{height:2px; background:var(--c-line); position:relative; overflow:hidden}
@@ -646,6 +659,7 @@ body.routing .toast{bottom:118px}
       <a href="#visit">First visit</a>
       <a href="#about">About</a>
     </nav>
+    <button class="icon-btn snd-btn" id="soundBtn" title="Background music" aria-label="Turn music on" aria-pressed="false" hidden></button>
     <button class="icon-btn" id="themeBtn" title="Switch theme" aria-label="Switch theme">◐</button>
     <a class="btn btn-primary btn-sm" href="#/book/1">Book</a>
   </div>
@@ -851,7 +865,8 @@ body.routing .toast{bottom:118px}
   <div class="rhdr"><div class="wrap">
     <a href="#/" class="mark" style="font-size:1.05rem">Hair By <em>Jazzie</em></a>
     <div class="prog"><div class="prog-t" id="progT"></div><div class="prog-bar"><i id="progI" style="width:0"></i></div></div>
-    <a class="rhdr-sms" id="bailSms" href="#">Text me instead</a>
+    <button class="icon-btn snd-btn" id="soundBtn2" title="Background music" aria-label="Turn music on" aria-pressed="false" hidden></button>
+    <a class="rhdr-sms" id="bailSms" href="#">Text me <span class="sms-long">instead</span></a>
   </div></div>
   <div class="wrap"><div class="step" id="bookStep"></div></div>
   <div class="navbar"><div class="inner">
@@ -869,6 +884,10 @@ body.routing .toast{bottom:118px}
   </div></div>
   <div id="admBody"></div>
 </div>
+
+<!-- preload=none so the audio never delays first paint; it is fetched only if
+     she actually lets it play. If the file is missing the controls hide themselves. -->
+<audio id="bgAudio" loop preload="none" src="country.mp3"></audio>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -2695,6 +2714,8 @@ function route(){
     renderStep(); updateProgress();
   }
   if(admin) admRender();
+  // the admin screen is Jasmine's workplace, not a showroom
+  if(admin && snd.on) sndSet(false, false);
 }
 window.addEventListener("hashchange", route);
 
@@ -2719,6 +2740,80 @@ function observeReveals(root){
     else el.classList.add("in");
   });
   armRevealFailsafe();
+}
+
+/* ==========================================================================
+   BACKGROUND MUSIC
+   Browsers refuse audio until a real gesture, so this arms itself on her first
+   tap rather than on load. Everything is defensive: if country.mp3 is missing
+   or playback is refused, the controls hide and the site behaves as before.
+   ========================================================================== */
+const SND_KEY = "jz_sound", SND_VOL = 0.32;
+const SND_ICON = {
+  on:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16.5 8.8a4.5 4.5 0 010 6.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19.2 6.2a8 8 0 010 11.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  off:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M17 9.5l5 5M22 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+const snd = { el:null, on:false, dead:false, fade:0 };
+const sndBtns = () => [document.getElementById("soundBtn"), document.getElementById("soundBtn2")].filter(Boolean);
+
+function sndPaint(){
+  sndBtns().forEach(b => {
+    b.hidden = snd.dead;
+    b.innerHTML = snd.on ? SND_ICON.on : SND_ICON.off;
+    b.setAttribute("aria-pressed", String(snd.on));
+    b.setAttribute("aria-label", snd.on ? "Turn music off" : "Turn music on");
+  });
+}
+// Timer-driven, not requestAnimationFrame: a volume ramp has nothing to do with
+// painting, and rAF stalls whenever the page isn't compositing — which would
+// leave the track playing silently at volume 0.
+function sndFadeTo(target, done){
+  clearInterval(snd.fade);
+  const from = snd.el.volume, t0 = Date.now(), dur = 900;
+  snd.fade = setInterval(() => {
+    const p = Math.min(1, (Date.now() - t0) / dur);
+    snd.el.volume = Math.max(0, Math.min(1, from + (target - from) * p));
+    if(p >= 1){ clearInterval(snd.fade); snd.fade = 0; if(done) done(); }
+  }, 40);
+}
+function sndSet(on, persist){
+  if(snd.dead) return;
+  snd.on = on;
+  if(on){
+    snd.el.volume = 0;
+    const p = snd.el.play();
+    if(p && p.catch) p.then(()=>sndFadeTo(SND_VOL)).catch(()=>{ snd.on = false; sndPaint(); });
+    else sndFadeTo(SND_VOL);
+  } else {
+    sndFadeTo(0, ()=>{ if(!snd.on) snd.el.pause(); });
+  }
+  if(persist) try{ localStorage.setItem(SND_KEY, on ? "on" : "off"); }catch(e){}
+  sndPaint();
+}
+function sndInit(){
+  snd.el = document.getElementById("bgAudio");
+  if(!snd.el){ snd.dead = true; return; }
+  // a missing or unplayable file must not leave a dead button on the page
+  snd.el.addEventListener("error", () => { snd.dead = true; snd.on = false; sndPaint(); });
+  sndPaint();
+  sndBtns().forEach(b => b.addEventListener("click", () => sndSet(!snd.on, true)));
+
+  const armed = e => {
+    if(e.target && e.target.closest && e.target.closest(".snd-btn")) return;  // the button speaks for itself
+    document.removeEventListener("pointerdown", armed);
+    document.removeEventListener("keydown", armed);
+    if(localStorage.getItem(SND_KEY) === "off") return;      // she turned it off before
+    if((location.hash||"").indexOf("#/admin") === 0) return;  // don't serenade Jasmine at work
+    sndSet(true, false);
+  };
+  document.addEventListener("pointerdown", armed);
+  document.addEventListener("keydown", armed);
+
+  // never leave music playing in a tab she has switched away from
+  document.addEventListener("visibilitychange", () => {
+    if(!snd.on || snd.dead) return;
+    if(document.hidden) snd.el.pause(); else snd.el.play().catch(()=>{});
+  });
 }
 
 function toast(msg){
@@ -2774,6 +2869,7 @@ function toast(msg){
   buildControls();
   renderGeometry();
   updateLift();
+  sndInit();
 
   // theme — the metas only track the OS scheme on their own, so a forced theme
   // must rewrite them or the phone's browser chrome stays the wrong color
