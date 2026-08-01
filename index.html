@@ -36,8 +36,9 @@
   --font-display:"Fraunces","Iowan Old Style",Georgia,serif;
   --font-body:"Inter",-apple-system,"Segoe UI",system-ui,sans-serif;
 
-  --t--2:clamp(.72rem,.700rem + .09vw,.78rem);
-  --t--1:clamp(.84rem,.810rem + .13vw,.92rem);
+  /* floors raised: this is read on a phone, often outdoors, often one-handed */
+  --t--2:clamp(.80rem,.775rem + .11vw,.86rem);
+  --t--1:clamp(.90rem,.870rem + .14vw,.98rem);
   --t-0:clamp(1rem,.960rem + .17vw,1.125rem);
   --t-1:clamp(1.20rem,1.120rem + .34vw,1.45rem);
   --t-2:clamp(1.45rem,1.300rem + .64vw,2rem);
@@ -253,6 +254,19 @@ section{padding-block:var(--space-section)}
 #selWin path{fill:none; stroke:var(--c-ink); stroke-width:2; stroke-linejoin:round; pointer-events:none}
 #selWin path.under{stroke:var(--c-canvas); stroke-width:5; opacity:.9}
 .seg:hover{opacity:.84}
+.wheel-steps{display:grid; gap:var(--s-2); margin-top:var(--s-5)}
+.wstep{display:grid; grid-template-columns:48px 1fr 48px; align-items:center; gap:var(--s-2)}
+.wbtn{
+  height:48px; border:1px solid var(--c-line-strong); border-radius:var(--r-sharp);
+  background:var(--c-surface); color:var(--c-ink); font-size:1.4rem; line-height:1;
+  display:grid; place-items:center;
+  transition:background var(--d-fast) var(--e-inout), border-color var(--d-fast) var(--e-inout);
+}
+.wbtn:hover{background:var(--c-canvas-alt); border-color:var(--c-ink)}
+.wbtn:active{background:var(--c-accent-tint)}
+.wstep-lbl{text-align:center; line-height:1.25; overflow:hidden}
+.wstep-lbl small{display:block; font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.1em; text-transform:uppercase}
+.wstep-lbl b{display:block; font-weight:500; font-size:var(--t--1); color:var(--c-ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .wheel-hint{text-align:center; font-size:var(--t--2); color:var(--c-ink-faint); margin-top:var(--s-4); letter-spacing:.04em}
 /* the SVG scales down to ~0.75x on phones, so the in-wheel type sizes up to compensate */
 @media (max-width:520px){
@@ -387,6 +401,24 @@ body.routing #hairpanel{z-index:41}
 .rhdr{position:sticky; top:0; z-index:5; background:color-mix(in srgb,var(--c-canvas) 92%,transparent); backdrop-filter:blur(12px); border-bottom:1px solid var(--c-line)}
 .rhdr .wrap{display:flex; align-items:center; gap:var(--s-5); min-height:66px}
 .prog{flex:1; max-width:340px}
+/* the way out for anyone who stalls — a text is a perfectly good lead */
+.rhdr-sms{
+  margin-left:auto; flex:none; font-size:var(--t--2); color:var(--c-ink-muted);
+  text-decoration:none; white-space:nowrap; border:1px solid var(--c-line);
+  border-radius:99px; padding:9px var(--s-4); background:var(--c-surface);
+  transition:color var(--d-fast) var(--e-inout), border-color var(--d-fast) var(--e-inout);
+}
+.rhdr-sms:hover{color:var(--c-ink); border-color:var(--c-line-strong)}
+.route.sent .rhdr-sms{display:none}
+@media (max-width:560px){
+  .rhdr-sms{padding:8px var(--s-3)}
+  .rhdr .wrap{gap:var(--s-3)}
+  /* mid-flow on a phone the wordmark is the least useful thing in the bar, and
+     without this the progress column gets crushed and its label wraps 6 lines */
+  #rBook .rhdr .mark{display:none}
+  .prog{min-width:0; max-width:none}
+  .prog-t{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+}
 .prog-t{font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.04em; margin-bottom:6px}
 .prog-bar{height:2px; background:var(--c-line); position:relative; overflow:hidden}
 .prog-bar i{position:absolute; inset:0 auto 0 0; background:var(--c-accent); transition:width var(--d-base) var(--e-inout)}
@@ -395,6 +427,9 @@ body.routing #hairpanel{z-index:41}
 .q-label{font:400 var(--t-3)/1.18 var(--font-display); font-variation-settings:"opsz" 60; letter-spacing:var(--ls-head); margin-bottom:var(--s-4)}
 .q-sub{font-size:var(--t-0); color:var(--c-ink-muted); margin-bottom:var(--s-3); max-width:52ch}
 .q-help{font-size:var(--t--1); color:var(--c-ink-faint); font-style:italic; margin-bottom:var(--s-7); max-width:52ch; line-height:1.55}
+.skip-hair{margin:var(--s-8) 0 0; text-align:center}
+.skip-hair button{font-size:var(--t--1); color:var(--c-ink-muted); text-decoration:underline; text-underline-offset:.22em; padding:var(--s-3)}
+.skip-hair button:hover{color:var(--c-ink)}
 .q-cond{font-size:var(--t--1); color:var(--c-accent); background:var(--c-accent-tint); padding:var(--s-3) var(--s-4); border-radius:var(--r-soft); margin:0 0 var(--s-7); max-width:52ch}
 /* only pull the callout up when it directly follows the help text's big bottom margin */
 .q-help + .q-cond{margin-top:calc(var(--s-7) * -1)}
@@ -662,7 +697,21 @@ body.routing .toast{bottom:118px}
               <path class="marker" d="M11 180 L-2 172 L-2 188 Z"/>
             </svg>
           </div>
-          <p class="wheel-hint">Drag the outer ring for a family, the inner ring for a shade — whatever sits in the window on the left is your pick</p>
+          <!-- Dragging is the least discoverable interaction on the site; these do
+               the same job with an affordance nobody has to guess at. -->
+          <div class="wheel-steps">
+            <div class="wstep">
+              <button type="button" class="wbtn" data-step="fam-1" aria-label="Previous color family">‹</button>
+              <span class="wstep-lbl"><small>Family</small><b id="wsFam">Brunette</b></span>
+              <button type="button" class="wbtn" data-step="fam+1" aria-label="Next color family">›</button>
+            </div>
+            <div class="wstep">
+              <button type="button" class="wbtn" data-step="sh-1" aria-label="Previous shade">‹</button>
+              <span class="wstep-lbl"><small>Shade</small><b id="wsShade">Truffle</b></span>
+              <button type="button" class="wbtn" data-step="sh+1" aria-label="Next shade">›</button>
+            </div>
+          </div>
+          <p class="wheel-hint">Tap the arrows, or drag the rings — whatever sits in the window on the left is your pick</p>
           <div class="liftstrip" id="liftStrip" data-state="ok">
             <div class="ladder" id="ladder"></div>
             <div id="liftCopy">Pick your current color below and I'll tell you what it takes to get here.</div>
@@ -802,6 +851,7 @@ body.routing .toast{bottom:118px}
   <div class="rhdr"><div class="wrap">
     <a href="#/" class="mark" style="font-size:1.05rem">Hair By <em>Jazzie</em></a>
     <div class="prog"><div class="prog-t" id="progT"></div><div class="prog-bar"><i id="progI" style="width:0"></i></div></div>
+    <a class="rhdr-sms" id="bailSms" href="#">Text me instead</a>
   </div></div>
   <div class="wrap"><div class="step" id="bookStep"></div></div>
   <div class="navbar"><div class="inner">
@@ -1501,6 +1551,9 @@ function updateHub(){
   if(w > 138) nameEl.style.fontSize = Math.max(13, Math.floor(19 * 138 / w)) + "px";
   $("#hubMeta").textContent = "Level " + P.shade.level + " · " + P.shade.tone[0].toUpperCase()+P.shade.tone.slice(1);
   $("#hubFam").textContent  = FAMILIES[P.famIdx].family;
+  const wf = $("#wsFam"), ws = $("#wsShade");
+  if(wf) wf.textContent = FAMILIES[P.famIdx].family;
+  if(ws) ws.textContent = P.shade.name;
 }
 function updateLift(){
   const gap = liftGap(), strip = $("#liftStrip");
@@ -1571,6 +1624,15 @@ const money = c => c==null ? null : "$" + (c/100).toFixed(c%100===0?0:2);
 const dur = m => { const h=Math.floor(m/60), r=m%60;
   return (h? h+" hr":"") + (h&&r?" ":"") + (r? r+" min":""); };
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+// Cosmetic only — validation always strips back down to digits. Anything that
+// looks international (leading +, or more than 10 digits) is left untouched.
+function fmtPhone(v){
+  const d = String(v||"").replace(/\D/g,"");
+  if(String(v||"").trim().charAt(0) === "+" || d.length > 10) return v;
+  if(d.length <= 3) return d;
+  if(d.length <= 6) return "(" + d.slice(0,3) + ") " + d.slice(3);
+  return "(" + d.slice(0,3) + ") " + d.slice(3,6) + "-" + d.slice(6);
+}
 
 async function loadData(){
   DATA_STATE = "loading";
@@ -1768,7 +1830,7 @@ function buildServiceChips(){
    BOOKING FLOW
    ========================================================================== */
 const B = {
-  texture:null, length:null, density:null, currentColor:null,
+  texture:null, length:null, density:null, currentColor:null, skipHair:false,
   history:[], gray:null, goalShade:null, goalFamily:null,
   services:[], inspiration:"", notes:"", times:"",
   name:"", email:"", phone:"", instagram:"",
@@ -1888,6 +1950,9 @@ function renderStep(){
           <span class="opt-fig" style="font-size:20px;color:var(--c-accent)" aria-hidden="true">${B.history.indexOf(o.k)>=0?"●":"○"}</span>
           <span class="opt-txt"><b>${o.label}</b></span></button>`).join("") + `</div>`;
     }
+    // A cut, a wax or a blowout doesn't need a color profile — don't make her
+    // answer four questions about lift to book one.
+    h += `<p class="skip-hair"><button type="button" id="skipHair">Just booking a cut, wax or blowout? Skip these questions</button></p>`;
   }
 
   else if(step === 2){
@@ -2029,8 +2094,27 @@ function renderStep(){
     const a=document.getElementById("doneSms");
     if(a) a.href = "sms:+1"+tel+"?&body="+encodeURIComponent("Hi Jazzie! I just sent a request, ref "+(B.ref||""));
   }
+  if(step === 5){
+    const ph = document.getElementById("fPhone");
+    if(ph){
+      const reformat = () => {
+        // only rewrite while typing at the end — reformatting mid-edit would
+        // jump the caret and fight the user
+        const atEnd = ph.selectionStart === ph.value.length;
+        const v = fmtPhone(ph.value);
+        if(v !== ph.value){
+          ph.value = v;
+          if(atEnd) try{ ph.setSelectionRange(v.length, v.length); }catch(e){}
+        }
+      };
+      ph.addEventListener("input", reformat);
+      reformat();
+    }
+  }
   document.getElementById("btnNext").style.display = step===7 ? "none" : "";
   document.getElementById("rBook").classList.toggle("sent", step === 7);
+  const bail = document.getElementById("bailSms");
+  if(bail) bail.href = bailSmsHref();
   host.scrollTop = 0; document.getElementById("rBook").scrollTop = 0;
 
   // Each step replaces the DOM, which would silently drop keyboard focus on
@@ -2042,6 +2126,14 @@ function renderStep(){
 
   host.onclick = e => {
     if(e.target.id === "menuRetry"){ e.target.disabled = true; e.target.textContent = "Loading…"; loadData(); return; }
+    if(e.target.id === "skipHair"){
+      clearTimeout(renderStep._adv); renderStep._adv = 0;
+      B.skipHair = true; step = 2; sub = 1; saveBooking();
+      history.replaceState(null,"","#/book/2");
+      renderStep(); updateProgress();
+      toast("Skipped — pick what you'd like below.");
+      return;
+    }
     const chg = e.target.closest("[data-go]");
     if(chg){ const [s,u] = chg.dataset.go.split("."); step=+s; sub=+(u||1);
       history.replaceState(null,"","#/book/"+Math.min(step,TOTAL_STEPS));
@@ -2083,6 +2175,22 @@ function renderStep(){
   };
   syncControls();
 }
+// Whatever she has already answered rides along in the text, so bailing out of
+// the form still lands Jasmine a usable lead instead of a blank "hi".
+function bailSmsHref(){
+  const tel = ((SETTINGS.phone||"").replace(/\D/g,"") || FALLBACK_TEL.replace(/\D/g,""));
+  const t = TEXTURES.find(x=>x.k===B.texture), l = LENGTHS.find(x=>x.k===B.length),
+        d = DENSITIES.find(x=>x.k===B.density), c = CURRENT_COLORS.find(x=>x.k===B.currentColor);
+  const bits = [];
+  const hair = [l&&l.label, t&&t.label, d&&d.label.replace(" density","")].filter(Boolean);
+  if(hair.length) bits.push("My hair is " + hair.join(", ").toLowerCase());
+  if(c) bits.push("right now it's " + c.label.toLowerCase());
+  if(P.shade) bits.push("I'm after " + P.shade.name);
+  const picked = B.services.map(sl=>SERVICES.find(s=>s.slug===sl)).filter(Boolean);
+  if(picked.length) bits.push("thinking about " + picked.map(s=>s.display_name||s.name).join(" + "));
+  return "sms:+1" + tel + "?&body=" + encodeURIComponent(
+    "Hi Jazzie! I'd rather just text than fill out the form." + (bits.length ? " " + bits.join(", ") + "." : ""));
+}
 function optHTML(k, v, fig, label, sub){
   return `<button class="opt" data-k="${k}" data-v="${v}" aria-pressed="${B[k]===v}">
     <span class="opt-fig">${fig}</span>
@@ -2102,7 +2210,7 @@ function whyNot(s){
 function updateProgress(){
   const shown = Math.min(step, TOTAL_STEPS);
   document.getElementById("progT").textContent =
-    step >= 7 ? "Sent" : "Step " + shown + " of " + TOTAL_STEPS + (step===1 ? " · your hair " + sub + " of " + SUBS : "");
+    step >= 7 ? "Sent" : "Step " + shown + " of " + TOTAL_STEPS + (step===1 ? " · hair " + sub + " of " + SUBS : "");
   const frac = step >= 7 ? 1 : ((step-1) + (step===1 ? (sub-1)/SUBS : 0.5)) / TOTAL_STEPS;
   document.getElementById("progI").style.width = (frac*100).toFixed(1) + "%";
 }
@@ -2559,13 +2667,13 @@ document.getElementById("btnOut").onclick = () => { auth.set(null); admLogin(); 
 // The furthest step the saved answers actually justify — deep links and stale
 // history entries get clamped to this so nobody lands on a half-empty screen.
 function maxReachable(){
-  if(!B.texture || !B.length || !B.density || !B.currentColor) return 1;
+  if(!B.skipHair && (!B.texture || !B.length || !B.density || !B.currentColor)) return 1;
   if(!B.services.length) return 2;
   return TOTAL_STEPS;
 }
 function resetAfterSend(){
   step = 1; sub = 1;
-  B.services = []; B.inspiration = ""; B.notes = ""; B.times = ""; B.ref = "";
+  B.services = []; B.inspiration = ""; B.notes = ""; B.times = ""; B.ref = ""; B.skipHair = false;
   submitRequest._id = submitRequest._ref = null; submitRequest._reqDone = false;
   saveBooking();
 }
@@ -2631,11 +2739,27 @@ function toast(msg){
   rings.outer.rot = snapRotFor("outer", P.famIdx); applyRot("outer");
 
   bindRing("outer",
-    i => { document.getElementById("hubFam").textContent = FAMILIES[i].family; },
+    i => { const n = FAMILIES[i].family;
+           document.getElementById("hubFam").textContent = n;
+           const wf = document.getElementById("wsFam"); if(wf) wf.textContent = n; },
     i => { if(i !== P.famIdx) setFamily(i); else updateHub(); });
   bindRing("inner",
     i => { if(i !== P.shIdx) setShade(i); },
     i => setShade(i));
+
+  // Arrow steppers — same actions as the keyboard model, for anyone who never
+  // discovers that the rings can be dragged.
+  const stepWheel = code => {
+    const f = FAMILIES[P.famIdx];
+    if(code === "sh+1") rings.inner.animateTo(mod(P.shIdx+1, f.shades.length));
+    else if(code === "sh-1") rings.inner.animateTo(mod(P.shIdx-1, f.shades.length));
+    else if(code === "fam+1") rings.outer.animateTo(mod(P.famIdx+1, FAMILIES.length));
+    else if(code === "fam-1") rings.outer.animateTo(mod(P.famIdx-1, FAMILIES.length));
+  };
+  document.querySelector(".wheel-steps").addEventListener("click", e => {
+    const b = e.target.closest("[data-step]"); if(!b) return;
+    stepWheel(b.dataset.step);
+  });
 
   document.getElementById("wheel").addEventListener("keydown", e => {
     const f = FAMILIES[P.famIdx];
