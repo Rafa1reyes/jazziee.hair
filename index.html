@@ -245,57 +245,22 @@ section{padding-block:var(--space-section)}
 /* ==========================================================================
    7. COLOR STUDIO
    ========================================================================== */
-.studio-grid{display:grid; grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:clamp(32px,5vw,80px); align-items:start}
-@media (max-width:980px){ .studio-grid{grid-template-columns:1fr} }
-
-/* pan-y keeps vertical swipes on the hub/corners scrolling the page; the rings
-   themselves opt out so a drag can rotate them without fighting the scroll */
-.wheel-wrap{position:relative; width:100%; max-width:380px; margin-inline:auto; touch-action:pan-y; user-select:none}
-.wheel-wrap svg{width:100%; height:auto; display:block; overflow:visible}
-#ringOuter,#ringInner{transform-origin:180px 180px; cursor:grab; touch-action:none}
-#ringOuter.drag,#ringInner.drag{cursor:grabbing}
-.seg{stroke:var(--c-canvas); stroke-width:1; transition:opacity var(--d-fast)}
-.seg-label{font:500 8.5px var(--font-body); letter-spacing:.09em; text-transform:uppercase; pointer-events:none}
-.hub-name{font:400 19px var(--font-display); fill:var(--c-ink); text-anchor:middle}
-.hub-meta{font:500 9.5px var(--font-body); letter-spacing:.13em; text-transform:uppercase; fill:var(--c-ink-faint); text-anchor:middle}
-.marker{fill:var(--c-ink)}
-#selWin path{fill:none; stroke:var(--c-ink); stroke-width:2; stroke-linejoin:round; pointer-events:none}
-#selWin path.under{stroke:var(--c-canvas); stroke-width:5; opacity:.9}
-.seg:hover{opacity:.84}
-.wheel-steps{display:grid; gap:var(--s-2); margin-top:var(--s-5)}
-.wstep{display:grid; grid-template-columns:48px 1fr 48px; align-items:center; gap:var(--s-2)}
-.wbtn{
-  height:48px; border:1px solid var(--c-line-strong); border-radius:var(--r-sharp);
-  background:var(--c-surface); color:var(--c-ink); font-size:1.4rem; line-height:1;
-  display:grid; place-items:center;
-  transition:background var(--d-fast) var(--e-inout), border-color var(--d-fast) var(--e-inout);
+/* One calm grid of choices. The wheel that used to live here was the single
+   most-complained-about thing on the site: a drag interaction nobody expects,
+   picking a target colour that is really a consultation conversation. */
+.studio-grid{
+  display:grid; gap:clamp(24px,3.4vw,44px) clamp(24px,3vw,48px);
+  grid-template-columns:repeat(auto-fit, minmax(min(100%, 216px), 1fr));
+  align-items:start;
 }
-.wbtn:hover{background:var(--c-canvas-alt); border-color:var(--c-ink)}
-.wbtn:active{background:var(--c-accent-tint)}
-.wstep-lbl{text-align:center; line-height:1.25; overflow:hidden}
-.wstep-lbl small{display:block; font-size:var(--t--2); color:var(--c-ink-faint); letter-spacing:.1em; text-transform:uppercase}
-.wstep-lbl b{display:block; font-weight:500; font-size:var(--t--1); color:var(--c-ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.wheel-hint{text-align:center; font-size:var(--t--2); color:var(--c-ink-faint); margin-top:var(--s-4); letter-spacing:.04em}
-/* the SVG scales down to ~0.75x on phones, so the in-wheel type sizes up to compensate */
-@media (max-width:520px){
-  .seg-label{font-size:11px}
-  .hub-meta{font-size:11.5px}
-  .hub-name{font-size:22px}
+.studio-grid .ctrl-group{margin-bottom:0}
+.studio-wide{grid-column:1/-1}
+.studio-cta{
+  margin-top:clamp(40px,5vw,72px); padding-top:var(--s-6);
+  border-top:1px solid var(--c-line);
+  display:flex; flex-wrap:wrap; align-items:center; gap:var(--s-4) var(--s-5);
 }
-
-.liftstrip{
-  margin-top:var(--s-5); padding:var(--s-4) var(--s-5); border-radius:var(--r-soft);
-  font-size:var(--t--1); line-height:1.5; border:1px solid var(--c-line);
-  background:var(--c-surface); color:var(--c-ink-muted);
-  display:flex; gap:var(--s-4); align-items:flex-start;
-}
-.liftstrip[data-state^="lift"]{background:var(--c-warn-soft); border-color:color-mix(in srgb,var(--c-warn) 34%,transparent); color:var(--c-ink)}
-.liftstrip b{color:var(--c-ink)}
-.ladder{flex:0 0 26px; display:grid; gap:2px}
-.ladder i{display:block; height:5px; border-radius:1px; background:var(--c-line)}
-.ladder i.now{background:var(--c-ink)}
-.ladder i.goal{background:var(--c-accent)}
-.ladder i.gap{background:color-mix(in srgb,var(--c-warn) 55%,transparent)}
+.studio-cta span{font-size:var(--t--1); color:var(--c-ink-faint)}
 
 .ctrl-group{margin-bottom:var(--s-6)}
 .ctrl-group h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; letter-spacing:var(--ls-eyebrow); color:var(--c-ink-faint); margin-bottom:var(--s-3)}
@@ -654,7 +619,7 @@ body.routing .toast{bottom:118px}
   <div class="wrap">
     <a href="#/" class="mark">Hair By <em>Jazzie</em></a>
     <nav>
-      <a href="#studio">Try a color</a>
+      <a href="#studio">See it on your hair</a>
       <a href="#services">Services</a>
       <a href="#visit">First visit</a>
       <a href="#about">About</a>
@@ -665,7 +630,7 @@ body.routing .toast{bottom:118px}
   </div>
 </header>
 <nav class="subnav" aria-label="Sections">
-  <a href="#studio">Try a color</a>
+  <a href="#studio">See it on your hair</a>
   <a href="#services">Services</a>
   <a href="#visit">First visit</a>
 </nav>
@@ -676,10 +641,10 @@ body.routing .toast{bottom:118px}
     <div class="wrap">
       <span class="eyebrow rv">Fair Oaks, California · By appointment</span>
       <h1 class="rv">Hair that looks like you, <em>only more so.</em></h1>
-      <p class="lead rv">Color, balayage, extensions and bridal by Jasmine Perez. Pick a shade on the wheel and watch it land on real hair before you ever sit in my chair.</p>
+      <p class="lead rv">Color, balayage, extensions and bridal by Jasmine Perez. Tell me about your hair, pick what you want done, and I'll come back with a real quote.</p>
       <div class="hero-cta rv">
         <a class="btn btn-primary" href="#/book/1">Start my hair profile</a>
-        <a class="btn btn-ghost" href="#studio">Play with the color wheel</a>
+        <a class="btn btn-ghost" href="#services">See the services</a>
       </div>
       <div class="hero-meta rv">
         <div><b>4 questions, then your service</b>About 2 minutes</div>
@@ -693,72 +658,38 @@ body.routing .toast{bottom:118px}
   <section id="studio" class="band">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>The color studio</h2>
-        <p class="sec-note">Drag the wheel. The hair on the side is yours — set the texture, length and density to match what you actually have, and every shade renders against that instead of against a stock swatch.</p>
+        <h2>See it on your hair</h2>
+        <p class="sec-note">Tell me what you're working with and the hair beside you becomes yours. Then tap any service to see what it would actually do to it.</p>
       </div>
       <div class="studio-grid">
-        <div class="rv">
-          <div class="wheel-wrap">
-            <svg viewBox="0 0 360 360" id="wheel" role="group" aria-roledescription="color wheel" tabindex="0"
-                 aria-label="Hair color wheel. Left and right arrows change shade, up and down change family.">
-              <g id="ringOuter"></g>
-              <g id="ringInner"></g>
-              <circle cx="180" cy="180" r="74" fill="var(--c-surface)" stroke="var(--c-line)"/>
-              <text class="hub-name" id="hubName" x="180" y="172">Truffle</text>
-              <text class="hub-meta" id="hubMeta" x="180" y="194">Level 4 · Neutral</text>
-              <text class="hub-meta" id="hubFam"  x="180" y="212" style="opacity:.6">Brunette</text>
-              <g id="selWin"></g>
-              <path class="marker" d="M11 180 L-2 172 L-2 188 Z"/>
-            </svg>
-          </div>
-          <!-- Dragging is the least discoverable interaction on the site; these do
-               the same job with an affordance nobody has to guess at. -->
-          <div class="wheel-steps">
-            <div class="wstep">
-              <button type="button" class="wbtn" data-step="fam-1" aria-label="Previous color family">‹</button>
-              <span class="wstep-lbl"><small>Family</small><b id="wsFam">Brunette</b></span>
-              <button type="button" class="wbtn" data-step="fam+1" aria-label="Next color family">›</button>
-            </div>
-            <div class="wstep">
-              <button type="button" class="wbtn" data-step="sh-1" aria-label="Previous shade">‹</button>
-              <span class="wstep-lbl"><small>Shade</small><b id="wsShade">Truffle</b></span>
-              <button type="button" class="wbtn" data-step="sh+1" aria-label="Next shade">›</button>
-            </div>
-          </div>
-          <p class="wheel-hint">Tap the arrows, or drag the rings — whatever sits in the window on the left is your pick</p>
-          <div class="liftstrip" id="liftStrip" data-state="ok">
-            <div class="ladder" id="ladder"></div>
-            <div id="liftCopy">Pick your current color below and I'll tell you what it takes to get here.</div>
-          </div>
+        <div class="ctrl-group rv studio-wide">
+          <h3>My hair is currently</h3>
+          <div class="chips" id="cCurrent"></div>
         </div>
-
-        <div class="rv">
-          <div class="ctrl-group">
-            <h3>My hair is currently</h3>
-            <div class="chips" id="cCurrent"></div>
-          </div>
-          <div class="ctrl-group">
-            <h3>Texture</h3>
-            <div class="chips" id="cTexture"></div>
-          </div>
-          <div class="ctrl-group">
-            <h3>Length</h3>
-            <div class="chips" id="cLength"></div>
-          </div>
-          <div class="ctrl-group">
-            <h3>Density</h3>
-            <div class="chips" id="cDensity"></div>
-          </div>
-          <div class="ctrl-group">
-            <h3>Finish</h3>
-            <div class="chips" id="cStyle"></div>
-          </div>
-          <div class="ctrl-group">
-            <h3>Preview a service</h3>
-            <div class="chips" id="cService"></div>
-          </div>
-          <a class="btn btn-primary" href="#/book/1" id="takeIn">Take this into a booking request</a>
+        <div class="ctrl-group rv">
+          <h3>Texture</h3>
+          <div class="chips" id="cTexture"></div>
         </div>
+        <div class="ctrl-group rv">
+          <h3>Length</h3>
+          <div class="chips" id="cLength"></div>
+        </div>
+        <div class="ctrl-group rv">
+          <h3>Density</h3>
+          <div class="chips" id="cDensity"></div>
+        </div>
+        <div class="ctrl-group rv">
+          <h3>Finish</h3>
+          <div class="chips" id="cStyle"></div>
+        </div>
+        <div class="ctrl-group rv studio-wide">
+          <h3>Try a service on it</h3>
+          <div class="chips" id="cService"></div>
+        </div>
+      </div>
+      <div class="studio-cta rv">
+        <a class="btn btn-primary" href="#/book/1" id="takeIn">Take this into a booking request</a>
+        <span>Takes about 90 seconds. Nothing is charged.</span>
       </div>
     </div>
   </section>
@@ -768,7 +699,7 @@ body.routing .toast{bottom:118px}
     <div class="wrap">
       <div class="sec-head rv">
         <h2>The menu</h2>
-        <p class="sec-note">Every price is a starting point with the real time attached, because a four-hour appointment should never be a surprise. Tap “See it on my hair” on anything and the panel updates.</p>
+        <p class="sec-note">Every price is a starting point with the real time attached, because a four-hour appointment should never be a surprise. Tap “See it on my hair” on anything and the hair beside you updates.</p>
       </div>
       <div class="filters rv" id="filters"></div>
       <div id="menu"></div>
@@ -834,7 +765,7 @@ body.routing .toast{bottom:118px}
       <div>
         <h3>Go</h3>
         <p style="font-size:var(--t--1);line-height:2">
-          <a href="#studio">Try a color</a><br>
+          <a href="#studio">See it on your hair</a><br>
           <a href="#services">Services &amp; prices</a><br>
           <a href="#visit">First visit</a><br>
           <a href="#/book/1">Request an appointment</a>
@@ -963,85 +894,33 @@ async function signUp(email, password){
 /* ==========================================================================
    COLOR DATA
    ========================================================================== */
-const FAMILIES = [
- {family:"Black", isFashion:false, shades:[
-  {name:"Raven Blue-Black",level:1,tone:"blue",   baseHex:"#191b24",shadowHex:"#0b0c12",shineHex:"#616a80",requiresLift:false,min:1},
-  {name:"Onyx",            level:1,tone:"neutral",baseHex:"#1b1618",shadowHex:"#0c0a0b",shineHex:"#5d5559",requiresLift:false,min:1},
-  {name:"Espresso",        level:2,tone:"neutral",baseHex:"#251b18",shadowHex:"#130d0b",shineHex:"#6d574a",requiresLift:false,min:2},
-  {name:"Black Cherry",    level:2,tone:"violet", baseHex:"#2b171d",shadowHex:"#150a0e",shineHex:"#71495a",requiresLift:false,min:2}]},
- {family:"Brunette", isFashion:false, shades:[
-  {name:"Dark Chocolate",  level:3,tone:"neutral",baseHex:"#3a2620",shadowHex:"#1d120e",shineHex:"#856050",requiresLift:false,min:3},
-  {name:"Truffle",         level:4,tone:"neutral",baseHex:"#453029",shadowHex:"#241814",shineHex:"#906c5b",requiresLift:false,min:4},
-  {name:"Cool Ash Brown",  level:4,tone:"ash",    baseHex:"#3f3630",shadowHex:"#201b17",shineHex:"#837366",requiresLift:false,min:5},
-  {name:"Mocha",           level:5,tone:"neutral",baseHex:"#503c33",shadowHex:"#2b201b",shineHex:"#9b7c6b",requiresLift:false,min:5},
-  {name:"Chestnut",        level:5,tone:"gold",   baseHex:"#5d3b28",shadowHex:"#331d13",shineHex:"#a97553",requiresLift:false,min:5},
-  {name:"Mushroom Brown",  level:5,tone:"ash",    baseHex:"#5b5048",shadowHex:"#322b26",shineHex:"#a29389",requiresLift:false,min:6}]},
- {family:"Red", isFashion:false, shades:[
-  {name:"Merlot",          level:3,tone:"violet", baseHex:"#45191f",shadowHex:"#230b0f",shineHex:"#8a4b53",requiresLift:false,min:3},
-  {name:"Deep Auburn",     level:4,tone:"red",    baseHex:"#5b2419",shadowHex:"#31110a",shineHex:"#9b5943",requiresLift:false,min:4},
-  {name:"Mahogany",        level:5,tone:"red",    baseHex:"#6b2a26",shadowHex:"#3a1312",shineHex:"#a85e56",requiresLift:false,min:5},
-  {name:"Cherry Cola",     level:5,tone:"red",    baseHex:"#75221f",shadowHex:"#3e0f0e",shineHex:"#b3564f",requiresLift:false,min:5},
-  {name:"Ruby Red",        level:6,tone:"red",    baseHex:"#97262a",shadowHex:"#521116",shineHex:"#d05f60",requiresLift:true, min:7},
-  {name:"Strawberry Blonde",level:8,tone:"copper",baseHex:"#c98660",shadowHex:"#82503a",shineHex:"#ecb894",requiresLift:true, min:8}]},
- {family:"Copper", isFashion:false, shades:[
-  {name:"Rust",            level:5,tone:"copper", baseHex:"#7a3a22",shadowHex:"#421d10",shineHex:"#b3714a",requiresLift:false,min:5},
-  {name:"Cinnamon Copper", level:6,tone:"copper", baseHex:"#8b4b2a",shadowHex:"#4c2714",shineHex:"#c48254",requiresLift:false,min:6},
-  {name:"Copper Penny",    level:7,tone:"copper", baseHex:"#a9562b",shadowHex:"#5d2c14",shineHex:"#da8c58",requiresLift:false,min:7},
-  {name:"Ginger Spice",    level:8,tone:"copper", baseHex:"#c17035",shadowHex:"#6e3b1a",shineHex:"#eaa569",requiresLift:true, min:8},
-  {name:"Apricot Blonde",  level:9,tone:"copper", baseHex:"#d99b6d",shadowHex:"#96613c",shineHex:"#f2c69d",requiresLift:true, min:9}]},
- {family:"Bronde", isFashion:false, shades:[
-  {name:"Hazelnut",        level:6,tone:"gold",   baseHex:"#75573d",shadowHex:"#40301f",shineHex:"#bd9b76",requiresLift:false,min:6},
-  {name:"Toasted Almond",  level:6,tone:"neutral",baseHex:"#6f5544",shadowHex:"#3d2e24",shineHex:"#b4967e",requiresLift:false,min:6},
-  {name:"Caramel",         level:7,tone:"gold",   baseHex:"#8b6038",shadowHex:"#4d341c",shineHex:"#ca9a66",requiresLift:false,min:7},
-  {name:"Honey",           level:7,tone:"gold",   baseHex:"#966f3f",shadowHex:"#543d1f",shineHex:"#d3ac74",requiresLift:false,min:7},
-  {name:"Sandy Bronde",    level:7,tone:"ash",    baseHex:"#8a7357",shadowHex:"#4e402f",shineHex:"#c3ad93",requiresLift:true, min:8}]},
- {family:"Blonde", isFashion:false, shades:[
-  {name:"Sandy Blonde",    level:7, tone:"neutral",baseHex:"#9f8660",shadowHex:"#5d4c35",shineHex:"#d7c29a",requiresLift:true,min:8},
-  {name:"Butter Blonde",   level:8, tone:"gold",   baseHex:"#c39f66",shadowHex:"#7b6039",shineHex:"#ecd8a6",requiresLift:true,min:8},
-  {name:"Beige Blonde",    level:8, tone:"neutral",baseHex:"#bda786",shadowHex:"#786751",shineHex:"#e9d8bc",requiresLift:true,min:9},
-  {name:"Ash Blonde",      level:8, tone:"ash",    baseHex:"#a89c87",shadowHex:"#6a6153",shineHex:"#dcd4c4",requiresLift:true,min:9},
-  {name:"Champagne",       level:9, tone:"neutral",baseHex:"#d3c2a2",shadowHex:"#8b7c66",shineHex:"#f1e6d2",requiresLift:true,min:9},
-  {name:"Vanilla Cream",   level:10,tone:"gold",   baseHex:"#e7dbbf",shadowHex:"#a4977c",shineHex:"#f9f2e1",requiresLift:true,min:10},
-  {name:"Icy Platinum",    level:10,tone:"ash",    baseHex:"#dfdad0",shadowHex:"#9d9891",shineHex:"#f6f4ef",requiresLift:true,min:10}]},
- {family:"Purple", isFashion:true, shades:[
-  {name:"Plum Wine",       level:4, tone:"violet",baseHex:"#4a2740",shadowHex:"#271424",shineHex:"#8a5f7d",requiresLift:false,min:4},
-  {name:"Ultraviolet",     level:8, tone:"violet",baseHex:"#5c4087",shadowHex:"#33234e",shineHex:"#8c72ad",requiresLift:true,min:8},
-  {name:"Amethyst",        level:9, tone:"violet",baseHex:"#7a5a9d",shadowHex:"#46325e",shineHex:"#aa90c5",requiresLift:true,min:9},
-  {name:"Orchid",          level:10,tone:"violet",baseHex:"#d3b3d3",shadowHex:"#94799a",shineHex:"#eddcee",requiresLift:true,min:10},
-  {name:"Iced Lavender",   level:10,tone:"violet",baseHex:"#c4b5d2",shadowHex:"#877c96",shineHex:"#e7deee",requiresLift:true,min:10}]},
- {family:"Blue", isFashion:true, shades:[
-  {name:"Midnight Sapphire",level:3,tone:"blue",  baseHex:"#232a44",shadowHex:"#121726",shineHex:"#5c657f",requiresLift:false,min:3},
-  {name:"Sapphire",        level:8, tone:"blue",  baseHex:"#344880",shadowHex:"#1c2850",shineHex:"#6678a9",requiresLift:true,min:8},
-  {name:"Mermaid Teal",    level:8, tone:"blue",  baseHex:"#2f7a7c",shadowHex:"#1a4749",shineHex:"#67a9a9",requiresLift:true,min:8},
-  {name:"Denim Blue",      level:9, tone:"blue",  baseHex:"#5b7497",shadowHex:"#34465d",shineHex:"#92a7c1",requiresLift:true,min:9},
-  {name:"Powder Blue",     level:10,tone:"blue",  baseHex:"#b4c8d7",shadowHex:"#7e8f9d",shineHex:"#dee9f0",requiresLift:true,min:10},
-  {name:"Seafoam",         level:10,tone:"blue",  baseHex:"#b1d1c5",shadowHex:"#7c958c",shineHex:"#dcede6",requiresLift:true,min:10}]},
- {family:"Pink", isFashion:true, shades:[
-  {name:"Magenta Punch",   level:8, tone:"red",   baseHex:"#a93b6f",shadowHex:"#631f41",shineHex:"#d2749a",requiresLift:true,min:8},
-  {name:"Bubblegum",       level:9, tone:"red",   baseHex:"#db76a0",shadowHex:"#944767",shineHex:"#f0a9c5",requiresLift:true,min:9},
-  {name:"Rose Gold",       level:9, tone:"copper",baseHex:"#d99b8f",shadowHex:"#96635b",shineHex:"#f2c9be",requiresLift:true,min:9},
-  {name:"Peach Sorbet",    level:10,tone:"copper",baseHex:"#ebb29b",shadowHex:"#a8796a",shineHex:"#f8dccd",requiresLift:true,min:10},
-  {name:"Blush Pink",      level:10,tone:"red",   baseHex:"#e3aeb3",shadowHex:"#a3777c",shineHex:"#f6d9db",requiresLift:true,min:10}]},
- {family:"Silver", isFashion:true, shades:[
-  {name:"Charcoal Smoke",  level:5, tone:"ash",   baseHex:"#4a4749",shadowHex:"#2a282a",shineHex:"#838083",requiresLift:true,min:8},
-  {name:"Gunmetal",        level:7, tone:"ash",   baseHex:"#6f6d70",shadowHex:"#434043",shineHex:"#a19ea1",requiresLift:true,min:9},
-  {name:"Smoky Quartz",    level:8, tone:"ash",   baseHex:"#9c9591",shadowHex:"#635d5a",shineHex:"#ccc6c2",requiresLift:true,min:9},
-  {name:"Sterling Silver", level:10,tone:"ash",   baseHex:"#cfcfd2",shadowHex:"#8e8f93",shineHex:"#eeeef0",requiresLift:true,min:10},
-  {name:"Icy Pearl",       level:10,tone:"violet",baseHex:"#d9d4db",shadowHex:"#98949d",shineHex:"#f3f0f5",requiresLift:true,min:10}]},
-];
-
+// The client's CURRENT hair — the only colour the site needs. The panel renders
+// what she actually has, and each service shows what it would do to it. There is
+// deliberately no "goal shade" picker: choosing a target colour off a screen is a
+// consultation conversation, not a form field.
 const CURRENT_COLORS = [
-  {k:"black",       label:"Black",                    level:2, hex:"#1b1618"},
-  {k:"dark-brown",  label:"Dark brown",               level:3, hex:"#3a2620"},
-  {k:"med-brown",   label:"Medium brown",             level:5, hex:"#503c33"},
-  {k:"light-brown", label:"Light brown",              level:6, hex:"#75573d"},
-  {k:"dark-blonde", label:"Dark blonde",              level:7, hex:"#9f8660"},
-  {k:"med-blonde",  label:"Medium blonde",            level:8, hex:"#bda786"},
-  {k:"light-blonde",label:"Light blonde or platinum", level:9, hex:"#dfdad0"},
-  {k:"red",         label:"Red or copper",            level:5, hex:"#8b4b2a", flag:"Artificial red is the hardest thing to lift — it usually needs its own session."},
-  {k:"gray",        label:"Gray or silver",           level:9, hex:"#cfcfd2", flag:"Gray has no pigment left, so tone grabs fast and can go too cool. I mix for that."},
-  {k:"multi",       label:"Grown-out or multi-tone",  level:4, level2:7, hex:"#6b5443", flag:"Roots and ends start from different places and lift at different rates."},
-  {k:"vivid",       label:"Vivid or fashion color",   level:9, hex:"#a93b6f", flag:"Existing fashion pigment has to come out before a new one goes in."},
+  {k:"black",       label:"Black",                    level:2,
+   hex:"#251b18", baseHex:"#251b18", shadowHex:"#130d0b", shineHex:"#6d574a"},
+  {k:"dark-brown",  label:"Dark brown",               level:3,
+   hex:"#3a2620", baseHex:"#3a2620", shadowHex:"#1d120e", shineHex:"#856050"},
+  {k:"med-brown",   label:"Medium brown",             level:5,
+   hex:"#503c33", baseHex:"#503c33", shadowHex:"#2b201b", shineHex:"#9b7c6b"},
+  {k:"light-brown", label:"Light brown",              level:6,
+   hex:"#75573d", baseHex:"#75573d", shadowHex:"#40301f", shineHex:"#bd9b76"},
+  {k:"dark-blonde", label:"Dark blonde",              level:7,
+   hex:"#9f8660", baseHex:"#9f8660", shadowHex:"#5d4c35", shineHex:"#d7c29a"},
+  {k:"med-blonde",  label:"Medium blonde",            level:8,
+   hex:"#bda786", baseHex:"#bda786", shadowHex:"#786751", shineHex:"#e9d8bc"},
+  {k:"light-blonde",label:"Light blonde or platinum", level:9,
+   hex:"#dfdad0", baseHex:"#dfdad0", shadowHex:"#9d9891", shineHex:"#f6f4ef"},
+  {k:"red",         label:"Red or copper",            level:5,
+   hex:"#8b4b2a", baseHex:"#8b4b2a", shadowHex:"#4c2714", shineHex:"#c48254"},
+  {k:"gray",        label:"Gray or silver",           level:9,
+   hex:"#cfcfd2", baseHex:"#cfcfd2", shadowHex:"#8e8f93", shineHex:"#eeeef0"},
+  {k:"multi",       label:"Grown-out or multi-tone",  level:4, level2:7,
+   hex:"#6b5443", baseHex:"#6b5443", shadowHex:"#3a2d24", shineHex:"#ab907a"},
+  {k:"vivid",       label:"Vivid or fashion color",   level:9,
+   hex:"#a93b6f", baseHex:"#a93b6f", shadowHex:"#631f41", shineHex:"#d2749a"},
 ];
 
 const TEXTURES = [
@@ -1219,24 +1098,15 @@ function shadeHSL(sh){
   if(!sh._h){ sh._h = {S:hex2hsl(sh.shadowHex), B:hex2hsl(sh.baseHex), H:hex2hsl(sh.shineHex)}; }
   return sh._h;
 }
-// The three anchors for a shade, after the "you can't actually get there" penalty.
-// Every layer (strands, curtain, lift, specular) must read from this, or a muddied
-// preview ends up with bright highlights sitting on mud.
-function adjusted(shade, muddy){
+// Shadow / body / shine for a shade, copied so callers can bend them freely.
+// Every layer (strands, curtain, lift, specular) reads from the ramp this builds,
+// so they can never drift out of step with each other.
+function ramp(shade, mode){
   const g = shadeHSL(shade);
   const S = Object.assign({}, g.S), B = Object.assign({}, g.B), H = Object.assign({}, g.H);
-  if(muddy){
-    for(const c of [S,B,H]){ c.h = c.h + 10*(c.h>40&&c.h<300 ? -1 : 1); c.s *= .72; c.l = c.l*.88 + 6; }
-    H.s *= .7;
-  }
-  return {S:S, B:B, H:H};
-}
-function ramp(shade, mode, muddy){
-  const a = adjusted(shade, muddy);
-  const S = a.S, B = a.B, H = a.H;
   const cl = l => Math.min(90, Math.max(7, l));
   if(mode === "flat"){
-    const m = (S.l + B.l + H.l)/3;
+    // all-over colour: uniformity IS the look, so compress the ladder toward the body
     S.l = cl(B.l - (B.l - S.l)*.42); H.l = cl(B.l + (H.l - B.l)*.42);
   }
   const end = { h:B.h+4, s:B.s*0.92, l:cl(B.l + (H.l-B.l)*0.22) };
@@ -1249,10 +1119,8 @@ function ramp(shade, mode, muddy){
 
 /* --- panel state + render --- */
 const P = {
-  shade: FAMILIES[1].shades[1],           // Truffle
-  famIdx: 1, shIdx: 1,
   texture:"wavy", length:"medium", density:"medium", style:"natural",
-  current: CURRENT_COLORS[2],
+  current: CURRENT_COLORS[2],             // medium brown
   service: null,
 };
 const memo = new Map();
@@ -1361,14 +1229,7 @@ function renderGeometry(){
 function flushPaint(){
   const svc = P.service ? FX[P.service] : null;
   const mode = svc ? (svc.ramp || "natural") : "natural";
-  const muddy = !!(svc && svc.depositOnly && liftGap() > 0);
-  let stops = ramp(P.shade, mode, muddy);
-
-  if(mode === "gloss"){
-    // hue + saturation shift only; keep the lightness ladder of the CURRENT hair
-    const cur = ramp(currentShadeApprox(), "natural", false);
-    stops = stops.map((c,i)=>({ h:c.h, s:c.s, l:cur[i].l }));
-  }
+  let stops = ramp(P.current, mode);
   const shineMul = (svc && svc.shine) || 1;
   if(shineMul !== 1){ stops[3] = {h:stops[3].h, s:stops[3].s*1.04, l:Math.min(92, stops[3].l*shineMul)}; }
 
@@ -1377,8 +1238,8 @@ function flushPaint(){
     els.bodyStops[i].setAttribute("offset", String(OFF[i]));
     els.bodyStops[i].setAttribute("stop-color", hslStr(stops[i]));
   }
-  // Everything below derives from the stops we just wrote, so gloss mode and the
-  // muddied "you can't get there from here" render stay internally consistent.
+  // Everything below derives from the stops we just wrote, so every layer stays
+  // internally consistent whatever the service did to the ramp.
   const root = stops[0], base = stops[2], shine = stops[3];
 
   // back layer: sits just above the curtain body so it reads as depth, not a void
@@ -1390,9 +1251,9 @@ function flushPaint(){
   const bdC = hslStr({h:root.h, s:root.s*0.9, l:Math.max(4, root.l*0.78)});
   els.bdStops.forEach(st => st.setAttribute("stop-color", bdC));
 
-  // regrowth uses the client's CURRENT color, not the goal
-  const cg = shadeHSL(currentShadeApprox());
-  els.rootStops.forEach(st => st.setAttribute("stop-color", hslStr(cg.S)));
+  // regrowth sits a touch deeper than the body, the way new growth actually reads
+  els.rootStops.forEach(st => st.setAttribute("stop-color",
+    hslStr({h:root.h, s:root.s, l:Math.max(4, root.l*0.86)})));
 
   // gloss sheen and the single specular band, tinted by the shade — never white
   els.glossStops.forEach(st => st.setAttribute("stop-color",
@@ -1406,216 +1267,13 @@ function flushPaint(){
   updateLabel();
 }
 
-function currentShadeApprox(){
-  const lvl = P.current.level;
-  let best = FAMILIES[1].shades[1], bd = 99;
-  for(const f of FAMILIES){ if(f.isFashion) continue;
-    for(const s of f.shades){ const d = Math.abs(s.level - lvl); if(d < bd){ bd=d; best=s; } } }
-  return best;
-}
-function liftGap(){ return Math.max(0, P.shade.min - P.current.level); }
-
-/* ==========================================================================
-   COLOR WHEEL
-   ========================================================================== */
-const WHEEL = { cx:180, cy:180, outR:166, outr:132, inR:124, inr:78 };
-function arcPath(cx,cy,r1,r2,a0,a1){
-  const rad = a => (a-90)*Math.PI/180;
-  const p = (r,a)=>[cx+r*Math.cos(rad(a)), cy+r*Math.sin(rad(a))];
-  const [x1,y1]=p(r2,a0), [x2,y2]=p(r2,a1), [x3,y3]=p(r1,a1), [x4,y4]=p(r1,a0);
-  const big = (a1-a0) > 180 ? 1 : 0;
-  return `M${x1} ${y1}A${r2} ${r2} 0 ${big} 1 ${x2} ${y2}L${x3} ${y3}A${r1} ${r1} 0 ${big} 0 ${x4} ${y4}Z`;
-}
-const mod = (a,n)=>((a%n)+n)%n;
-
-const rings = {
-  outer:{ el:null, rot:0, n:FAMILIES.length, seg:360/FAMILIES.length },
-  inner:{ el:null, rot:0, n:1, seg:360 },
-};
-function drawOuter(){
-  const g = rings.outer.el; let h="";
-  FAMILIES.forEach((f,i)=>{
-    const a0=i*rings.outer.seg, a1=a0+rings.outer.seg;
-    const mid = f.shades[Math.floor(f.shades.length/2)];
-    h += `<path class="seg" d="${arcPath(180,180,WHEEL.outr,WHEEL.outR,a0,a1)}" fill="${mid.baseHex}" data-i="${i}"/>`;
-    const mA = (a0+a1)/2, rad = (mA-90)*Math.PI/180, r = (WHEEL.outr+WHEEL.outR)/2;
-    const tx = +(180+r*Math.cos(rad)).toFixed(2), ty = +(180+r*Math.sin(rad)).toFixed(2);
-    // labels counter-rotate against the ring so they are upright at every angle
-    h += `<text class="seg-label lbl" data-x="${tx}" data-y="${ty}" x="${tx}" y="${ty}"
-            text-anchor="middle" dominant-baseline="central"
-            fill="${hex2hsl(mid.baseHex).l > 55 ? "#241C18" : "#FFF8F3"}"
-          >${f.family}</text>`;
-  });
-  g.innerHTML = h;
-  rings.outer.labels = [...g.querySelectorAll(".lbl")];
-}
-function drawInner(){
-  const f = FAMILIES[P.famIdx], g = rings.inner.el;
-  rings.inner.n = f.shades.length; rings.inner.seg = 360/f.shades.length;
-  let h="";
-  f.shades.forEach((s,i)=>{
-    const a0=i*rings.inner.seg, a1=a0+rings.inner.seg;
-    h += `<path class="seg" d="${arcPath(180,180,WHEEL.inr,WHEEL.inR,a0,a1)}" fill="${s.baseHex}" data-i="${i}"/>`;
-    if(s.requiresLift){
-      const ang=(a0+a1)/2-90, rad=ang*Math.PI/180, r=WHEEL.inR-9;
-      h += `<circle cx="${180+r*Math.cos(rad)}" cy="${180+r*Math.sin(rad)}" r="2.6" fill="${hex2hsl(s.baseHex).l>55?"#241C18":"#FFF8F3"}" opacity=".75"/>`;
-    }
-  });
-  g.innerHTML = h;
-  drawSelWin();
-}
-// The fixed "viewfinder" at the left edge: one stroked window per ring, sized to
-// that ring's segment width. The rings rotate underneath it, so whatever color
-// fills each window is the current pick — the caret beside it points the same way.
-function drawSelWin(){
-  const g = document.getElementById("selWin"); if(!g) return;
-  const win = (which, cls) => {
-    const half = rings[which].seg/2;
-    const r1 = which==="outer" ? WHEEL.outr : WHEEL.inr;
-    const r2 = which==="outer" ? WHEEL.outR : WHEEL.inR;
-    return `<path${cls?' class="'+cls+'"':''} d="${arcPath(180,180,r1,r2,270-half,270+half)}"/>`;
-  };
-  // canvas-colored underlay first, ink on top — the window stays visible over
-  // any segment color in either theme
-  g.innerHTML = win("outer","under") + win("inner","under") + win("outer") + win("inner");
-}
-function applyRot(which){
-  const r = rings[which];
-  r.el.style.transform = `rotate(${r.rot}deg)`;
-  if(r.labels){
-    const anti = "rotate(" + (-r.rot).toFixed(2) + " ";
-    for(const t of r.labels) t.setAttribute("transform", anti + t.dataset.x + " " + t.dataset.y + ")");
-  }
-}
-function idxAtTop(which){
-  const r = rings[which];
-  return mod(Math.round((-90 - r.rot)/r.seg - 0.5), r.n);
-}
-function snapRotFor(which, i){ const r=rings[which]; return -90 - (i*r.seg + r.seg/2); }
-
-function bindRing(which, onLive, onCommit){
-  const r = rings[which], el = r.el;
-  let dragging=false, lastA=0, lastT=0, vel=0, raf=0;
-  const center = () => { const b = el.ownerSVGElement.getBoundingClientRect();
-    return { x:b.left+b.width/2, y:b.top+b.height/2 }; };
-  const angleAt = e => { const c=center(); return Math.atan2(e.clientY-c.y, e.clientX-c.x)*180/Math.PI; };
-  const schedule = () => { if(raf) return; raf=requestAnimationFrame(()=>{ raf=0; applyRot(which); onLive(idxAtTop(which)); }); };
-
-  el.addEventListener("pointerdown", e=>{
-    el.setPointerCapture(e.pointerId); dragging=true; vel=0;
-    lastA=angleAt(e); lastT=e.timeStamp; el.classList.add("drag");
-  });
-  el.addEventListener("pointermove", e=>{
-    if(!dragging) return;
-    const a=angleAt(e); let d=a-lastA;
-    if(d>180) d-=360; if(d<-180) d+=360;
-    const dt=Math.max(1, e.timeStamp-lastT);
-    vel=d/dt; r.rot+=d; lastA=a; lastT=e.timeStamp; schedule();
-  });
-  const release = () => {
-    if(!dragging) return; dragging=false; el.classList.remove("drag");
-    if(reduceMotion()){ settle(); return; } coast();
-  };
-  el.addEventListener("pointerup", release);
-  el.addEventListener("pointercancel", release);
-  el.addEventListener("click", e=>{
-    const p = e.target.closest("path.seg"); if(!p) return;
-    const i = +p.dataset.i; if(Math.abs(vel) > .01) return;
-    animateTo(i);
-  });
-  function coast(){
-    vel *= 0.94;
-    if(Math.abs(vel) < 0.02){ settle(); return; }
-    r.rot += vel*16.7; schedule(); requestAnimationFrame(coast);
-  }
-  function settle(){ animateTo(idxAtTop(which)); }
-  function animateTo(i){
-    const from=r.rot; let to=snapRotFor(which,i);
-    while(to - from > 180) to -= 360; while(from - to > 180) to += 360;
-    const t0=performance.now(), dur = reduceMotion() ? 1 : 260;
-    (function step(t){
-      const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
-      r.rot = from + (to-from)*e; applyRot(which); onLive(idxAtTop(which));
-      if(p<1) requestAnimationFrame(step); else onCommit(i);
-    })(t0);
-  }
-  r.animateTo = animateTo;
-}
+/* Motion preference is consulted by the service preview and the booking flow. */
 const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function setFamily(i, keepShade){
-  P.famIdx = mod(i, FAMILIES.length);
-  drawInner();
-  const f = FAMILIES[P.famIdx];
-  const target = keepShade === undefined ? Math.floor(f.shades.length/2) : Math.min(keepShade, f.shades.length-1);
-  P.shIdx = target;
-  P.shade = f.shades[P.shIdx];
-  rings.inner.rot = snapRotFor("inner", P.shIdx); applyRot("inner");
-  updateHub(); flushPaint(); updateLift();
-}
-function setShade(i){
-  const f = FAMILIES[P.famIdx];
-  P.shIdx = mod(i, f.shades.length); P.shade = f.shades[P.shIdx];
-  updateHub(); flushPaint(); updateLift();
-}
-function updateHub(){
-  const nameEl = $("#hubName");
-  nameEl.textContent = P.shade.name;
-  // Long names ("Strawberry Blonde") would graze the hub circle at 19px — shrink to fit.
-  // Some browsers throw on getComputedTextLength before first layout; never let
-  // that kill boot (a dead boot = no hair panel and a frozen menu).
-  nameEl.style.fontSize = "";
-  let w = 0;
-  try{ w = nameEl.getComputedTextLength ? nameEl.getComputedTextLength() : 0; }catch(e){}
-  if(w > 138) nameEl.style.fontSize = Math.max(13, Math.floor(19 * 138 / w)) + "px";
-  $("#hubMeta").textContent = "Level " + P.shade.level + " · " + P.shade.tone[0].toUpperCase()+P.shade.tone.slice(1);
-  $("#hubFam").textContent  = FAMILIES[P.famIdx].family;
-  const wf = $("#wsFam"), ws = $("#wsShade");
-  if(wf) wf.textContent = FAMILIES[P.famIdx].family;
-  if(ws) ws.textContent = P.shade.name;
-}
-function updateLift(){
-  const gap = liftGap(), strip = $("#liftStrip");
-  let state, copy;
-  if(P.current.k === "multi"){
-    state = "dual";
-    copy = "Your roots and ends are starting from different places, so they'll lift at different rates. That's the main thing a consultation sorts out.";
-  } else if(gap <= 0){
-    state = "ok";
-    copy = P.shade.requiresLift
-      ? "Your hair is already light enough for this one. Deposit-only from here — no lightener needed."
-      : "Your hair is already in range for this. Deposit-only, no lightener.";
-  } else if(gap <= 3){
-    state = "lift-1";
-    copy = "This sits about <b>" + gap + " level" + (gap>1?"s":"") + "</b> lighter than where you are. That's one lightening session, then the color.";
-  } else if(gap <= 6){
-    state = "lift-2";
-    copy = "This is about <b>" + gap + " levels</b> lighter than your hair now. Realistically two sessions to get there safely — I'd rather say that now than halfway through.";
-  } else {
-    state = "lift-3";
-    copy = "This is a long way from where your hair is. Two or three sessions, spaced out. Book a consultation and I'll map it properly.";
-  }
-  if(P.current.flag) copy += ' <span style="display:block;margin-top:6px;opacity:.78">' + P.current.flag + "</span>";
-  strip.dataset.state = state;
-  $("#liftCopy").innerHTML = copy;
-
-  // ladder
-  const cur = P.current.level, goal = P.shade.min;
-  let lh = "";
-  for(let l=10; l>=1; l--){
-    let cls = "";
-    if(l === Math.round(cur)) cls = "now";
-    else if(l === Math.round(goal)) cls = "goal";
-    else if(l > cur && l < goal) cls = "gap";
-    lh += '<i class="'+cls+'"></i>';
-  }
-  $("#ladder").innerHTML = lh;
-}
 
 function updateLabel(){
   const bits = [];
   const t = TEXTURES.find(x=>x.k===P.texture), l = LENGTHS.find(x=>x.k===P.length), d = DENSITIES.find(x=>x.k===P.density);
-  bits.push(P.shade.name);
+  bits.push(P.current.label);
   bits.push((l?l.label:"") + " · " + (t?t.label:"") + " · " + (d?d.label:""));
   if(P.service){
     const s = SERVICES.find(x=>x.slug===P.service);
@@ -1624,11 +1282,11 @@ function updateLabel(){
   const el = document.getElementById("panelLabel"); if(el) el.innerHTML = bits.join("<br>");
   clearTimeout(updateLabel._t);
   updateLabel._t = setTimeout(()=>{
-    const gap = liftGap();
+    const svc = P.service && SERVICES.find(x=>x.slug===P.service);
     document.getElementById("live").textContent =
       "Preview: " + (l?l.label.toLowerCase():"") + ", " + (t?t.label.toLowerCase():"") + ", " +
-      (d?d.label.toLowerCase():"") + " hair in " + P.shade.name + ", a level " + P.shade.level + " " + P.shade.tone + " shade." +
-      (gap>0 ? " Your hair is currently around level " + P.current.level + ", so this needs lifting first." : "");
+      (d?d.label.toLowerCase():"") + " hair in " + P.current.label.toLowerCase() + "." +
+      (svc ? " Showing " + svc.display_name + "." : "");
   }, 400);
 }
 
@@ -1707,7 +1365,7 @@ function paintSettings(){
   const lead = document.querySelector(".hero .lead");
   if(lead && s.hero_sub){
     const sub = s.hero_sub.trim();
-    lead.textContent = sub + (/[.!?…]$/.test(sub) ? " " : ". ") + "Pick a shade on the wheel and watch it land on real hair before you ever sit in my chair.";
+    lead.textContent = sub + (/[.!?…]$/.test(sub) ? " " : ". ") + "Tell me about your hair, pick what you want done, and I'll come back with a real quote.";
   }
   // Hours. Nothing here is invented — if Jasmine has not entered real hours the
   // block falls back to "by appointment" rather than publishing a guess. Same
@@ -1831,7 +1489,7 @@ function chipRow(host, items, get, set, opts){
 }
 function buildControls(){
   chipRow($("#cCurrent"), CURRENT_COLORS.map(c=>({k:c.k,label:c.label,hex:c.hex})),
-    ()=>P.current.k, v=>{ P.current = CURRENT_COLORS.find(c=>c.k===v); B.currentColor=v; updateLift(); flushPaint(); }, {swatch:true});
+    ()=>P.current.k, v=>{ P.current = CURRENT_COLORS.find(c=>c.k===v); B.currentColor=v; flushPaint(); }, {swatch:true});
   chipRow($("#cTexture"), TEXTURES, ()=>P.texture, v=>{ P.texture=v; B.texture=v; renderGeometry(); });
   chipRow($("#cLength"),  LENGTHS,  ()=>P.length,  v=>{ P.length=v;  B.length=v;  renderGeometry(); });
   chipRow($("#cDensity"), DENSITIES,()=>P.density, v=>{ P.density=v; B.density=v; renderGeometry(); });
@@ -2005,12 +1663,8 @@ function renderStep(){
     h += `</div>`;
     }
     h += `
-      <h3 class="q-label" style="font-size:var(--t-2);margin:var(--s-9) 0 var(--s-4)">And the color you're after?</h3>
-      <p class="q-sub">Whatever you landed on in the color studio is carried over. You can change it there any time.</p>
-      <div class="summary"><dl>
-        <dt>Goal shade</dt><dd><span class="sw-dot" style="background:${P.shade.baseHex}"></span>${P.shade.name} · Level ${P.shade.level} ${P.shade.tone}</dd><dd class="chg-c"></dd>
-        <dt>Starting from</dt><dd><span class="sw-dot" style="background:${P.current.hex}"></span>${P.current.label}</dd><dd class="chg-c"></dd>
-      </dl></div>`;
+      <p class="q-help" style="margin-top:var(--s-7)">Not sure which one you need? Pick <b>Consultation</b> and tell me what you're
+      going for in the next step — that is exactly what it is for.</p>`;
   }
 
   else if(step === 3){
@@ -2070,8 +1724,6 @@ function renderStep(){
         <dt>History</dt><dd>${B.history.length ? B.history.map(k=>(HISTORY_OPTS.find(o=>o.k===k)||{}).label).join(", ") : "Not answered"}</dd>${chg("1.4","color history")}
       </dl></div>
       <div class="summary"><h3>What you want</h3><dl>
-        <dt>Goal shade</dt><dd><span class="sw-dot" style="background:${P.shade.baseHex}"></span>${P.shade.name} · Level ${P.shade.level}</dd><dd class="chg-c"></dd>
-        <dt>Finish</dt><dd>${(STYLES.find(s=>s.k===P.style)||{}).label}</dd><dd class="chg-c"></dd>
         ${picked.map(s=>`<dt>Service</dt><dd>${esc(s.display_name||s.name)} · ${s.price_cents==null?"Quoted":money(s.price_cents)} · ${dur(s.duration_min)}</dd>${chg("2","services")}`).join("")}
         ${B.inspiration?`<dt>Inspiration</dt><dd style="word-break:break-all">${esc(B.inspiration)}</dd>${chg("3","inspiration")}`:""}
         ${B.times?`<dt>When</dt><dd>${esc(B.times)}</dd>${chg("4","preferred times")}`:""}
@@ -2185,7 +1837,7 @@ function renderStep(){
     if(k==="length"){ P.length=v; renderGeometry(); }
     if(k==="density" && v!=="unsure"){ P.density=v; renderGeometry(); }
     if(k==="density" && v==="unsure"){ P.density="medium"; renderGeometry(); }
-    if(k==="currentColor"){ P.current=CURRENT_COLORS.find(c=>c.k===v); updateLift(); flushPaint(); }
+    if(k==="currentColor"){ P.current=CURRENT_COLORS.find(c=>c.k===v); flushPaint(); }
     saveBooking();
     o.parentElement.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===v)));
     if(step===1 && sub<SUBS && !renderStep._adv){
@@ -2204,7 +1856,6 @@ function bailSmsHref(){
   const hair = [l&&l.label, t&&t.label, d&&d.label.replace(" density","")].filter(Boolean);
   if(hair.length) bits.push("My hair is " + hair.join(", ").toLowerCase());
   if(c) bits.push("right now it's " + c.label.toLowerCase());
-  if(P.shade) bits.push("I'm after " + P.shade.name);
   const picked = B.services.map(sl=>SERVICES.find(s=>s.slug===sl)).filter(Boolean);
   if(picked.length) bits.push("thinking about " + picked.map(s=>s.display_name||s.name).join(" + "));
   return "sms:+1" + tel + "?&body=" + encodeURIComponent(
@@ -2328,10 +1979,12 @@ async function submitRequest(){
     hair_density: d ? d.label : "Not sure",
     hair_length: l ? l.label : "",
     hair_history: (histLabels + (B.notes ? " — " + B.notes : "")).slice(0,2000),
-    desired_color_name: P.shade.name,
-    desired_color_hex: P.shade.baseHex,
-    desired_color_level: P.shade.level,
-    desired_style: (STYLES.find(s=>s.k===P.style)||{}).label || "",
+    // No goal-colour picker any more: what she wants is a consultation
+    // conversation, not a form field. The columns stay for older rows.
+    desired_color_name: "",
+    desired_color_hex: "",
+    desired_color_level: null,
+    desired_style: "",
     desired_texture: "",
     inspiration_url: B.inspiration.trim().slice(0,500),
     preferred_times: B.times.trim().slice(0,500),
@@ -2488,8 +2141,11 @@ async function admRequests(){
           ${r.client_instagram?"<b>"+esc(r.client_instagram)+"</b>":""}</div>
         <div><span>Starting hair</span><b><span class="sw-dot" style="background:${esc(r.hair_color_hex||"#888")}"></span>${esc(r.hair_color_name)} (lvl ${r.hair_color_level??"?"})</b>
           <b>${esc(r.hair_texture)} · ${esc(r.hair_density)} · ${esc(r.hair_length)}</b></div>
-        <div><span>Wants</span><b><span class="sw-dot" style="background:${esc(r.desired_color_hex||"#888")}"></span>${esc(r.desired_color_name)} (lvl ${r.desired_color_level??"?"})</b>
-          <b>${esc(r.desired_style||"")}</b></div>
+        ${/* older rows, from when the site had a goal-shade picker */ ""}
+        ${r.desired_color_name
+          ? `<div><span>Wanted</span><b><span class="sw-dot" style="background:${esc(r.desired_color_hex||"#888")}"></span>${esc(r.desired_color_name)}${r.desired_color_level!=null?" (lvl "+r.desired_color_level+")":""}</b>
+             ${r.desired_style?"<b>"+esc(r.desired_style)+"</b>":""}</div>`
+          : ""}
         <div><span>Estimate</span><b>${money(r.estimate_cents||0)}${r.has_variable_pricing?" + quoted":""} · ${dur(r.duration_min||0)}</b></div>
       </div>
       <div class="req-grid">
@@ -2651,7 +2307,7 @@ async function admSettings(){
        <input value="${esc(h.hours)}" data-hh="${i}" aria-label="Hours" placeholder="10 – 6, or Closed"></div>`;
   pane.innerHTML = `<div style="max-width:680px">` + F.map(([k,label,t])=>
     `<div class="field"><label for="s_${k}">${label}</label>${
-      k==="hero_sub" ? '<div class="hint">The line about the color wheel is added automatically after this.</div>' : ""}${
+      k==="hero_sub" ? '<div class="hint">A line inviting them to send a request is added automatically after this.</div>' : ""}${
       t==="area" ? `<textarea id="s_${k}">${esc(s[k]||"")}</textarea>`
                  : `<input id="s_${k}" type="text" value="${esc(s[k]||"")}">`}</div>`).join("") +
     `<h3 style="font-size:var(--t-2);font-weight:400;margin:var(--s-7) 0 var(--s-4)">Hours</h3>
@@ -2825,50 +2481,10 @@ function toast(msg){
 (function boot(){
   cacheEls();
   document.body.classList.add("has-panel");
-  rings.outer.el = document.getElementById("ringOuter");
-  rings.inner.el = document.getElementById("ringInner");
-  drawOuter();
 
   loadBooking();
-  setFamily(P.famIdx, P.shIdx);
-  rings.outer.rot = snapRotFor("outer", P.famIdx); applyRot("outer");
-
-  bindRing("outer",
-    i => { const n = FAMILIES[i].family;
-           document.getElementById("hubFam").textContent = n;
-           const wf = document.getElementById("wsFam"); if(wf) wf.textContent = n; },
-    i => { if(i !== P.famIdx) setFamily(i); else updateHub(); });
-  bindRing("inner",
-    i => { if(i !== P.shIdx) setShade(i); },
-    i => setShade(i));
-
-  // Arrow steppers — same actions as the keyboard model, for anyone who never
-  // discovers that the rings can be dragged.
-  const stepWheel = code => {
-    const f = FAMILIES[P.famIdx];
-    if(code === "sh+1") rings.inner.animateTo(mod(P.shIdx+1, f.shades.length));
-    else if(code === "sh-1") rings.inner.animateTo(mod(P.shIdx-1, f.shades.length));
-    else if(code === "fam+1") rings.outer.animateTo(mod(P.famIdx+1, FAMILIES.length));
-    else if(code === "fam-1") rings.outer.animateTo(mod(P.famIdx-1, FAMILIES.length));
-  };
-  document.querySelector(".wheel-steps").addEventListener("click", e => {
-    const b = e.target.closest("[data-step]"); if(!b) return;
-    stepWheel(b.dataset.step);
-  });
-
-  document.getElementById("wheel").addEventListener("keydown", e => {
-    const f = FAMILIES[P.famIdx];
-    if(e.key === "ArrowRight"){ rings.inner.animateTo(mod(P.shIdx+1, f.shades.length)); e.preventDefault(); }
-    else if(e.key === "ArrowLeft"){ rings.inner.animateTo(mod(P.shIdx-1, f.shades.length)); e.preventDefault(); }
-    else if(e.key === "ArrowDown"){ rings.outer.animateTo(mod(P.famIdx+1, FAMILIES.length)); e.preventDefault(); }
-    else if(e.key === "ArrowUp"){ rings.outer.animateTo(mod(P.famIdx-1, FAMILIES.length)); e.preventDefault(); }
-    else if(e.key === "Home"){ rings.inner.animateTo(0); e.preventDefault(); }
-    else if(e.key === "End"){ rings.inner.animateTo(f.shades.length-1); e.preventDefault(); }
-  });
-
   buildControls();
   renderGeometry();
-  updateLift();
   sndInit();
 
   // theme — the metas only track the OS scheme on their own, so a forced theme
