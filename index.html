@@ -161,6 +161,28 @@ html.js-rv .rv.in{opacity:1; transform:none}
   letter-spacing:.02em;
 }
 body.has-panel{ padding-right:var(--panel-w) }
+
+/* Collapsing just zeroes --panel-w; everything that reserves space for the
+   curtain (body padding, the route inset, the toast centring) reads that
+   variable, so they all reclaim the width together. */
+body.panel-off{ --panel-w:0px }
+body.panel-off #hairpanel, body.panel-off #panelLabel{ display:none }
+.panel-toggle{
+  position:fixed; right:var(--panel-w); top:50%; transform:translateY(-50%);
+  z-index:42; width:26px; height:60px; display:grid; place-items:center;
+  background:var(--c-surface); color:var(--c-ink-muted);
+  border:1px solid var(--c-line); border-right:0;
+  border-radius:var(--r-soft) 0 0 var(--r-soft);
+  box-shadow:-2px 0 10px rgb(var(--c-shadow-rgb)/.12);
+  font-size:15px; line-height:1;
+  transition:right var(--d-base) var(--e-inout), color var(--d-fast) var(--e-inout), background var(--d-fast) var(--e-inout);
+}
+/* an explicit literal, not just the zeroed var: a transitioned property whose
+   value comes from a custom property does not always recompute when that
+   property changes, which left the tab stranded mid-screen */
+body.panel-off .panel-toggle{ right:0 }
+.panel-toggle:hover{ color:var(--c-ink); background:var(--c-canvas-alt) }
+@media (prefers-reduced-motion:reduce){ .panel-toggle{transition:none} }
 @media (max-width:1099px){
   :root{ --panel-w:clamp(64px,15vw,104px) }
   #hairpanel{ filter:drop-shadow(-8px 0 20px rgb(var(--c-shadow-rgb)/.14)) }
@@ -612,6 +634,7 @@ body.routing .toast{bottom:118px}
   <ellipse id="spec" cx="120" cy="382" rx="150" ry="90" fill="url(#gSpec)" mask="url(#mSil)" style="mix-blend-mode:soft-light"/>
 </svg>
 <div id="panelLabel"></div>
+<button class="panel-toggle" id="panelToggle" aria-expanded="true" aria-label="Hide the hair preview" title="Hide the hair preview">›</button>
 <p class="sr" role="status" aria-live="polite" id="live"></p>
 
 <!-- ======================= HEADER ======================= -->
@@ -788,7 +811,7 @@ body.routing .toast{bottom:118px}
 
 <div class="bookbar" id="bookbar">
   <div class="bb-t"><b>Ready when you are</b>4 hair questions, then your service · about 2 minutes</div>
-  <a class="btn btn-primary btn-sm" href="#/book/1">Book</a>
+  <a class="btn btn-primary btn-sm" href="#/book/1">Inquire</a>
 </div>
 
 <!-- ======================= BOOKING ROUTE ======================= -->
@@ -2486,6 +2509,23 @@ function toast(msg){
   buildControls();
   renderGeometry();
   sndInit();
+
+  // Let her reclaim the width the curtain occupies. The panel is the signature
+  // of the site, so it stays on by default and the choice is remembered.
+  const pToggle = document.getElementById("panelToggle");
+  const setPanel = (on, announce) => {
+    document.body.classList.toggle("panel-off", !on);
+    pToggle.textContent = on ? "›" : "‹";
+    pToggle.setAttribute("aria-expanded", String(on));
+    const lbl = on ? "Hide the hair preview" : "Show the hair preview";
+    pToggle.setAttribute("aria-label", lbl);
+    pToggle.setAttribute("title", lbl);
+    try{ localStorage.setItem("jz_panel", on ? "on" : "off"); }catch(e){}
+    if(on) renderGeometry();   // repaint whatever changed while it was hidden
+    if(announce) toast(on ? "Hair preview back on" : "Hair preview hidden — tap the tab to bring it back");
+  };
+  pToggle.onclick = () => setPanel(document.body.classList.contains("panel-off"), true);
+  if(localStorage.getItem("jz_panel") === "off") setPanel(false, false);
 
   // theme — the metas only track the OS scheme on their own, so a forced theme
   // must rewrite them or the phone's browser chrome stays the wrong color
