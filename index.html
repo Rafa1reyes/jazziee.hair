@@ -800,6 +800,13 @@ body.routing .toast{bottom:118px}
         </p>
       </div>
     </div>
+    <p style="font-size:var(--t--2);opacity:.72;max-width:64ch;margin-top:var(--s-4)">
+      <b>Privacy:</b> when you send an inquiry, your name, phone, and anything
+      you share about your hair go only to Jazzie, stored securely with her
+      booking database provider, and are used only to plan and arrange your
+      appointment. Nothing is sold or shared. Want it deleted? Text and it's
+      gone.
+    </p>
     <div class="fbot">
       <span>© <span id="yr"></span> Hair By Jazzie</span>
       <span>Built for Jasmine Perez</span>
@@ -1594,6 +1601,9 @@ const HISTORY_OPTS = [
 ];
 
 function renderStep(){
+  // First moment a human sees the booking flow — the floor for the
+  // faster-than-humanly-possible spam check in submitRequest().
+  if(!renderStep._t0) renderStep._t0 = Date.now();
   const host = document.getElementById("bookStep");
   const note = document.getElementById("navNote");
   const back = document.getElementById("btnBack");
@@ -1605,7 +1615,7 @@ function renderStep(){
   if(step === 1){
     const introduce = sub === 1 ? `<span class="eyebrow" style="margin-bottom:var(--s-4)">Your hair · ${sub} of ${SUBS}</span>
       <p class="q-sub" style="color:var(--c-ink);font-size:var(--t-1);font-family:var(--font-display);line-height:1.3;margin-bottom:var(--s-5)">First, tell me what I'm working with.</p>
-      <p class="q-help" style="margin-bottom:var(--s-8)">4 quick questions about your hair, then you'll pick your service. About 2 minutes. This goes straight to me and nowhere else.</p>`
+      <p class="q-help" style="margin-bottom:var(--s-8)">4 quick questions about your hair, then you'll pick your service. About 2 minutes. This goes only to me — details in the privacy note below.</p>`
       : `<span class="eyebrow" style="margin-bottom:var(--s-4)">Your hair · ${sub} of ${SUBS}</span>`;
 
     if(sub === 1){
@@ -1975,6 +1985,13 @@ async function submitRequest(){
     step = 5; sub = 1; history.replaceState(null,"","#/book/5");
     renderStep(); updateProgress();
     toast("Almost — just need your name and a number I can text.");
+    return;
+  }
+  // A whole inquiry in under 8 seconds is not a person answering four hair
+  // questions — it's a script. Cheap floor until inserts move behind an
+  // Edge Function with real rate limiting.
+  if(renderStep._t0 && Date.now() - renderStep._t0 < 8000){
+    toast("One sec — give the form a moment, then try again.");
     return;
   }
   next.disabled = true; next.textContent = "Sending…";
