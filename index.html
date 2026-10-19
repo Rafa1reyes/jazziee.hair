@@ -252,6 +252,38 @@ section{padding-block:clamp(48px,8vw,104px); scroll-margin-top:76px}
 .picked-note{font-size:var(--t--1); color:var(--c-ink-muted); margin-bottom:var(--s-5)}
 .picked-note b{color:var(--c-ink); font-weight:500}
 
+/* Day picker. Jasmine works Thursday, Friday and Saturday only, so the form
+   offers real dates instead of a free-text box that invites "how about Monday?".
+   The open weekdays come from jz_settings.booking_days, not from this file. */
+.daygrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); gap:var(--s-2); margin-bottom:var(--s-3)}
+.day{
+  min-height:62px; padding:var(--s-2) var(--s-3); border-radius:var(--r-sharp);
+  border:1px solid var(--c-line-strong); background:var(--c-surface); color:var(--c-ink);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  font-size:var(--t--1); line-height:1.2; text-align:center;
+  transition:background var(--d-fast) var(--e-inout), border-color var(--d-fast) var(--e-inout);
+}
+.day:hover{background:var(--c-canvas-alt)}
+.day .dow{font-weight:500}
+.day .dnum{font-size:var(--t--2); color:var(--c-ink-muted)}
+.day[aria-pressed="true"]{background:var(--c-accent); border-color:var(--c-accent); color:var(--c-on-accent)}
+.day[aria-pressed="true"] .dnum{color:var(--c-on-accent); opacity:.85}
+.daymore{font-size:var(--t--2); color:var(--c-ink-muted); background:none; border:0; text-decoration:underline; padding:var(--s-2) 0}
+.closed-note{
+  font-size:var(--t--2); color:var(--c-ink-muted); margin:0 0 var(--s-5);
+  padding-left:var(--s-3); border-left:2px solid var(--c-line-strong);
+}
+
+/* Message form - same visual language as booking, deliberately shorter */
+.tabs{display:flex; gap:var(--s-2); margin-bottom:var(--s-6); border-bottom:1px solid var(--c-line)}
+.tab{
+  padding:var(--s-3) var(--s-5); font-size:var(--t--1); font-weight:500;
+  color:var(--c-ink-muted); background:none; border:0; border-bottom:2px solid transparent;
+  margin-bottom:-1px; transition:color var(--d-fast) var(--e-inout);
+}
+.tab:hover{color:var(--c-ink)}
+.tab[aria-selected="true"]{color:var(--c-ink); border-bottom-color:var(--c-accent)}
+
 .done{text-align:center; padding:clamp(32px,6vw,72px) var(--s-5); border:1px solid var(--c-line); border-radius:var(--r-soft); background:var(--c-surface)}
 .done .tick{width:60px;height:60px;margin:0 auto var(--s-5); border-radius:50%; background:var(--c-accent-tint); color:var(--c-accent); display:grid; place-items:center; font-size:28px}
 .done h2{font-size:var(--t-2); margin-bottom:var(--s-4)}
@@ -286,6 +318,8 @@ body.routing{overflow:hidden}
 .req{border:1px solid var(--c-line); border-radius:var(--r-soft); background:var(--c-surface); padding:var(--s-5); margin-bottom:var(--s-4)}
 .req-top{display:flex; flex-wrap:wrap; gap:var(--s-3) var(--s-5); align-items:baseline; margin-bottom:var(--s-4)}
 .req-top h4{font:500 var(--t-1)/1.2 var(--font-body); margin-right:auto}
+.kind-tag{font-size:var(--t--2); font-weight:500; letter-spacing:.08em; text-transform:uppercase;
+  background:var(--c-accent-tint); color:var(--c-accent); padding:3px 9px; border-radius:99px}
 .req-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:var(--s-4); font-size:var(--t--1); margin-bottom:var(--s-4)}
 .req-grid div span{display:block; font-size:var(--t--2); color:var(--c-ink-muted); text-transform:uppercase; letter-spacing:.1em; margin-bottom:3px}
 .req-grid div b{font-weight:500}
@@ -507,10 +541,15 @@ footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; let
   <section id="book" class="band">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2>Book an appointment</h2>
-        <p class="sec-note">This is a request, not a locked-in booking &mdash; nothing is charged today. I read every one myself and text you back, usually the same day.</p>
+        <h2 id="bookHead">Book an appointment</h2>
+        <p class="sec-note" id="bookNote">This is a request, not a locked-in booking &mdash; nothing is charged today. I read every one myself and text you back, usually the same day.</p>
       </div>
       <div class="bookwrap rv" id="bookwrap">
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab" id="tabBook" role="tab" aria-selected="true" aria-controls="bookForm">Book an appointment</button>
+          <button type="button" class="tab" id="tabMsg" role="tab" aria-selected="false" aria-controls="msgForm">Ask a question</button>
+        </div>
+
         <form id="bookForm" novalidate>
           <label class="hint" style="display:block;font-size:var(--t--1);font-weight:500;margin-bottom:var(--s-2)">What would you like? <span style="font-weight:400;color:var(--c-ink-muted)">(optional &mdash; pick as many as you want)</span></label>
           <div class="picker" id="picker"></div>
@@ -536,8 +575,16 @@ footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; let
           </div>
 
           <div class="field">
-            <label for="fTimes">When works for you? <span style="color:var(--c-ink-muted);font-weight:400">(optional)</span></label>
-            <div class="hint">For example: Saturday mornings, or any weekday after 3.</div>
+            <label>Which day suits you? <span style="color:var(--c-ink-muted);font-weight:400">(optional &mdash; pick as many as you like)</span></label>
+            <div class="hint" id="dayHint">Pick a few and I will confirm the time when I text you back.</div>
+            <div class="daygrid" id="dayGrid"></div>
+            <button type="button" class="daymore" id="dayMore">Show more dates</button>
+            <p class="closed-note" id="closedNote"></p>
+          </div>
+
+          <div class="field">
+            <label for="fTimes">Time of day, or anything about scheduling <span style="color:var(--c-ink-muted);font-weight:400">(optional)</span></label>
+            <div class="hint">For example: mornings are better, or I can only do after 3.</div>
             <textarea id="fTimes" name="times" style="min-height:64px"></textarea>
           </div>
 
@@ -553,6 +600,37 @@ footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; let
           </div>
 
           <button class="btn btn-primary" id="btnSend" type="submit" style="width:100%">Send my request</button>
+        </form>
+
+        <!-- Not everyone is ready to book. A question with a number attached is
+             still a lead, and it reaches her the same way a booking does. -->
+        <form id="msgForm" novalidate hidden>
+          <div class="field" id="mwName">
+            <label for="mName">Your name</label>
+            <input id="mName" name="name" type="text" autocomplete="name" autocapitalize="words">
+            <div class="err" id="mErrName">I just need something to call you.</div>
+          </div>
+
+          <div class="field" id="mwPhone">
+            <label for="mPhone">Phone</label>
+            <div class="hint">This is how I will get back to you, so double-check it.</div>
+            <input id="mPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+            <div class="err" id="mErrPhone">A number I can text &mdash; 10 digits.</div>
+          </div>
+
+          <div class="field" id="mwBody">
+            <label for="mBody">What would you like to ask?</label>
+            <div class="hint">A question, a price check, a photo link, or something you want that is not on the menu &mdash; anything.</div>
+            <textarea id="mBody" name="body" style="min-height:132px"></textarea>
+            <div class="err" id="mErrBody">Tell me what you would like to know.</div>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="mWebsite">Leave this empty</label>
+            <input id="mWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary" id="btnMsg" type="submit" style="width:100%">Send my message</button>
         </form>
       </div>
     </div>
@@ -940,7 +1018,7 @@ async function loadData(){
     SETTINGS = {};
   }
   // A bad settings row must never take the rest of the page down with it.
-  try{ paintSettings(); paintMenu(); buildPicker(); }
+  try{ paintSettings(); paintMenu(); buildPicker(); buildDays(); }
   catch(e){ console.error("Paint failed:", e); }
 }
 
@@ -1068,6 +1146,79 @@ function renderRows(){
 const picked = new Set();
 const formT0 = Date.now();
 
+/* ---- Day picker ---------------------------------------------------------
+   Jasmine works Thursday, Friday and Saturday. Offering a free-text box invited
+   "how about Monday?", which cost her a reply every time just to say no. The
+   open weekdays come from jz_settings.booking_days so she can change them from
+   the admin panel; this file only supplies the fallback. */
+const DEFAULT_BOOKING_DAYS = [4,5,6];           // 0=Sun .. 6=Sat
+const DOW = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const pickedDays = new Set();
+let dayPage = 1;                                 // 1 page = 6 dates
+
+function bookingDays(){
+  const raw = SETTINGS.booking_days;
+  const arr = Array.isArray(raw) ? raw : (typeof raw === "string" ? (()=>{ try{ return JSON.parse(raw); }catch(_e){ return null; } })() : null);
+  const clean = (arr || []).map(Number).filter(n => Number.isInteger(n) && n >= 0 && n <= 6);
+  return clean.length ? clean : DEFAULT_BOOKING_DAYS;
+}
+
+// Local-midnight date keys, so "today" means the client's today, not UTC's.
+function dayKey(d){
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function dayLabel(d){ return DOW[d.getDay()].slice(0,3) + " " + MON[d.getMonth()] + " " + d.getDate(); }
+
+// The next N open dates, starting tomorrow - same-day booking is not a thing
+// she can honour, and offering it only produces a disappointed text.
+function nextOpenDates(n){
+  const open = bookingDays(), out = [];
+  const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() + 1);
+  for(let i = 0; i < 180 && out.length < n; i++){
+    if(open.indexOf(d.getDay()) >= 0) out.push(new Date(d));
+    d.setDate(d.getDate() + 1);
+  }
+  return out;
+}
+
+function openDayNames(){
+  const open = bookingDays().slice().sort((a,b)=>a-b).map(i => DOW[i]);
+  if(open.length <= 1) return open[0] || "";
+  return open.slice(0,-1).join(", ") + " and " + open[open.length-1];
+}
+
+function buildDays(){
+  const grid = document.getElementById("dayGrid");
+  if(!grid) return;
+  const dates = nextOpenDates(dayPage * 6);
+  grid.innerHTML = dates.map(d => {
+    const k = dayKey(d);
+    return '<button type="button" class="day" data-d="' + k + '" aria-pressed="' + pickedDays.has(k) + '">' +
+      '<span class="dow">' + DOW[d.getDay()].slice(0,3) + "</span>" +
+      '<span class="dnum">' + MON[d.getMonth()] + " " + d.getDate() + "</span></button>";
+  }).join("");
+  grid.onclick = e => {
+    const b = e.target.closest("[data-d]"); if(!b) return;
+    const k = b.dataset.d;
+    if(pickedDays.has(k)) pickedDays.delete(k); else pickedDays.add(k);
+    b.setAttribute("aria-pressed", String(pickedDays.has(k)));
+  };
+  const more = document.getElementById("dayMore");
+  if(more){
+    more.hidden = dayPage >= 5;
+    more.onclick = () => { dayPage++; buildDays(); };
+  }
+  const note = document.getElementById("closedNote");
+  if(note) note.textContent = "I am in the chair " + openDayNames() + ". Those are the only days I can book, but you can still send me a question any day of the week.";
+}
+
+function pickedDayLabels(){
+  // keep the order they appear in the grid, not click order
+  return nextOpenDates(60).filter(d => pickedDays.has(dayKey(d))).map(dayLabel);
+}
+
+
 function buildPicker(){
   const host = document.getElementById("picker");
   if(!SERVICES.length){ host.innerHTML = menuFailHTML(); return; }
@@ -1136,7 +1287,11 @@ async function sendRequest(e){
   const name  = document.getElementById("fName").value.trim();
   const phone = document.getElementById("fPhone").value.trim();
   const email = document.getElementById("fEmail").value.trim();
-  const times = document.getElementById("fTimes").value.trim();
+  const timeNote = document.getElementById("fTimes").value.trim();
+  const days = pickedDayLabels();
+  // one field, because the admin card and the notifier email both already
+  // render preferred_times - no new column to teach them about
+  const times = [days.length ? days.join(", ") : "", timeNote].filter(Boolean).join(" — ");
   const notes = document.getElementById("fNotes").value.trim();
 
   // A bot fills every field it can see, including the one positioned off-screen.
@@ -1167,7 +1322,7 @@ async function sendRequest(e){
   const ref = sendRequest._ref || (sendRequest._ref = (Math.random().toString(36) + Math.random().toString(36)).replace(/[^a-z0-9]/g,"").slice(0,6).toUpperCase());
 
   const row = {
-    id: id, ref: ref, status: "new",
+    id: id, ref: ref, status: "new", kind: "booking",
     client_name: name.slice(0,120),
     client_phone: phone.slice(0,40),
     // optional channels go in as null, not "" - the insert policy shape-checks
@@ -1216,6 +1371,91 @@ async function sendRequest(e){
       ? "That did not send. Check your connection, or text me at " + SETTINGS.phone + "."
       : "That did not send — check your connection and try again.");
   }
+}
+
+/* ---- Message ("Ask a question") ----------------------------------------
+   Same table, same inbox, same notifier email - kind='message' is the only
+   difference. A question with a phone number on it is still a lead, and this is
+   the only way to reach her on a day she is not working. */
+async function sendMessage(e){
+  e.preventDefault();
+  const btn   = document.getElementById("btnMsg");
+  const name  = document.getElementById("mName").value.trim();
+  const phone = document.getElementById("mPhone").value.trim();
+  const body  = document.getElementById("mBody").value.trim();
+
+  if(document.getElementById("mWebsite").value){ return; }
+
+  const digits = phone.replace(/\D/g, "");
+  const nameBad  = !name;
+  const phoneBad = digits.length < 10 || digits.length > 15;
+  const bodyBad  = !body;
+  fieldBad("mwName", nameBad); fieldBad("mwPhone", phoneBad);
+  const bw = document.getElementById("mwBody");
+  bw.classList.toggle("bad", bodyBad);
+  document.getElementById("mBody").setAttribute("aria-invalid", String(bodyBad));
+  if(nameBad || phoneBad || bodyBad){
+    const first = document.getElementById(nameBad ? "mName" : phoneBad ? "mPhone" : "mBody");
+    first.focus(); first.scrollIntoView({ behavior:"smooth", block:"center" });
+    toast(bodyBad && !nameBad && !phoneBad
+      ? "Add your question and I will get back to you."
+      : "Just your name and a number I can text.");
+    return;
+  }
+  if(Date.now() - formT0 < 4000){
+    toast("One sec — give the form a moment, then try again.");
+    return;
+  }
+
+  btn.disabled = true; btn.textContent = "Sending…";
+  const id  = sendMessage._id  || (sendMessage._id  = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)));
+  const ref = sendMessage._ref || (sendMessage._ref = (Math.random().toString(36) + Math.random().toString(36)).replace(/[^a-z0-9]/g,"").slice(0,6).toUpperCase());
+
+  try{
+    await sbPost("jz_requests", [{
+      id: id, ref: ref, status: "new", kind: "message",
+      client_name: name.slice(0,120),
+      client_phone: phone.slice(0,40),
+      client_email: null, client_instagram: null,
+      hair_color_name: "", hair_color_hex: "", hair_color_level: null,
+      hair_texture: "", hair_density: "", hair_length: "", hair_history: "",
+      desired_color_name: "", desired_color_hex: "", desired_color_level: null,
+      desired_style: "", desired_texture: "", inspiration_url: "",
+      preferred_times: "",
+      client_notes: body.slice(0,2000),
+      estimate_cents: 0, duration_min: 0, has_variable_pricing: false,
+      quoted_cents: null, deposit_paid: false, is_archived: false, stylist_notes: "",
+    }]);
+    sendMessage._id = sendMessage._ref = null;
+    const tel = (SETTINGS.phone || FALLBACK_PHONE).replace(/[^\d]/g, "");
+    document.getElementById("bookwrap").innerHTML =
+      '<div class="done"><div class="tick">✓</div>' +
+      "<h2>Thanks, " + esc(name.split(" ")[0]) + ".</h2>" +
+      '<p style="color:var(--c-ink-muted)">Your message is with me. I read every one myself and I will text you back within 24 hours, usually the same day.</p>' +
+      '<div class="refbox">' + esc(ref) + "</div>" +
+      '<p style="color:var(--c-ink-muted);font-size:var(--t--1)">Quote that reference if you text me about it.</p>' +
+      '<a class="btn btn-primary" style="margin-top:var(--s-5)" href="sms:+1' + tel + "?&body=" +
+        encodeURIComponent("Hi Jazzie! I just sent a message, ref " + ref) + '">Text Jazzie</a></div>';
+    document.getElementById("book").scrollIntoView({ behavior:"smooth", block:"start" });
+  }catch(err){
+    console.error(err);
+    btn.disabled = false; btn.textContent = "Send my message";
+    toast(SETTINGS.phone
+      ? "That did not send. Check your connection, or text me at " + SETTINGS.phone + "."
+      : "That did not send — check your connection and try again.");
+  }
+}
+
+function showTab(which){
+  const isBook = which === "book";
+  document.getElementById("tabBook").setAttribute("aria-selected", String(isBook));
+  document.getElementById("tabMsg").setAttribute("aria-selected", String(!isBook));
+  document.getElementById("bookForm").hidden = !isBook;
+  document.getElementById("msgForm").hidden  = isBook;
+  document.getElementById("bookHead").textContent = isBook ? "Book an appointment" : "Ask me anything";
+  document.getElementById("bookNote").innerHTML = isBook
+    ? "This is a request, not a locked-in booking — nothing is charged today. I read every one myself and text you back, usually the same day."
+    : "Not ready to book, or want something that is not on the menu? Leave me a number and ask — I read every message myself and text you back, usually the same day.";
 }
 
 function toast(msg){
@@ -1310,9 +1550,14 @@ async function admRequests(){
   pane.innerHTML = rows.map(r=>{
     const svcs = (r.jz_request_services||[]).sort((a,b)=>a.sort_order-b.sort_order);
     const when = new Date(r.created_at).toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+    // a message carries no services, no date and no hair details - showing those
+    // empty blocks on it just makes the card harder to read
+    const isMsg = r.kind === "message";
+    const hairBits = [r.hair_color_name, r.hair_texture, r.hair_density, r.hair_length].filter(Boolean);
     return `<div class="req" data-id="${r.id}">
       <div class="req-top">
         <h4>${esc(r.client_name)} <span style="color:var(--c-ink-faint);font-weight:400;font-size:var(--t--1)">· ${esc(r.ref)}</span></h4>
+        ${isMsg ? '<span class="kind-tag">Question</span>' : ""}
         <span style="font-size:var(--t--2);color:var(--c-ink-faint)">${when}</span>
         <select class="status-sel" data-st="${r.id}" aria-label="Status for ${esc(r.client_name)}">${STATUSES.map(s=>`<option value="${s}" ${r.status===s?"selected":""}>${s}</option>`).join("")}</select>
       </div>
@@ -1324,24 +1569,29 @@ async function admRequests(){
             : ""}
           ${r.client_email?'<b><a href="mailto:'+esc(r.client_email)+'">'+esc(r.client_email)+"</a></b>":""}
           ${r.client_instagram?"<b>"+esc(r.client_instagram)+"</b>":""}</div>
-        <div><span>Starting hair</span><b><span class="sw-dot" style="background:${esc(r.hair_color_hex||"#888")}"></span>${esc(r.hair_color_name)} (lvl ${r.hair_color_level??"?"})</b>
-          <b>${esc(r.hair_texture)} · ${esc(r.hair_density)} · ${esc(r.hair_length)}</b></div>
+        ${hairBits.length
+          ? `<div><span>Starting hair</span><b><span class="sw-dot" style="background:${esc(r.hair_color_hex||"#888")}"></span>${esc(r.hair_color_name||"—")}${r.hair_color_level!=null?" (lvl "+r.hair_color_level+")":""}</b>
+             <b>${hairBits.slice(1).map(esc).join(" · ")}</b></div>`
+          : ""}
         ${/* older rows, from when the site had a goal-shade picker */ ""}
         ${r.desired_color_name
           ? `<div><span>Wanted</span><b><span class="sw-dot" style="background:${esc(r.desired_color_hex||"#888")}"></span>${esc(r.desired_color_name)}${r.desired_color_level!=null?" (lvl "+r.desired_color_level+")":""}</b>
              ${r.desired_style?"<b>"+esc(r.desired_style)+"</b>":""}</div>`
           : ""}
-        <div><span>Estimate</span><b>${money(r.estimate_cents||0)}${r.has_variable_pricing?" + quoted":""} · ${dur(r.duration_min||0)}</b></div>
+        ${isMsg ? "" : `<div><span>Estimate</span><b>${money(r.estimate_cents||0)}${r.has_variable_pricing?" + quoted":""} · ${dur(r.duration_min||0)}</b></div>`}
       </div>
       <div class="req-grid">
-        <div style="grid-column:1/-1"><span>Services</span><b>${svcs.map(s=>esc(s.name_at_time)).join(" + ")||"—"}</b></div>
+        ${isMsg
+          ? `<div style="grid-column:1/-1"><span>What they asked</span><b style="font-weight:400;white-space:pre-wrap">${esc(r.client_notes||"")}</b></div>`
+          : `<div style="grid-column:1/-1"><span>Services</span><b>${svcs.map(s=>esc(s.name_at_time)).join(" + ")||"—"}</b></div>`}
+        ${(!isMsg && r.client_notes)?'<div style="grid-column:1/-1"><span>What they said</span><b style="font-weight:400;white-space:pre-wrap">'+esc(r.client_notes)+"</b></div>":""}
         ${r.hair_history?'<div style="grid-column:1/-1"><span>Color history &amp; notes</span><b style="font-weight:400">'+esc(r.hair_history)+"</b></div>":""}
         ${r.inspiration_url?'<div style="grid-column:1/-1"><span>Inspiration</span><b style="font-weight:400;word-break:break-all">'
           +(/^https?:\/\//i.test(r.inspiration_url)
             ? '<a href="'+esc(r.inspiration_url)+'" target="_blank" rel="noopener">'+esc(r.inspiration_url)+"</a>"
             : esc(r.inspiration_url))
           +"</b></div>":""}
-        ${r.preferred_times?'<div style="grid-column:1/-1"><span>Preferred times</span><b style="font-weight:400">'+esc(r.preferred_times)+"</b></div>":""}
+        ${(!isMsg && r.preferred_times)?'<div style="grid-column:1/-1"><span>Days that suit them</span><b style="font-weight:400">'+esc(r.preferred_times)+"</b></div>":""}
       </div>
       <div class="req-edit">
         <div class="field" style="margin:0"><label for="note_${r.id}">Your notes</label><textarea id="note_${r.id}" data-note="${r.id}" style="min-height:60px">${esc(r.stylist_notes||"")}</textarea></div>
@@ -1636,17 +1886,28 @@ function observeReveals(root){
   renderPanel();
 
   document.getElementById("bookForm").addEventListener("submit", sendRequest);
+  document.getElementById("msgForm").addEventListener("submit", sendMessage);
+  document.getElementById("tabBook").addEventListener("click", () => showTab("book"));
+  document.getElementById("tabMsg").addEventListener("click", () => showTab("msg"));
 
-  const ph = document.getElementById("fPhone");
-  ph.addEventListener("input", () => {
-    // only rewrite while typing at the end - reformatting mid-edit would jump
-    // the caret and fight the user
-    const atEnd = ph.selectionStart === ph.value.length;
-    const v = fmtPhone(ph.value);
-    if(v !== ph.value){
-      ph.value = v;
-      if(atEnd) try{ ph.setSelectionRange(v.length, v.length); }catch(e){}
-    }
+  // Render the dates immediately from the built-in fallback so the picker is
+  // never an empty box while settings are in flight; loadData redraws it.
+  buildDays();
+
+  // both phone fields get the same treatment
+  ["fPhone","mPhone"].forEach(id => {
+    const ph = document.getElementById(id);
+    if(!ph) return;
+    ph.addEventListener("input", () => {
+      // only rewrite while typing at the end - reformatting mid-edit would jump
+      // the caret and fight the user
+      const atEnd = ph.selectionStart === ph.value.length;
+      const v = fmtPhone(ph.value);
+      if(v !== ph.value){
+        ph.value = v;
+        if(atEnd) try{ ph.setSelectionRange(v.length, v.length); }catch(e){}
+      }
+    });
   });
 
 
