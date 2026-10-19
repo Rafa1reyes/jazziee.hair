@@ -582,9 +582,15 @@ footer h3{font:500 var(--t--1)/1 var(--font-body); text-transform:uppercase; let
             <p class="closed-note" id="closedNote"></p>
           </div>
 
+          <div class="field" id="timeWrap" hidden>
+            <label>What part of the day? <span style="color:var(--c-ink-muted);font-weight:400">(optional)</span></label>
+            <div class="hint" id="timeNote"></div>
+            <div class="daygrid" id="timeGrid"></div>
+          </div>
+
           <div class="field">
-            <label for="fTimes">Time of day, or anything about scheduling <span style="color:var(--c-ink-muted);font-weight:400">(optional)</span></label>
-            <div class="hint">For example: mornings are better, or I can only do after 3.</div>
+            <label for="fTimes">Anything else about scheduling? <span style="color:var(--c-ink-muted);font-weight:400">(optional)</span></label>
+            <div class="hint">For example: I can only do after 3, or I need to be out by 2.</div>
             <textarea id="fTimes" name="times" style="min-height:64px"></textarea>
           </div>
 
@@ -1018,7 +1024,7 @@ async function loadData(){
     SETTINGS = {};
   }
   // A bad settings row must never take the rest of the page down with it.
-  try{ paintSettings(); paintMenu(); buildPicker(); buildDays(); }
+  try{ paintSettings(); paintMenu(); buildPicker(); buildDays(); buildTimes(); }
   catch(e){ console.error("Paint failed:", e); }
 }
 
@@ -1061,12 +1067,90 @@ function paintSettings(){
   if(ul) ul.innerHTML = hrs.map(h =>
     '<li class="' + (/closed/i.test(h.hours) ? "closed" : "") + '"><b>' + esc(h.day) + "</b><span>" + esc(h.hours) + "</span></li>").join("");
   show("hoursList", hrs.length);
-  show("hoursFallback", !hrs.length);
   const open = hrs.filter(h => !/closed/i.test(h.hours));
+  // She is by appointment, not a walk-in shop. A bare list of hours reads like a
+  // storefront you can drop into, so the note stays up alongside it and says what
+  // the hours actually mean: the window appointments can be booked inside.
+  const fb = document.getElementById("hoursFallback");
+  if(fb){
+    fb.hidden = false;
+    fb.textContent = open.length
+      ? "By appointment only — these are the hours appointments can start and finish in."
+      : "By appointment — text me and I will come back with the closest real opening.";
+  }
   const mh = document.getElementById("mHours");
   if(mh) mh.textContent = open.length
     ? String(open[0].day).slice(0,3) + "–" + String(open[open.length-1].day).slice(0,3)
     : "By appointment";
+}
+
+/* Her working window, parsed out of the same hours she publishes, so the booking
+   form can never offer a time she is not in the chair. Returns null if the hours
+   are not written in a shape we can read - the form then just drops the picker
+   rather than inventing a window. */
+function openWindow(){
+  const hrs = (Array.isArray(SETTINGS.hours_json) ? SETTINGS.hours_json : [])
+    .filter(h => h && h.hours && !/closed/i.test(h.hours));
+  if(!hrs.length) return null;
+  const m = String(hrs[0].hours).match(
+    /(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?\s*[-–—to]+\s*(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?/i);
+  if(!m) return null;
+  const to24 = (h, ap) => { h = +h % 12; return ap.toLowerCase() === "p" ? h + 12 : h; };
+  const start = to24(m[1], m[3]) * 60 + (+(m[2] || 0));
+  const end   = to24(m[4], m[6]) * 60 + (+(m[5] || 0));
+  if(!(end > start)) return null;
+  return { start: start, end: end, label: String(hrs[0].hours).trim() };
+}
+
+const hhmm = mins => {
+  const h = Math.floor(mins / 60), m = mins % 60;
+  const ap = h >= 12 ? "PM" : "AM", h12 = (h % 12) || 12;
+  return h12 + (m ? ":" + String(m).padStart(2, "0") : "") + " " + ap;
+};
+
+/* Bands, not slots. A slot picker would promise availability she has no calendar
+   to back, and a 4-hour balayage cannot start at 5pm. Bands say "this part of the
+   day", which is what she actually needs to know to offer a real time back. */
+function buildTimes(){
+  const host = document.getElementById("timeGrid");
+  if(!host) return;
+  const w = openWindow();
+  const wrap = document.getElementById("timeWrap");
+  if(!w){ if(wrap) wrap.hidden = true; return; }
+  if(wrap) wrap.hidden = false;
+
+  // round the band edges to the half hour - thirds of a 9.5 hour day land on
+  // times like 11:40, which reads like a mistake rather than a choice
+  const span = w.end - w.start;
+  const half = t => Math.round(t / 30) * 30;
+  const cut1 = half(w.start + span / 3), cut2 = half(w.start + span * 2 / 3);
+  const bands = [
+    { k:"morning",   label:"Morning",       sub: hhmm(w.start) + " – " + hhmm(cut1) },
+    { k:"midday",    label:"Midday",        sub: hhmm(cut1)    + " – " + hhmm(cut2) },
+    { k:"afternoon", label:"Late afternoon",sub: hhmm(cut2)    + " – " + hhmm(w.end) },
+    { k:"any",       label:"Any time",      sub:"whatever you have" },
+  ];
+  host.innerHTML = bands.map(b =>
+    '<button type="button" class="day" data-t="' + b.k + '" aria-pressed="' + (pickedTimes.has(b.k)) + '">' +
+    '<span class="dow">' + b.label + "</span><span class=\"dnum\">" + b.sub + "</span></button>").join("");
+  host.onclick = e => {
+    const btn = e.target.closest("[data-t]"); if(!btn) return;
+    const k = btn.dataset.t;
+    // "Any time" is the whole window, so it cannot coexist with a specific band
+    if(k === "any"){ pickedTimes.clear(); pickedTimes.add("any"); }
+    else { pickedTimes.delete("any"); if(pickedTimes.has(k)) pickedTimes.delete(k); else pickedTimes.add(k); }
+    host.querySelectorAll("[data-t]").forEach(x =>
+      x.setAttribute("aria-pressed", String(pickedTimes.has(x.dataset.t))));
+  };
+  const note = document.getElementById("timeNote");
+  if(note) note.textContent = "I am in the chair " + w.label + " on those days, so appointments start and finish inside that window.";
+}
+
+function pickedTimeLabels(){
+  const host = document.getElementById("timeGrid");
+  if(!host) return [];
+  return [...host.querySelectorAll('[data-t][aria-pressed="true"]')]
+    .map(b => b.querySelector(".dow").textContent.trim());
 }
 function show(id, cond){
   const el = document.getElementById(id);
@@ -1155,6 +1239,7 @@ const DEFAULT_BOOKING_DAYS = [4,5,6];           // 0=Sun .. 6=Sat
 const DOW = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const pickedDays = new Set();
+const pickedTimes = new Set();
 let dayPage = 1;                                 // 1 page = 6 dates
 
 function bookingDays(){
@@ -1289,9 +1374,14 @@ async function sendRequest(e){
   const email = document.getElementById("fEmail").value.trim();
   const timeNote = document.getElementById("fTimes").value.trim();
   const days = pickedDayLabels();
+  const bands = pickedTimeLabels();
   // one field, because the admin card and the notifier email both already
   // render preferred_times - no new column to teach them about
-  const times = [days.length ? days.join(", ") : "", timeNote].filter(Boolean).join(" — ");
+  const times = [
+    days.length ? days.join(", ") : "",
+    bands.length ? bands.join(" / ") : "",
+    timeNote,
+  ].filter(Boolean).join(" — ");
   const notes = document.getElementById("fNotes").value.trim();
 
   // A bot fills every field it can see, including the one positioned off-screen.
